@@ -22,18 +22,44 @@ $catalogue_no = rand(999, 9999);
 
 $newMovies = [
     [
-        'movie_id' => "bk" . $catalogue_no++,
+        'movie_id' => "mv" . $catalogue_no++,
+        'movie_title' => 'Vacation Friends',
+        'movie_rating' => '8/10',
+        'movie_release_date' => '2021-02-25',
+        'movie_genre' => 'Comedy'
+    ],
+    [
+        'movie_id' => "mv" . $catalogue_no++,
+        'movie_title' => 'Vacation Friends 2',
+        'movie_rating' => '10/10',
+        'movie_release_date' => '2023-08-25',
+        'movie_genre' => 'Comedy'
+    ],
+    [
+        'movie_id' => "mv" . $catalogue_no++,
+        'movie_title' => 'Captain Marvel 2',
+        'movie_rating' => '10/10',
+        'movie_release_date' => '2023-02-25',
+        'movie_genre' => 'Action/Thriller'
+    ],
+    [
+        'movie_id' => "mv" . $catalogue_no++,
+        'movie_title' => 'House of Dragon',
+        'movie_rating' => '10/10',
+        'movie_release_date' => '2023-09-20',
+        'movie_genre' => 'Action'
     ]
 ];
 
 $tableName = "movie_details";
 $conn = new MovieModel(databaseName: $databaseName);
-
-$status = $conn->createMovie(tableName: $tableName, sanitizedData: $Movie);
-if ($status) {
-    echo "Creating new record in $tableName returned: " . "true" . PHP_EOL;
-} else {
-    echo "Creating new record in $tableName returned: " . "false" . PHP_EOL;
+foreach ($newMovies as $movies) {
+    $status = $conn->createMovie(tableName: $tableName, sanitizedData: $movies);
+    if ($status) {
+        echo "Creating new record in $tableName returned: " . "true" . PHP_EOL;
+    } else {
+        echo "Creating new record in $tableName returned: " . "false" . PHP_EOL;
+    }
 }
 
 /**

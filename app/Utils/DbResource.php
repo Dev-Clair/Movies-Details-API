@@ -43,7 +43,6 @@ class DbResource
      */
     public static function dbConn(): ?\PDO
     {
-        // $conn = self::getConnection();
         $conn = static::getConnection();
         return $conn;
     }
@@ -57,7 +56,6 @@ class DbResource
      */
     public static function getTableConnection(?string $databaseName = null): DbTable
     {
-        // $conn = self::getConnection($databaseName);
         $conn = static::getConnection($databaseName);
         return new DbTable($conn);
     }
@@ -71,7 +69,6 @@ class DbResource
      */
     public static function getTableOpConnection(?string $databaseName = null): DbTableOp
     {
-        // $conn = self::getConnection($databaseName);
         $conn = static::getConnection($databaseName);
         return new DbTableOp($conn);
     }

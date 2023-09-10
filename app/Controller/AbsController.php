@@ -4,24 +4,14 @@ declare(strict_types=1);
 
 namespace app\Controller;
 
-use app\Model\MovieModel;
-
 abstract class AbsController implements IntController
 {
-    protected MovieModel $movieModel;
-
-    public function __construct(MovieModel $movieModel = null)
+    protected function sanitizeData(): array
     {
-        $this->movieModel = $movieModel ?: new $movieModel(databaseName: "movies");
-    }
-    abstract public function index();
-
-    protected function sanitizeUserInput(): array
-    {
-        $sanitizedInput = [];
-        foreach ($_POST as $fieldName => $userInput) {
-            $sanitizedInput[$fieldName] = filter_var($userInput, FILTER_SANITIZE_SPECIAL_CHARS);
+        $sanitizedData = [];
+        foreach ($_POST as $postField => $postValue) {
+            $sanitizedData[$postField] = filter_var($postValue, FILTER_SANITIZE_SPECIAL_CHARS);
         }
-        return $sanitizedInput;
+        return $sanitizedData;
     }
 }

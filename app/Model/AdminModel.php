@@ -9,7 +9,7 @@ use app\Db\DbTable;
 
 class AdminModel
 {
-    protected array $databaseNames = ['eshop', 'backup']; // Contains a list of all databases for the library
+    protected array $databaseNames = ['movies', 'backup']; // Contains a list of all databases for the library
     protected DbTable $dbTable;
 
     public function __construct(private ?string $databaseName)
