@@ -5,7 +5,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Samuel\\MoviesApi\\": "app/"
+      "app\\": "app/"
     }
   },
   "authors": [
@@ -14,5 +14,7 @@
       "email": "aniogbu.samuel@yahoo.com"
     }
   ],
-  "require": {}
+  "require": {
+    "slim/slim": "^4.0"
+  }
 }
