@@ -9,7 +9,7 @@ use app\Db\DbTableOp;
 
 abstract class MainModel
 {
-    protected array $databaseNames = ['eshop', 'backup'];
+    protected array $databaseNames = ['movies', 'backup'];
     protected DbTableOp $dbTableOp;
 
     public function __construct(private ?string $databaseName)

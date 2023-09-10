@@ -6,7 +6,7 @@ namespace app\Controller;
 
 use app\Model\MovieModel;
 
-class HomeController extends AbsController
+class MovieController extends AbsController
 {
     public function __construct()
     {

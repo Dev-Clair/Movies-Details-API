@@ -41,8 +41,8 @@ if ($dbConn->query($sql_query)) {
  * 
  * *************************************************************************************
  */
-$moviesTable = "movies";
-$moviesTableFields = "`user_id` VARCHAR(20) PRIMARY KEY,
+$movie_details_table = "movie_details";
+$movie_details_table_fields = "`user_id` VARCHAR(20) PRIMARY KEY,
                      `user_name` VARCHAR(150) NOT NULL,
                      `user_email` VARCHAR(150) UNIQUE NOT NULL,
                      `user_password` VARCHAR(255) NOT NULL,
@@ -50,16 +50,14 @@ $moviesTableFields = "`user_id` VARCHAR(20) PRIMARY KEY,
                      `user_role` ENUM('ADMIN', 'CUSTOMER') DEFAULT 'CUSTOMER',
                      `user_account_status` ENUM('Active', 'Inactive') DEFAULT 'Active'";
 
-$databaseTables = [$moviesTable => $moviesTableFields];
+$databaseTables = [$movie_details_table => $movie_details_table_fields];
 
 $conn = new AdminModel(databaseName: $databaseName);
-foreach ($databaseTables as $tableName => $fieldNames) {
-    $status = $conn->createTable(tableName: $tableName, fieldNames: $fieldNames);
-    if ($status) {
-        echo "Creating new table `$tableName` in $databaseName returned: " . "true" . PHP_EOL;
-    } else {
-        echo "Creating new table `$tableName` in $databaseName returned: " . "false" . PHP_EOL;
-    }
+$status = $conn->createTable(tableName: $tableName, fieldNames: $fieldNames);
+if ($status) {
+    echo "Creating new table `$tableName` in $databaseName returned: " . "true" . PHP_EOL;
+} else {
+    echo "Creating new table `$tableName` in $databaseName returned: " . "false" . PHP_EOL;
 }
 
 /** *************************************************************************************
