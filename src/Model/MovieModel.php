@@ -14,7 +14,7 @@ class MovieModel extends MainModel
     public function createMovie(string $tableName, array $sanitizedData): bool
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($sanitizedData)) {
@@ -27,7 +27,7 @@ class MovieModel extends MainModel
     public function retrieveAllMovies(string $tableName): array
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         return $this->dbTableOp->retrieveAllRecords(tableName: $tableName);
@@ -36,7 +36,7 @@ class MovieModel extends MainModel
     public function retrieveSingleMovie(string $tableName, string $fieldName, mixed $fieldValue): array
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($fieldName)) {
@@ -78,7 +78,7 @@ class MovieModel extends MainModel
     public function validateMovie(string $tableName, string $fieldName, mixed $fieldValue): bool
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($fieldName)) {
@@ -97,7 +97,7 @@ class MovieModel extends MainModel
     public function searchMovie(string $tableName, string $fieldName, mixed $fieldValue): array
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($fieldName)) {
@@ -116,7 +116,7 @@ class MovieModel extends MainModel
     public function updateMovie(string $tableName, array $sanitizedData, string $fieldName, mixed $fieldValue): bool
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($sanitizedData)) {
@@ -139,7 +139,7 @@ class MovieModel extends MainModel
     public function deleteMovie(string $tableName, string $fieldName, mixed $fieldValue): bool
     {
         if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly omit or provide a valid table name.");
+            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
         }
 
         if (empty($fieldName)) {
