@@ -9,7 +9,7 @@ use app\Db\DbConn;
 use app\Db\DbTable;
 use app\Db\DbTableOp;
 
-class DbResource
+class DbGateway
 {
     /**
      * *************************************************************************************

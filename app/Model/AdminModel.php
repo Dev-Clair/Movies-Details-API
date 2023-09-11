@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\Model;
 
-use app\Utils\DbResource;
+use app\Utils\DbGateway;
 use app\Db\DbTable;
 
 class AdminModel
@@ -23,7 +23,7 @@ class AdminModel
         $this->databaseName = $databaseName ?? $this->databaseName;
 
         // Obtains the DbTableOp connection object using DbResource
-        $this->dbTable = DbResource::getTableConnection($this->databaseName);
+        $this->dbTable = DbGateway::getTableConnection($this->databaseName);
     }
 
     public function createTable(string $tableName, string $fieldNames): bool

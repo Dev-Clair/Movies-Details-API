@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\Utils\DbResource;
+use app\Utils\DbGateway;
 use app\Model\AdminModel;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -19,7 +19,7 @@ $databaseName = $databaseNames[0];
  * *************************************************************************************
  */
 
-$dbConn = DbResource::dbConn($databaseName);
+$dbConn = DbGateway::dbConn($databaseName);
 
 if (!$dbConn instanceof \PDO) {
     throw new \RuntimeException('Connection failed.');

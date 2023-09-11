@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\Model;
 
-use app\Utils\DbResource;
+use app\Utils\DbGateway;
 use app\Db\DbTableOp;
 
 abstract class MainModel
@@ -20,6 +20,6 @@ abstract class MainModel
 
         $this->databaseName = $databaseName ?? $this->databaseName;
 
-        $this->dbTableOp = DbResource::getTableOpConnection($this->databaseName);
+        $this->dbTableOp = DbGateway::getTableOpConnection($this->databaseName);
     }
 }
