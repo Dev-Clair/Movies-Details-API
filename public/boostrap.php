@@ -1,7 +1,7 @@
 <?php
 
 // create database
-$createDatabase = 'C:\xampp\htdocs\v1\app\Utils\dbBoostrap\database.php';
+$createDatabase = 'C:\xampp\htdocs\v1\app\Utils\DbBoostrap\Database.php';
 
 exec("php $createDatabase", $dbOutput, $dbReturnVar);
 
@@ -12,7 +12,7 @@ if ($dbReturnVar !== 0) {
 echo implode("\n", $dbOutput) . PHP_EOL;
 
 // create table
-$createTable = 'C:\xampp\htdocs\v1\app\Utils\dbBoostrap\database_IO.php';
+$createTable = 'C:\xampp\htdocs\v1\app\Utils\DbBoostrap\Database_IO.php';
 
 exec("php $createTable", $tbOutput, $tbReturnVar);
 
@@ -23,7 +23,7 @@ if ($tbReturnVar !== 0) {
 echo implode("\n", $tbOutput) . PHP_EOL;
 
 // insert sample data into table
-$addSampleData = 'C:\xampp\htdocs\v1\app\Utils\dbBoostrap\table_IO.php';
+$addSampleData = 'C:\xampp\htdocs\v1\app\Utils\DbBoostrap\Table_IO.php';
 
 exec("php $addSampleData", $addOutput, $addReturnVar);
 
