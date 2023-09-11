@@ -33,4 +33,4 @@ if ($addReturnVar !== 0) {
     echo "Data insertion into table failed. Exit code: $addReturnVar";
     exit();
 }
-echo implode("\n", $tbOutput) . PHP_EOL;
+echo implode("\n", $addOutput) . PHP_EOL;
