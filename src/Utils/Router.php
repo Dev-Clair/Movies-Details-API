@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace app\Utils;
+namespace src\Utils;
 
-use app\Exception\RouteNotFoundException;
+use app\Exception\ResourceNotFoundException;
 
 class Router
 {
@@ -52,6 +52,6 @@ class Router
                 return $result;
             }
         }
-        throw new RouteNotFoundException();
+        throw new ResourceNotFoundException();
     }
 }

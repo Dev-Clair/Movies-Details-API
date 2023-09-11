@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace app\Utils;
+namespace src\Utils;
 
 use Dotenv\Dotenv;
-use app\Db\DbConn;
-use app\Db\DbTable;
-use app\Db\DbTableOp;
+use src\Db\DbConn;
+use src\Db\DbTable;
+use src\Db\DbTableOp;
 
 class DbGateway
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace app\Model;
+namespace src\Model;
 
-use app\Utils\DbGateway;
-use app\Db\DbTableOp;
+use src\Utils\DbGateway;
+use src\Db\DbTableOp;
 
 abstract class MainModel
 {

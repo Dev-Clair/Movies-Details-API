@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\Model;
+namespace src\Model;
 
 class MovieModel extends MainModel
 {

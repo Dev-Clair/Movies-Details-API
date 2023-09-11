@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\Controller;
+namespace src\Controller;
 
 abstract class AbsController implements IntController
 {
