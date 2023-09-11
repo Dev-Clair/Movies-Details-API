@@ -11,6 +11,25 @@ class MovieController extends AbsController
 {
     public function index(Request $request, Response $response)
     {
-        $movieModel = $this->container->get('MovieModel');
+    }
+
+
+    public function create(Request $request, Response $response)
+    {
+    }
+
+
+    public function store(Request $request, Response $response)
+    {
+    }
+
+
+    public function update(Request $request, Response $response)
+    {
+    }
+
+
+    public function delete(Request $request, Response $response)
+    {
     }
 }

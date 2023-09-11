@@ -11,6 +11,7 @@ if ($dbReturnVar !== 0) {
 }
 echo implode("\n", $dbOutput) . PHP_EOL;
 
+
 // create table
 $createTable = 'C:\xampp\htdocs\v1\app\Utils\DbBoostrap\Database_IO.php';
 
@@ -21,6 +22,7 @@ if ($tbReturnVar !== 0) {
     exit();
 }
 echo implode("\n", $tbOutput) . PHP_EOL;
+
 
 // insert sample data into table
 $addSampleData = 'C:\xampp\htdocs\v1\app\Utils\DbBoostrap\Table_IO.php';
