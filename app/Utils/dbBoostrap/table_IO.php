@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use app\Model\MovieModel;
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 // Database Array
 $databaseNames = ['movies', 'backup'];
@@ -22,32 +22,56 @@ $catalogue_no = rand(999, 9999);
 
 $newMovies = [
     [
-        'movie_id' => "mv" . $catalogue_no++,
-        'movie_title' => 'Vacation Friends',
-        'movie_rating' => '8/10',
-        'movie_release_date' => '2021-02-25',
-        'movie_genre' => 'Comedy'
+        'uid' => "mv" . $catalogue_no++,
+        'title' => 'Vacation Friends',
+        'year' => '2021',
+        'released' => '2021-02-25',
+        'runtime' => '105 mins',
+        'directors' => 'John Tyler',
+        'actors' => 'John Cena, Tobi Ray',
+        'country' => 'United States',
+        'poster' => '',
+        'imdb' => '8/10',
+        'type' => 'Comedy'
     ],
     [
-        'movie_id' => "mv" . $catalogue_no++,
-        'movie_title' => 'Vacation Friends 2',
-        'movie_rating' => '10/10',
-        'movie_release_date' => '2023-08-25',
-        'movie_genre' => 'Comedy'
+        'uid' => "mv" . $catalogue_no++,
+        'title' => 'Vacation Friends 2',
+        'year' => '2023',
+        'released' => '2023-08-25',
+        'runtime' => '107 mins',
+        'directors' => 'John Tyler',
+        'actors' => 'John Cena, Tobi Ray, Jenny Jenkins',
+        'country' => 'United States',
+        'poster' => '',
+        'imdb' => '10/10',
+        'type' => 'Comedy'
     ],
     [
-        'movie_id' => "mv" . $catalogue_no++,
-        'movie_title' => 'Captain Marvel 2',
-        'movie_rating' => '10/10',
-        'movie_release_date' => '2023-02-25',
-        'movie_genre' => 'Action/Thriller'
+        'uid' => "mv" . $catalogue_no++,
+        'title' => 'Captain Marvel',
+        'year' => '2023',
+        'released' => '2023-02-12',
+        'runtime' => '135 mins',
+        'directors' => 'Marvel',
+        'actors' => 'Steve Rogers, Tony Stark',
+        'country' => 'United States',
+        'poster' => '',
+        'imdb' => '10/10',
+        'type' => 'Action/Thriller'
     ],
     [
-        'movie_id' => "mv" . $catalogue_no++,
-        'movie_title' => 'House of Dragon',
-        'movie_rating' => '10/10',
-        'movie_release_date' => '2023-09-20',
-        'movie_genre' => 'Action'
+        'uid' => "mv" . $catalogue_no++,
+        'title' => 'House of Dragon',
+        'year' => '2023',
+        'released' => '2021-02-25',
+        'runtime' => '45 mins',
+        'directors' => 'John Tyler',
+        'actors' => 'Sean Longstaff, Mike Robin, Ethan Hunts',
+        'country' => 'United States',
+        'poster' => '',
+        'imdb' => '7/10',
+        'type' => 'Action, Adventure'
     ]
 ];
 

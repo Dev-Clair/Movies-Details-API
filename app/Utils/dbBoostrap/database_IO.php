@@ -2,37 +2,13 @@
 
 declare(strict_types=1);
 
-use app\Utils\DbGateway;
 use app\Model\AdminModel;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // Database Array
 $databaseNames = ['movies', 'backup'];
 $databaseName = $databaseNames[0];
-
-/**
- * *************************************************************************************
- * 
- * Create / Drop Databases
- * 
- * *************************************************************************************
- */
-
-$dbConn = DbGateway::dbConn($databaseName);
-
-if (!$dbConn instanceof \PDO) {
-    throw new \RuntimeException('Connection failed.');
-}
-
-$sql_query = "CREATE DATABASE IF NOT EXISTS $databaseName";
-// $sql_query = "DROP DATABASE $databaseName";
-
-if ($dbConn->query($sql_query)) {
-    echo "Database operation was successful" . PHP_EOL;
-} else {
-    throw new \RuntimeException('Database operation failed' . PHP_EOL);
-}
 
 /**
  * *************************************************************************************
@@ -42,14 +18,18 @@ if ($dbConn->query($sql_query)) {
  * *************************************************************************************
  */
 $movie_details_table = "movie_details";
-$movie_details_table_fields = "`movie_id` VARCHAR(20) PRIMARY KEY,
-                                `movie_title` VARCHAR(150) NOT NULL,
-                                `movie_rating` VARCHAR(150) NOT NULL,
-                                `movie_release_date` VARCHAR(255) NOT NULL,
-                                `movie_genre` VARCHAR(150),
-                                `movie_status` ENUM('AVAILABLE', 'UNAVAILABLE') DEFAULT 'AVAILABLE'";
-
-$databaseTables = [$movie_details_table => $movie_details_table_fields];
+$movie_details_table_fields = "`uid` VARCHAR(20) PRIMARY KEY,
+                                `title` VARCHAR(150) NOT NULL,
+                                `year` VARCHAR(4) NOT NULL,
+                                `released` VARCHAR(20) NOT NULL,
+                                `runtime` VARCHAR(10) NOT NULL,
+                                `directors' VARCHAR(150) NOT NULL,
+                                `actors` VARCHAR(255) NOT NULL,
+                                `country` VARCHAR(150) NOT NULL,
+                                `poster` VARCHAR(150),
+                                `imdb` VARCHAR(5) NOT NULL,
+                                `type` VARCHAR(50) NOT NULL,
+                                `status` ENUM('AVAILABLE', 'UNAVAILABLE') DEFAULT 'AVAILABLE'";
 
 $conn = new AdminModel(databaseName: $databaseName);
 $status = $conn->createTable(tableName: $movie_details_table, fieldNames: $movie_details_table_fields);
