@@ -4,13 +4,42 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 abstract class AbsController implements IntController
 {
-    private function sanitizeData(): array
+    public function __construct(protected Request $request, protected Response $response)
+    {
+    }
+
+    protected function errorResponse(string $response, string $message, bool|array|string $data): array
+    {
+        $errorResponse = [
+            'error' =>   $response,
+            'message' => $message,
+            'data' => $data
+        ];
+
+        return $errorResponse;
+    }
+
+    protected function successResponse(string $response, ?string $message, bool|array|string $data): array
+    {
+        $successResponse = [
+            'success' =>   $response,
+            'message' => $message,
+            'data' => $data
+        ];
+
+        return $successResponse;
+    }
+
+    protected function sanitizeData(): array
     {
         $sanitizedData = [];
 
-        $postData = json_decode(file_get_contents('php://input'), true);
+        $postData =  $this->request->getServerParams(); // json_decode(file_get_contents('php://input'), true);
         foreach ($postData as $postField => $postValue) {
             $sanitizedData[$postField] = filter_var($postValue, FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -112,7 +141,15 @@ abstract class AbsController implements IntController
             $errors['type'] = 'Please pass a valid movie type';
         }
 
-        // Return the validated data or errors
-        return ['data' => $validatedData, 'errors' => $errors];
+        if (!empty($errors)) {
+            $errorResponse = $this->errorResponse($this->response->getReasonPhrase(), 'Unprocessable Entity', $errors);
+            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $this->response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(422);
+        }
+
+        return $validatedData;
     }
 }
