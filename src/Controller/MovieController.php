@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpNotFoundException;
 
 
-
 /**
  * Handles GET/POST/PUT/PATCH/DELETE request endpoints
  * 
@@ -29,24 +28,43 @@ class MovieController extends AbsController
         parent::__construct($request, $response);
     }
 
-    /**
-     * Checks GET/POST/PUT/PATCH/DELETE request header for json content-type
-     * 
-     * Returns http error response on failure or void on success
-     */
-    private function contentType(): Response
-    {
-        $contentType = $this->request->getHeaderLine('Content-Type');
+    // /**
+    //  * Checks if a request method is allowed for an endpoint
+    //  * 
+    //  * Returns http error response on failure or void on success
+    //  */
+    // private function methodType(string $method, array $allowed): Response
+    // {
+    //     $methodType = $this->request->getMethod();
 
-        if (strpos($contentType, 'application/json') === false) {
-            $errorResponse = $this->errorResponse('Invalid Content-Type', 'This endpoint requires a JSON Content-Type header.', $contentType);
-            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+    //     if ($methodType !== $method) {
+    //         $errorResponse = $this->errorResponse('Invalid Request Method', 'This endpoint does not allow for this request method.', $methodType);
+    //         $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $this->response
-                ->withHeader('Content-Type', 'application/json')
-                ->withStatus(400);
-        }
-    }
+    //         return $this->response
+    //             ->withHeader('Allow', implode(",", $allowed))
+    //             ->withStatus(400);
+    //     }
+    // }
+
+    // /**
+    //  * Checks GET/POST/PUT/PATCH/DELETE request header for json content-type
+    //  * 
+    //  * Returns http error response on failure or void on success
+    //  */
+    // private function contentType(): Response
+    // {
+    //     $contentType = $this->request->getHeaderLine('Content-Type');
+
+    //     if (strpos($contentType, 'application/json') === false) {
+    //         $errorResponse = $this->errorResponse('Invalid Content-Type', 'This endpoint requires a JSON Content-Type header.', $contentType);
+    //         $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+    //         return $this->response
+    //             ->withHeader('Content-Type', 'application/json')
+    //             ->withStatus(400);
+    //     }
+    // }
 
     /**
      * Handles GET request for fetching movies
@@ -54,8 +72,6 @@ class MovieController extends AbsController
      */
     public function get(): Response
     {
-        $this->contentType();
-
         $result = $this->movieModel->retrieveAllMovies("movie_details");
         $response_code = $this->response->getStatusCode();
 
@@ -82,8 +98,6 @@ class MovieController extends AbsController
      */
     public function post(): Response
     {
-        $this->contentType();
-
         $result = $this->movieModel->createMovie("movie_details", []);
         $response_code = $this->response->getStatusCode();
 
@@ -111,9 +125,7 @@ class MovieController extends AbsController
      */
     public function put(): Response
     {
-        $this->contentType();
-
-        $fieldValue = $this->request->getAttribute('uid');
+        $fieldValue = $this->request->getAttribute('uid') ?? null;
 
         $validatedData = $this->validateData();
         $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $fieldValue);
@@ -143,9 +155,7 @@ class MovieController extends AbsController
      */
     public function patch(): Response
     {
-        $this->contentType();
-
-        $fieldValue = $this->request->getAttribute('uid');
+        $fieldValue = $this->request->getAttribute('uid') ?? null;
 
         $validatedData = $this->validateData();
         $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $fieldValue);
@@ -175,9 +185,7 @@ class MovieController extends AbsController
      */
     public function delete(): Response
     {
-        $this->contentType();
-
-        $fieldValue = $this->request->getAttribute('uid');
+        $fieldValue = $this->request->getAttribute('uid') ?? null;
 
         $result = $this->movieModel->deleteMovie("movie_details", 'uid', $fieldValue);
         $response_code = $this->response->getStatusCode();
@@ -205,9 +213,9 @@ class MovieController extends AbsController
      */
     public function getSelection(): Response
     {
-        $this->contentType();
+        $fieldValue = $this->request->getAttribute('numberPerPage') ?? null;
 
-        $result = $this->movieModel->retrieveAllMovies("movie_details");
+        $result = $this->movieModel->retrieveSelection("movie_details", 'numberPerPage', $fieldValue);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
@@ -233,9 +241,10 @@ class MovieController extends AbsController
      */
     public function getSortedSelection(): Response
     {
-        $this->contentType();
+        $numberPerPage = $this->request->getAttribute('numberPerPage') ?? null;
+        $fieldToSort = $this->request->getAttribute('fieldToSort') ?? null;
 
-        $result = $this->movieModel->retrieveAllMovies("movie_details");
+        $result = $this->movieModel->retrieveSelection("movie_details", 'numberPerPage', $numberPerPage, $fieldToSort);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
