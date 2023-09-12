@@ -31,25 +31,30 @@ abstract class AbsController implements IntController
     {
         // Check if attribute is not null
         if (is_null($requestAttribute)) {
-            $errorResponse = $this->errorResponse([
-                'missing' =>
+            $errorResponse = $this->errorResponse(
+                'Bad Request',
+                'Cannot retrieve attribute',
+                ['missing' =>
                 [
-                    'Attribute' => 'uid'
-                ]
-            ], 'Cannot retrieve attribute', $requestAttribute);
+                    'attribute' => $requestAttribute
+                ]]
+            );
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
                 ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(400);
         }
+    }
 
+    protected function validateResource($requestAttribute): Response
+    {
         // Check if resource exists on the server
-        $result = $this->movieModel->validateMovie("movie_details", 'uid', $requestAttribute);
+        $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], $requestAttribute);
 
         if (!$result) {
             $errorResponse = [
-                'error' => 'Invalid attribute uid',
+                'error' => 'Bad Request',
                 'message' => 'No resource exists for attribute {$requestAttribute} on the server',
                 'data' => $result,
             ];
@@ -61,7 +66,7 @@ abstract class AbsController implements IntController
         }
     }
 
-    protected function errorResponse(array|string $response, ?string $message, bool|array|string|null $data): array
+    protected function errorResponse(array|string $response, array|string $message, bool|array|string|null $data): array
     {
         $errorResponse = [
             'error' =>   $response,
@@ -72,7 +77,7 @@ abstract class AbsController implements IntController
         return $errorResponse;
     }
 
-    protected function successResponse(array|string $response, ?string $message, bool|array|string|null $data): array
+    protected function successResponse(array|string $response, array|string $message, bool|array|string|null $data): array
     {
         $successResponse = [
             'success' =>   $response,
@@ -189,7 +194,7 @@ abstract class AbsController implements IntController
         }
 
         if (!empty($errors)) {
-            $errorResponse = $this->errorResponse($this->response->getReasonPhrase(), 'Unprocessable Entity', $errors);
+            $errorResponse = $this->errorResponse('Unprocessable Entity', $this->response->getReasonPhrase(), $errors);
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
