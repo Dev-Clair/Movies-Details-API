@@ -17,8 +17,7 @@ $contentTypeMiddleware = new ContentTypeMiddleware();
 
 // Define Routes/Endpoints and Middleware
 $app->get('/v1/movies', \src\Controller\MovieController::class . ':get')
-    ->add($methodTypeMiddleware(['GET', 'POST']))
-    ->add($contentTypeMiddleware);
+    ->add($methodTypeMiddleware(['GET', 'POST']));
 
 $app->post('/v1/movies', \src\Controller\MovieController::class . ':post')
     ->add($methodTypeMiddleware(['POST']))
@@ -37,12 +36,10 @@ $app->patch('/v1/movies/{uid}', \src\Controller\MovieController::class . ':patch
     ->add($contentTypeMiddleware);
 
 $app->get('/v1/movies/{numberPerPage}', \src\Controller\MovieController::class . ':getSelection')
-    ->add($methodTypeMiddleware(['GET']))
-    ->add($contentTypeMiddleware);
+    ->add($methodTypeMiddleware(['GET']));
 
 $app->get('/v1/movies/{numberPerPage}/sort/{fieldToSort}', \src\Controller\MovieController::class . ':getSortedSelection')
-    ->add($methodTypeMiddleware(['GET']))
-    ->add($contentTypeMiddleware);
+    ->add($methodTypeMiddleware(['GET']));
 
 
 $app->run();

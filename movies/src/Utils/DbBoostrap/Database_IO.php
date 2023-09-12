@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\Model\AdminModel;
+use src\Model\AdminModel;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
@@ -23,7 +23,7 @@ $movie_details_table_fields = "`uid` VARCHAR(20) PRIMARY KEY,
                                 `year` VARCHAR(4) NOT NULL,
                                 `released` VARCHAR(20) NOT NULL,
                                 `runtime` VARCHAR(10) NOT NULL,
-                                `directors' VARCHAR(150) NOT NULL,
+                                `directors` VARCHAR(150) NOT NULL,
                                 `actors` VARCHAR(255) NOT NULL,
                                 `country` VARCHAR(150) NOT NULL,
                                 `poster` VARCHAR(150),

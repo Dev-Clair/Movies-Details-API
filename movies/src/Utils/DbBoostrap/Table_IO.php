@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\Model\MovieModel;
+use src\Model\MovieModel;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
