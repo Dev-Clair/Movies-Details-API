@@ -26,25 +26,31 @@ class DbTable
      */
     protected function executeQuery(string $sql, array $params = []): PDOStatement
     {
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute($params);
-        return $stmt;
+        $this->conn->beginTransaction();
+
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($params);
+
+            $this->conn->commit();
+            return $stmt;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            throw new \RuntimeException("Error executing query " . $e->getMessage());
+        }
     }
 
     /**
-     * @param string $tableName = "Name of table to be created in database"
-     * @param string $fieldNames = "fieldName dataType NULL/NOT NULL ?PRIMARY KEY ?AUTO_INCREMENT, fieldName dataType NULL/NOT NULL ?DEFAULT"
+     * @param string $tableName Name of table to be created in database
+     * @param string $fieldNames 
      * @return bool True if the table was created successfully, false otherwise
      */
-    public function createTable(string $tableName, string $fieldNames): bool
+    public function createTable(string $tableName, string $fieldNames): PDOStatement
     {
         $sql = "CREATE TABLE $tableName ($fieldNames)";
-        try {
-            $this->executeQuery(sql: $sql);
-            return true;
-        } catch (PDOException $e) {
-            throw new \RuntimeException("Error! Table Creation Failed: " . $e->getMessage());
-        }
+
+        $query_result = $this->executeQuery(sql: $sql);
+        return $query_result;
     }
 
     /**
@@ -52,15 +58,12 @@ class DbTable
      * @param string $alterStatement Statement to modify the table structure
      * @return bool True if the table was altered successfully, false otherwise
      */
-    public function alterTable(string $tableName, string $alterStatement): bool
+    public function alterTable(string $tableName, string $alterStatement): PDOStatement
     {
         $sql = "ALTER TABLE $tableName $alterStatement";
-        try {
-            $this->executeQuery(sql: $sql);
-            return true;
-        } catch (PDOException $e) {
-            throw new \RuntimeException("Error! Process Failed: " . $e->getMessage());
-        }
+
+        $query_result = $this->executeQuery(sql: $sql);
+        return $query_result;
     }
 
 
@@ -68,29 +71,23 @@ class DbTable
      * @param string $tableName Name of the table to be truncated in the database
      * @return bool True if the table was truncated successfully, false otherwise
      */
-    public function truncateTable(string $tableName): bool
+    public function truncateTable(string $tableName): PDOStatement
     {
         $sql = "TRUNCATE TABLE $tableName";
-        try {
-            $this->executeQuery(sql: $sql);
-            return true;
-        } catch (PDOException $e) {
-            throw new \RuntimeException("Error! Process Failed: " . $e->getMessage());
-        }
+
+        $query_result = $this->executeQuery(sql: $sql);
+        return $query_result;
     }
 
     /**
      * @param string $tableName Name of the table to be dropped in the database
      * @return bool True if the table was dropped successfully, false otherwise
      */
-    public function dropTable(string $tableName): bool
+    public function dropTable(string $tableName): PDOStatement
     {
         $sql = "DROP TABLE $tableName";
-        try {
-            $this->executeQuery(sql: $sql);
-            return true;
-        } catch (PDOException $e) {
-            throw new \RuntimeException("Error! Process Failed: " . $e->getMessage());
-        }
+
+        $query_result = $this->executeQuery(sql: $sql);
+        return $query_result;
     }
 }

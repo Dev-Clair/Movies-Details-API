@@ -7,7 +7,6 @@ namespace src\Controller;
 use src\Model\MovieModel;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Exception\HttpNotFoundException;
 
 
 /**
@@ -20,12 +19,9 @@ use Slim\Exception\HttpNotFoundException;
  */
 class MovieController extends AbsController
 {
-    private MovieModel $movieModel;
-
     public function __construct(MovieModel $movieModel, Request $request, Response $response)
     {
-        $this->movieModel = new $movieModel;
-        parent::__construct($request, $response);
+        parent::__construct($movieModel, $request, $response);
     }
 
     // /**
@@ -80,7 +76,7 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -88,7 +84,7 @@ class MovieController extends AbsController
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -98,7 +94,8 @@ class MovieController extends AbsController
      */
     public function post(): Response
     {
-        $result = $this->movieModel->createMovie("movie_details", []);
+        $validatedData = $this->validateData();
+        $result = $this->movieModel->createMovie("movie_details", $validatedData);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 201) {
@@ -107,7 +104,7 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -115,7 +112,7 @@ class MovieController extends AbsController
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(201);
     }
 
@@ -125,10 +122,12 @@ class MovieController extends AbsController
      */
     public function put(): Response
     {
-        $fieldValue = $this->request->getAttribute('uid') ?? null;
+        $requestAttribute = $this->request->getAttribute('uid') ?? null;
+
+        $this->validateRequestAttribute($requestAttribute);
 
         $validatedData = $this->validateData();
-        $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $fieldValue);
+        $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $requestAttribute);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
@@ -136,15 +135,15 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
-        $successResponse = $this->successResponse($this->response->getReasonPhrase(), 'Resource modify successfully', (bool) $result);
+        $successResponse = $this->successResponse($this->response->getReasonPhrase(), 'Resource modified successfully', (bool) $result);
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -155,10 +154,12 @@ class MovieController extends AbsController
      */
     public function patch(): Response
     {
-        $fieldValue = $this->request->getAttribute('uid') ?? null;
+        $requestAttribute = $this->request->getAttribute('uid') ?? null;
+
+        $this->validateRequestAttribute($requestAttribute);
 
         $validatedData = $this->validateData();
-        $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $fieldValue);
+        $result = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $requestAttribute);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
@@ -166,15 +167,15 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
-        $successResponse = $this->successResponse($this->response->getReasonPhrase(), 'Resource modify successfully', (bool) $result);
+        $successResponse = $this->successResponse($this->response->getReasonPhrase(), 'Resource modified successfully', (bool) $result);
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -185,9 +186,11 @@ class MovieController extends AbsController
      */
     public function delete(): Response
     {
-        $fieldValue = $this->request->getAttribute('uid') ?? null;
+        $requestAttribute = $this->request->getAttribute('uid') ?? null;
 
-        $result = $this->movieModel->deleteMovie("movie_details", 'uid', $fieldValue);
+        $this->validateRequestAttribute($requestAttribute);
+
+        $result = $this->movieModel->deleteMovie("movie_details", 'uid', $requestAttribute);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
@@ -195,7 +198,7 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -203,7 +206,7 @@ class MovieController extends AbsController
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -213,9 +216,23 @@ class MovieController extends AbsController
      */
     public function getSelection(): Response
     {
-        $fieldValue = $this->request->getAttribute('numberPerPage') ?? null;
+        $numberPerPage = $this->request->getAttribute('numberPerPage') ?? null;
 
-        $result = $this->movieModel->retrieveSelection("movie_details", 'numberPerPage', $fieldValue);
+        if (is_null($numberPerPage)) {
+            $errorResponse = $this->errorResponse([
+                'missing' =>
+                [
+                    'Attribute' => 'numberPerPage'
+                ]
+            ], 'Cannot retrieve attribute', $numberPerPage);
+            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $this->response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
+        $result = $this->movieModel->retrieveSelection("movie_details", 'numberPerPage', $numberPerPage);
         $response_code = $this->response->getStatusCode();
 
         if ($response_code !== 200) {
@@ -223,7 +240,7 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -231,7 +248,7 @@ class MovieController extends AbsController
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -244,6 +261,25 @@ class MovieController extends AbsController
         $numberPerPage = $this->request->getAttribute('numberPerPage') ?? null;
         $fieldToSort = $this->request->getAttribute('fieldToSort') ?? null;
 
+        if (is_null($numberPerPage | $fieldToSort)) {
+            $errorResponse = $this->errorResponse(
+                [
+                    'missing' =>
+                    [
+                        'numberPerPage' => $numberPerPage,
+                        'fieldToSort' => $fieldToSort
+                    ]
+                ],
+                'Cannot retrieve attribute',
+                [$numberPerPage, $fieldToSort]
+            );
+            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $this->response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
         $result = $this->movieModel->retrieveSelection("movie_details", 'numberPerPage', $numberPerPage, $fieldToSort);
         $response_code = $this->response->getStatusCode();
 
@@ -252,7 +288,7 @@ class MovieController extends AbsController
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -260,7 +296,7 @@ class MovieController extends AbsController
         $this->response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $this->response
-            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 }

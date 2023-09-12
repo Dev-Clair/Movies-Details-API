@@ -4,16 +4,64 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
+use src\Model\MovieModel;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+/**
+ * Abstract Controller Class
+ * 
+ * Provides helper methods to child class methods
+ * 
+ * @var MovieModel $movieModel
+ * @var Request $request
+ * @var Response $response
+ * 
+ */
 abstract class AbsController implements IntController
 {
-    public function __construct(protected Request $request, protected Response $response)
+    protected MovieModel $movieModel;
+
+    public function __construct(MovieModel $movieModel, protected Request $request, protected Response $response)
     {
+        $this->movieModel = new $movieModel;
     }
 
-    protected function errorResponse(string $response, string $message, bool|array|string $data): array
+    protected function validateRequestAttribute($requestAttribute): Response
+    {
+        // Check if attribute is not null
+        if (is_null($requestAttribute)) {
+            $errorResponse = $this->errorResponse([
+                'missing' =>
+                [
+                    'Attribute' => 'uid'
+                ]
+            ], 'Cannot retrieve attribute', $requestAttribute);
+            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $this->response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
+        // Check if resource exists on the server
+        $result = $this->movieModel->validateMovie("movie_details", 'uid', $requestAttribute);
+
+        if (!$result) {
+            $errorResponse = [
+                'error' => 'Invalid attribute uid',
+                'message' => 'No resource exists for attribute {$requestAttribute} on the server',
+                'data' => $result,
+            ];
+            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $this->response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+    }
+
+    protected function errorResponse(array|string $response, ?string $message, bool|array|string|null $data): array
     {
         $errorResponse = [
             'error' =>   $response,
@@ -24,7 +72,7 @@ abstract class AbsController implements IntController
         return $errorResponse;
     }
 
-    protected function successResponse(string $response, ?string $message, bool|array|string $data): array
+    protected function successResponse(array|string $response, ?string $message, bool|array|string|null $data): array
     {
         $successResponse = [
             'success' =>   $response,
@@ -119,11 +167,10 @@ abstract class AbsController implements IntController
 
         // Movie Poster Field
         $poster = $sanitizedData['poster'] ?? null;
-        if (!empty($poster)) {
+        if (is_string($poster)) {
             $validatedData['poster'] = $poster;
-        } else {
-            $errors['poster'] = 'Please pass a valid movie poster string';
         }
+        $validatedData['poster'] = "";
 
         // Movie IMDB Field
         $imdb = $sanitizedData['imdb'] ?? null;
