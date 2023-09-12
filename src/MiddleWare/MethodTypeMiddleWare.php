@@ -12,7 +12,7 @@ class MethodTypeMiddleware
     public function __invoke(Request $request, Response $response, $next)
     {
         $methodType = $request->getMethod();
-        $allowed = func_get_arg(3);
+        $allowed = func_get_args();
 
         if (!in_array($methodType, $allowed)) {
             $errorResponse = [
