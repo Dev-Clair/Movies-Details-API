@@ -6,6 +6,9 @@ use src\Middleware\ContentTypeMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+set_error_handler("ResourceThrowable::handleError");
+set_exception_handler("ResourceThrowable::handleException");
+
 $app = AppFactory::create();
 
 // Register Middleware
