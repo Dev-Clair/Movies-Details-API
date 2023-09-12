@@ -4,154 +4,89 @@ declare(strict_types=1);
 
 namespace src\Model;
 
+use PDOStatement;
+use InvalidArgumentException;
+
 class MovieModel extends MainModel
 {
     public function __construct(protected ?string $databaseName = null)
     {
+
         parent::__construct($databaseName);
     }
 
-    public function createMovie(string $tableName, array $sanitizedData): bool
+    private function invalidArgumentCheck()
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
+        $args = func_get_args();
+        foreach ($args as $arg) {
+            if (empty($arg)) {
+                throw new InvalidArgumentException($arg  . "is invalid");
+            }
         }
-
-        if (empty($sanitizedData)) {
-            throw new \InvalidArgumentException("No data specified; kindly provide missing array argument.");
-        }
-
-        return $this->dbTableOp->createRecords(tableName: $tableName, sanitizedData: $sanitizedData);
     }
+
+
+    // Basic CRUD Methods
+    public function createMovie(string $tableName, array $sanitizedData): PDOStatement
+    {
+        $this->invalidArgumentCheck();
+
+        return $this->dbTableOp->createResource(tableName: $tableName, sanitizedData: $sanitizedData);
+    }
+
 
     public function retrieveAllMovies(string $tableName): array
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        return $this->dbTableOp->retrieveAllRecords(tableName: $tableName);
+        return $this->dbTableOp->retrieveAllResources(tableName: $tableName);
     }
 
-    public function retrieveSingleMovie(string $tableName, string $fieldName, mixed $fieldValue): array
+
+    public function updateMovie(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($fieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->retrieveSpecificRecord_firstOccurrence(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
+        return $this->dbTableOp->updateResource(tableName: $tableName, sanitizedData: $sanitizedData, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 
-    public function retrieveMovieAttribute(string $tableName, string $fieldName, string $compareFieldName, mixed $compareFieldValue): mixed
+
+    public function deleteMovie(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($compareFieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field value.");
-        }
-
-        if (empty($compareFieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->retrieveSingleValue(tableName: $tableName, fieldName: $fieldName, compareFieldName: $compareFieldName, compareFieldValue: $compareFieldValue);
+        return $this->dbTableOp->deleteResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 
-    public function validateMovie(string $tableName, string $fieldName, mixed $fieldValue): bool
+
+    // Advanced CRUD Methods
+    public function retrieveSingleMovie(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($fieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->validateRecord(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
+        return $this->dbTableOp->retrieveSpecificResource_firstOccurrence(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 
-    public function searchMovie(string $tableName, string $fieldName, mixed $fieldValue): array
+    public function retrieveMovieAttribute(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): mixed
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($fieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->searchRecord(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
+        return $this->dbTableOp->retrieveResource_SingleFieldValue(tableName: $tableName, fieldName: $fieldName, compareFieldName: $compareFieldName, compareFieldValue: $compareFieldValue);
     }
 
-    public function updateMovie(string $tableName, array $sanitizedData, string $fieldName, mixed $fieldValue): bool
+
+    public function validateMovie(string $tableName, array $fieldName, mixed $fieldValue): bool
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($sanitizedData)) {
-            throw new \InvalidArgumentException("No data specified; kindly provide missing array argument.");
-        }
-
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($fieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->updateRecord(tableName: $tableName, sanitizedData: $sanitizedData, fieldName: $fieldName, fieldValue: $fieldValue);
+        return $this->dbTableOp->validateResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 
-    public function deleteMovie(string $tableName, string $fieldName, mixed $fieldValue): bool
+
+    public function searchMovie(string $tableName, array $fieldName, mixed $fieldValue): array
     {
-        if (empty($tableName)) {
-            throw new \InvalidArgumentException("Invalid table name specified; kindly provide a valid table name.");
-        }
+        $this->invalidArgumentCheck();
 
-        if (empty($fieldName)) {
-            throw new \InvalidArgumentException("No field name specified; kindly provide reference field name.");
-        }
-
-        if (empty($fieldValue)) {
-            throw new \InvalidArgumentException("No field value specified; kindly provide reference field value.");
-        }
-
-        $fieldName = "`$fieldName`";
-
-        return $this->dbTableOp->deleteRecord(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
+        return $this->dbTableOp->searchResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 }
