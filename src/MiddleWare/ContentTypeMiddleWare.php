@@ -17,12 +17,13 @@ class ContentTypeMiddleware
             $errorResponse = [
                 'error' => 'Invalid Content-Type',
                 'message' => 'This endpoint requires a JSON Content-Type header.',
-                'contentType' => $contentType
+                'supplied' => $contentType,
+                'required' => 'application/json; charset=UTF-8'
             ];
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(400);
         }
 

@@ -16,15 +16,16 @@ class MethodTypeMiddleware
 
         if (!in_array($methodType, $allowed)) {
             $errorResponse = [
-                'error' => 'Invalid Request Method',
-                'message' => 'This endpoint does not allow for this request method.',
-                'method' => $methodType
+                'error' => 'Method Not Allowed',
+                'message' => 'This endpoint does not allow the specified request method.',
+                'supplied' => $methodType,
+                'allowed' => implode(",", $allowed)
             ];
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
                 ->withHeader('Allow', implode(",", $allowed))
-                ->withStatus(400);
+                ->withStatus(405);
         }
 
         return $next($request, $response);
