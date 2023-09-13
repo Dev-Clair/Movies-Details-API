@@ -23,7 +23,6 @@ if ($tbReturnVar !== 0) {
 }
 echo implode("\n", $tbOutput) . PHP_EOL;
 
-sleep(5);
 
 // insert sample data into table
 $addSampleData = 'C:\xampp\htdocs\v1\src\Utils\DbBoostrap\Table_IO.php';
