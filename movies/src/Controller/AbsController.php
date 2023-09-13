@@ -50,14 +50,14 @@ abstract class AbsController implements IntController
     protected function validateResource($requestAttribute): Response
     {
         // Check if resource exists on the server
-        $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], $requestAttribute);
+        $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
         if (!$result) {
-            $errorResponse = [
-                'error' => 'Bad Request',
-                'message' => 'No resource exists for attribute {$requestAttribute} on the server',
-                'data' => $result,
-            ];
+            $errorResponse = $this->errorResponse(
+                'Bad Request',
+                'No resource found for attribute {$requestAttribute} on the server',
+                $result
+            );
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
@@ -194,7 +194,25 @@ abstract class AbsController implements IntController
         }
 
         if (!empty($errors)) {
-            $errorResponse = $this->errorResponse('Unprocessable Entity', $this->response->getReasonPhrase(), $errors);
+            $expected = [
+                'uid' => "movie_unique_id: mv000 or mv0000",
+                'title' => 'movie_title',
+                'year' => 'movie_year: YYYY',
+                'released' => 'movie_release_date: YYYY-MM-DD',
+                'runtime' => 'movie_runtime: 00 mins',
+                'directors' => 'movie_directors',
+                'actors' => 'movie_actors',
+                'country' => 'movie_country',
+                'poster' => '',
+                'imdb' => 'movie_rating',
+                'type' => 'movie_genre'
+            ];
+            $errorResponse = [
+                'error' => 'Unprocessable Entity',
+                'message' => 'Invalid Entries',
+                'expected' => $expected,
+                'supplied' => $errors,
+            ];
             $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $this->response
