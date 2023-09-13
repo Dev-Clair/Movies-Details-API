@@ -15,13 +15,20 @@ class MovieModel extends MainModel
         parent::__construct($databaseName);
     }
 
-    private function invalidArgumentCheck()
+    private function invalidArgumentCheck(array $args)
     {
-        $args = func_get_args();
-        foreach ($args as $arg) {
-            if (empty($arg)) {
-                throw new InvalidArgumentException($arg  . "is invalid");
+        foreach ($args as $argName => $argValue) {
+            if (empty($argValue)) {
+                throw new InvalidArgumentException("$argName is either null, false or not set.");
             }
+        }
+    }
+
+
+    private function argumentNumberCheck(int $expectedArgs, int $suppliedArgs)
+    {
+        if ($expectedArgs !== $suppliedArgs) {
+            throw new InvalidArgumentException("Invalid number of arguments supplied. Expected: $expectedArgs, Supplied: $suppliedArgs");
         }
     }
 
@@ -29,7 +36,8 @@ class MovieModel extends MainModel
     // Basic CRUD Methods
     public function createMovie(string $tableName, array $sanitizedData): PDOStatement
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(2, func_num_args());
+        $this->invalidArgumentCheck(['tableName' => $tableName, 'sanitizedData' => $sanitizedData]);
 
         return $this->dbTableOp->createResource(tableName: $tableName, sanitizedData: $sanitizedData);
     }
@@ -37,7 +45,8 @@ class MovieModel extends MainModel
 
     public function retrieveAllMovies(string $tableName): array
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(1, func_num_args());
+        $this->invalidArgumentCheck(['tableName' => $tableName]);
 
         return $this->dbTableOp->retrieveAllResources(tableName: $tableName);
     }
@@ -45,7 +54,13 @@ class MovieModel extends MainModel
 
     public function updateMovie(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(4, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'sanitizedData' => $sanitizedData,
+            'fieldName' => $fieldName,
+            'fieldValue' => $fieldValue
+        ]);
 
         return $this->dbTableOp->updateResource(tableName: $tableName, sanitizedData: $sanitizedData, fieldName: $fieldName, fieldValue: $fieldValue);
     }
@@ -53,7 +68,12 @@ class MovieModel extends MainModel
 
     public function deleteMovie(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(3, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'fieldName' => $fieldName,
+            'fieldValue' => $fieldValue
+        ]);
 
         return $this->dbTableOp->deleteResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
@@ -62,14 +82,25 @@ class MovieModel extends MainModel
     // Advanced CRUD Methods
     public function retrieveSingleMovie(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(1, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'fieldName' => $fieldName,
+            'fieldValue' => $fieldValue
+        ]);
 
         return $this->dbTableOp->retrieveSpecificResource_firstOccurrence(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
 
     public function retrieveMovieAttribute(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): mixed
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(4, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'fieldName' => $fieldName,
+            'compareFieldName' => $compareFieldName,
+            'compareFieldValue' => $compareFieldValue
+        ]);
 
         return $this->dbTableOp->retrieveResource_SingleFieldValue(tableName: $tableName, fieldName: $fieldName, compareFieldName: $compareFieldName, compareFieldValue: $compareFieldValue);
     }
@@ -77,7 +108,12 @@ class MovieModel extends MainModel
 
     public function validateMovie(string $tableName, array $fieldName, mixed $fieldValue): bool
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(3, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'fieldName' => $fieldName,
+            'fieldValue' => $fieldValue
+        ]);
 
         return $this->dbTableOp->validateResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
@@ -85,7 +121,12 @@ class MovieModel extends MainModel
 
     public function searchMovie(string $tableName, array $fieldName, mixed $fieldValue): array
     {
-        $this->invalidArgumentCheck();
+        $this->argumentNumberCheck(3, func_num_args());
+        $this->invalidArgumentCheck([
+            'tableName' => $tableName,
+            'fieldName' => $fieldName,
+            'fieldValue' => $fieldValue
+        ]);
 
         return $this->dbTableOp->searchResource(tableName: $tableName, fieldName: $fieldName, fieldValue: $fieldValue);
     }
