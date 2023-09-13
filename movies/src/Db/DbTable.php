@@ -6,7 +6,6 @@ namespace src\Db;
 
 use PDO;
 use PDOStatement;
-use PDOException;
 
 class DbTable
 {
@@ -18,6 +17,33 @@ class DbTable
     }
 
     /**
+     * Begin a transaction.
+     */
+    protected function beginTransaction()
+    {
+        $this->conn->beginTransaction();
+    }
+
+
+    /**
+     * Commit the current transaction.
+     */
+    protected function commit()
+    {
+        $this->conn->commit();
+    }
+
+
+    /**
+     * Rollback the current transaction.
+     */
+    protected function rollback()
+    {
+        $this->conn->rollBack();
+    }
+
+
+    /**
      * Executes an SQL query and returns the PDOStatement.
      * 
      * @param string $sql The SQL query to execute.
@@ -26,19 +52,12 @@ class DbTable
      */
     protected function executeQuery(string $sql, array $params = []): PDOStatement
     {
-        $this->conn->beginTransaction();
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
 
-        try {
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute($params);
-
-            $this->conn->commit();
-            return $stmt;
-        } catch (PDOException $e) {
-            $this->conn->rollBack();
-            throw new \RuntimeException("Error executing query " . $e->getMessage());
-        }
+        return $stmt;
     }
+
 
     /**
      * @param string $tableName Name of table to be created in database
@@ -52,6 +71,7 @@ class DbTable
         $query_result = $this->executeQuery(sql: $sql);
         return $query_result;
     }
+
 
     /**
      * @param string $tableName Name of the table to be altered in the database
@@ -78,6 +98,7 @@ class DbTable
         $query_result = $this->executeQuery(sql: $sql);
         return $query_result;
     }
+
 
     /**
      * @param string $tableName Name of the table to be dropped in the database

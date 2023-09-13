@@ -6,6 +6,8 @@ namespace src\Db;
 
 use PDO;
 use PDOStatement;
+use PDOException;
+use src\Exception\ResourceException;
 
 
 class DbTableOp extends DbTable
@@ -41,9 +43,19 @@ class DbTableOp extends DbTable
 
         $sql = "INSERT INTO $tableName ($fieldNames) VALUES ($placeholders)";
         $params = array_values($sanitizedData);
-        $query_result =  $this->executeQuery(sql: $sql, params: $params);
 
-        return $query_result;
+        $this->beginTransaction();
+
+        try {
+            $query_result =  $this->executeQuery(sql: $sql, params: $params);
+            $this->commit();
+
+            return $query_result;
+        } catch (PDOException $e) {
+            $this->rollback();
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -51,10 +63,15 @@ class DbTableOp extends DbTable
     {
         $sql_query = "SELECT * FROM $tableName";
 
-        $stmt = $this->executeQuery(sql: $sql_query);
-        $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query);
+            $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $query_result;
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -66,9 +83,18 @@ class DbTableOp extends DbTable
         $params = array_values($sanitizedData);
         $params[] = $fieldValue;
 
-        $query_result = $this->executeQuery(sql: $sql_query, params: $params);
+        $this->beginTransaction();
 
-        return $query_result;
+        try {
+            $query_result = $this->executeQuery(sql: $sql_query, params: $params);
+            $this->commit();
+
+            return $query_result;
+        } catch (PDOException $e) {
+            $this->rollback();
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -77,9 +103,18 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "DELETE FROM $tableName WHERE $fieldName = ?";
 
-        $query_result = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+        $this->beginTransaction();
 
-        return $query_result;
+        try {
+            $query_result = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+            $this->commit();
+
+            return $query_result;
+        } catch (PDOException $e) {
+            $this->rollback();
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -89,10 +124,15 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT $fieldName FROM $tableName WHERE $compareFieldName = ?";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$compareFieldValue]);
-        $query_result = $stmt->fetchColumn();
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$compareFieldValue]);
+            $query_result = $stmt->fetchColumn();
 
-        return $query_result !== false ? $query_result : null;
+            return $query_result !== false ? $query_result : null;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -101,10 +141,15 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT $fieldName FROM $tableName WHERE $compareFieldName = ?";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$compareFieldValue]);
-        $query_result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$compareFieldValue]);
+            $query_result = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        return $query_result;
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -113,10 +158,15 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
-        $query_result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetches First Occurence for specified field value
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+            $query_result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetches First Occurence for specified field value
 
-        return $query_result ?: [];
+            return $query_result ?: [];
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -125,10 +175,15 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
-        $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetches All Occurence for specified field value
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+            $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetches All Occurence for specified field value
 
-        return $query_result;
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -137,10 +192,15 @@ class DbTableOp extends DbTable
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
-        $query_result = $stmt->rowCount() > 0;
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+            $query_result = $stmt->rowCount() > 0;
 
-        return $query_result;
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 
 
@@ -150,9 +210,14 @@ class DbTableOp extends DbTable
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName LIKE ?";
         $searchValue = "%$fieldValue%";
 
-        $stmt = $this->executeQuery(sql: $sql_query, params: [$searchValue]);
-        $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$searchValue]);
+            $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $query_result;
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+        }
     }
 }

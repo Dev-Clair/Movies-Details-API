@@ -6,6 +6,7 @@ namespace src\Db;
 
 use PDO;
 use PDOException;
+use src\Exception\ResourceException;
 
 class DbConn
 {
@@ -25,6 +26,7 @@ class DbConn
         $this->connect();
     }
 
+
     /**
      * Establishes resource: the database connection.
      */
@@ -36,9 +38,10 @@ class DbConn
             $this->conn = new PDO(dsn: $dsn, username: $this->userName, password: $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            throw new \RuntimeException("Error! Connection Failed: " . $e->getMessage());
+            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
         }
     }
+
 
     /**
      * Retrieves resource: database connection object.
@@ -48,6 +51,7 @@ class DbConn
     {
         return $this->conn;
     }
+
 
     /**
      * Closes the resource: database connection.

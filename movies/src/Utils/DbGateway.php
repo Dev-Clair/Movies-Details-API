@@ -14,7 +14,7 @@ class DbGateway
     /**
      * *************************************************************************************
      * 
-     * Establishes and Provides Resource: Connection Object
+     * Establishes and Provides Resource: PDO Connection Object
      * 
      * *************************************************************************************
      */
@@ -37,7 +37,7 @@ class DbGateway
     /**
      * *************************************************************************************
      * 
-     * Provides Resource: Connection Object to Create / Drop Database
+     * Provides Resource: PDO Connection Object to Create / Drop Database
      * 
      * *************************************************************************************
      */
@@ -50,7 +50,7 @@ class DbGateway
     /**
      * *************************************************************************************
      * 
-     * Provides Resource: Connection Object to Create/Drop/Truncate/Alter Table
+     * Provides Resource: PDO Connection Object to Create/Drop/Truncate/Alter Table
      * 
      * *************************************************************************************
      */
@@ -63,7 +63,7 @@ class DbGateway
     /**
      * *************************************************************************************
      * 
-     * Provides Resource: Connection Object for Table Read and Write Operations
+     * Provides Resource: PDO Connection Object for Table Read and Write Operations
      * 
      * *************************************************************************************
      */
