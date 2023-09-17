@@ -7,7 +7,7 @@ namespace src\Db;
 use PDO;
 use PDOStatement;
 use PDOException;
-use src\Exception\ResourceException;
+use RuntimeException;
 
 
 class DbTableOp extends DbTable
@@ -54,7 +54,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot create new resource in {$tableName}: ' . $e->getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot retrieve {$tableName} resources: ' . $e->getMessage());
         }
     }
 
@@ -93,7 +93,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot update resource for {$fieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot delete resource for {$fieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ class DbTableOp extends DbTable
             return $query_result !== false ? $query_result : null;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot retrieve resource for {$compareFieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -148,7 +148,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot retrieve resource for {$compareFieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -165,7 +165,7 @@ class DbTableOp extends DbTable
             return $query_result ?: [];
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot retrieve resource for {$fieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -182,7 +182,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot retrieve resource for {$fieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -199,7 +199,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Cannot validate resource for {$fieldValue}: ' . $e->getMessage());
         }
     }
 
@@ -217,7 +217,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+            throw new RuntimeException('Resource not found for {$fieldValue}: ' . $e->getMessage());
         }
     }
 }

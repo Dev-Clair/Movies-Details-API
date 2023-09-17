@@ -6,7 +6,7 @@ namespace src\Db;
 
 use PDO;
 use PDOException;
-use src\Exception\ResourceException;
+use RuntimeException;
 
 class DbConn
 {
@@ -38,7 +38,8 @@ class DbConn
             $this->conn = new PDO(dsn: $dsn, username: $this->userName, password: $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            throw new ResourceException(json_encode($e->getMessage(), JSON_PRETTY_PRINT));
+
+            throw new RuntimeException('Connection failed: ' . $e->getMessage());
         }
     }
 
