@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace src\Controller;
 
 use src\Model\MovieModel;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Abstract Controller Class
  * 
- * Provides helper methods to child class methods
+ * Provides helper parent methods to child class methods
  * 
  * @var MovieModel $movieModel
  * 
@@ -25,46 +23,48 @@ abstract class AbsController implements IntController
         $this->movieModel = new $movieModel;
     }
 
-    // protected function validateRequestAttribute($requestAttribute): array
-    // {
-    //     // Check if attribute is not null
-    //     if (is_null($requestAttribute)) {
-    //         $errorResponse = $this->errorResponse(
-    //             'Bad Request',
-    //             'Cannot retrieve attribute',
-    //             ['missing' =>
-    //             [
-    //                 'attribute' => $requestAttribute
-    //             ]]
-    //         );
+    protected function validateRequestAttribute($requestAttribute): array
+    {
+        // Check if attribute is not null
+        if (is_null($requestAttribute)) {
+            $errorResponse = $this->errorResponse(
+                'Bad Request',
+                'Cannot retrieve attribute',
+                [
+                    'missing' =>
+                    [
+                        'attribute' => $requestAttribute
+                    ]
+                ]
+            );
 
-    //         return $errorResponse;
-    //     }
-    // }
+            return $errorResponse;
+        }
+    }
 
-    // protected function validateResource($requestAttribute): bool
-    // {
-    //     // Check if resource exists on the server
-    //     $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
+    protected function validateResource($requestAttribute): array
+    {
+        // Check if resource exists in the database
+        $resource = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-    //     if (!$result) {
-    //         $errorResponse = $this->errorResponse(
-    //             'Bad Request',
-    //             'No resource found for attribute {$requestAttribute} on the server',
-    //             $result
-    //         );
+        if (!$resource) {
+            $errorResponse = $this->errorResponse(
+                'Bad Request',
+                'No resource found for attribute {$requestAttribute} on the server',
+                $resource
+            );
 
-    //         return $errorResponse;
-    //     }
+            return $errorResponse;
+        }
 
-    //     $successResponse = $this->errorResponse(
-    //         'Bad Request',
-    //         'No resource found for attribute {$requestAttribute} on the server',
-    //         $result
-    //     );
+        $successResponse = $this->errorResponse(
+            'Bad Request',
+            'No resource found for attribute {$requestAttribute} on the server',
+            $resource
+        );
 
-    //     return $successResponse;
-    // }
+        return $successResponse;
+    }
 
     protected function errorResponse(array|string $response, array|string $message, array|string|bool|null $data): array
     {
@@ -99,7 +99,7 @@ abstract class AbsController implements IntController
         return $sanitizedData;
     }
 
-    protected function validateData(Request $request, Response $response): array
+    protected function validateData(): array
     {
         $errors = [];
         $validatedData = [];
@@ -215,11 +215,9 @@ abstract class AbsController implements IntController
                 'supplied' => $errors,
             ];
 
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+            $response = json_encode($errorResponse, JSON_PRETTY_PRINT);
 
-            return $response
-                ->withHeader('Content-Type', 'application/json')
-                ->withStatus(422);
+            // return $response;
         }
 
         return $validatedData;
