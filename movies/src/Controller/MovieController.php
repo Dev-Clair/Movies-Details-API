@@ -152,4 +152,54 @@ class MovieController extends AbsController
 
         return $response;
     }
+
+
+    /**
+     * Handles GET request for fetching a selection movies
+     * 
+     */
+    public function getSelection($args = []): string
+    {
+        $numberPerPage = $args['numberPerPage'] ?? null;
+
+        $resource = $this->movieModel->retrieveAllMovies("movie_details");
+
+        if (!array($resource)) {
+            $errorResponse = $this->errorResponse('Internal Server Error', 'Cannot retrieve resource', $resource);
+            $response = json_encode($errorResponse, JSON_PRETTY_PRINT);
+
+            return $response;
+        }
+
+        $successResponse = $this->successResponse('OK', 'Resource retrieved successfully', array_slice($resource, 0, $numberPerPage));
+        $response = json_encode($successResponse, JSON_PRETTY_PRINT);
+
+        return $response;
+    }
+
+
+    /**
+     * Handles GET request for fetching a sorted selection of movies
+     * 
+     */
+    public function getSortedSelection($args = []): string
+    {
+        $numberPerPage = $args['numberPerPage'] ?? null;
+        $fieldToSort = $args['fieldToSort'] ?? null;
+
+        $resource = $this->movieModel->retrieveAllMovies("movie_details");
+
+        if (!array($resource)) {
+            $errorResponse = $this->errorResponse('Internal Server Error', 'Cannot retrieve resource', $resource);
+            $response = json_encode($errorResponse, JSON_PRETTY_PRINT);
+
+            return $response;
+        }
+
+        // $resource = ksort($resource);
+        $successResponse = $this->successResponse('OK', 'Resource retrieved successfully', array_slice($resource, 0, $numberPerPage));
+        $response = json_encode($successResponse, JSON_PRETTY_PRINT);
+
+        return $response;
+    }
 }
