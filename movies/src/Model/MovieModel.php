@@ -43,7 +43,7 @@ class MovieModel extends MainModel
     }
 
 
-    public function retrieveAllMovies(string $tableName): array
+    public function retrieveAllMovies(string $tableName): array|false
     {
         $this->argumentNumberCheck(1, func_num_args());
         $this->invalidArgumentCheck(['tableName' => $tableName]);

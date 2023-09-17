@@ -14,59 +14,59 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  * Provides helper methods to child class methods
  * 
  * @var MovieModel $movieModel
- * @var Request $request
- * @var Response $response
  * 
  */
 abstract class AbsController implements IntController
 {
     protected MovieModel $movieModel;
 
-    public function __construct(MovieModel $movieModel, protected Request $request, protected Response $response)
+    public function __construct(MovieModel $movieModel)
     {
         $this->movieModel = new $movieModel;
     }
 
-    protected function validateRequestAttribute($requestAttribute): Response
-    {
-        // Check if attribute is not null
-        if (is_null($requestAttribute)) {
-            $errorResponse = $this->errorResponse(
-                'Bad Request',
-                'Cannot retrieve attribute',
-                ['missing' =>
-                [
-                    'attribute' => $requestAttribute
-                ]]
-            );
-            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+    // protected function validateRequestAttribute($requestAttribute): array
+    // {
+    //     // Check if attribute is not null
+    //     if (is_null($requestAttribute)) {
+    //         $errorResponse = $this->errorResponse(
+    //             'Bad Request',
+    //             'Cannot retrieve attribute',
+    //             ['missing' =>
+    //             [
+    //                 'attribute' => $requestAttribute
+    //             ]]
+    //         );
 
-            return $this->response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
-        }
-    }
+    //         return $errorResponse;
+    //     }
+    // }
 
-    protected function validateResource($requestAttribute): Response
-    {
-        // Check if resource exists on the server
-        $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
+    // protected function validateResource($requestAttribute): bool
+    // {
+    //     // Check if resource exists on the server
+    //     $result = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if (!$result) {
-            $errorResponse = $this->errorResponse(
-                'Bad Request',
-                'No resource found for attribute {$requestAttribute} on the server',
-                $result
-            );
-            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+    //     if (!$result) {
+    //         $errorResponse = $this->errorResponse(
+    //             'Bad Request',
+    //             'No resource found for attribute {$requestAttribute} on the server',
+    //             $result
+    //         );
 
-            return $this->response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
-        }
-    }
+    //         return $errorResponse;
+    //     }
 
-    protected function errorResponse(array|string $response, array|string $message, bool|array|string|null $data): array
+    //     $successResponse = $this->errorResponse(
+    //         'Bad Request',
+    //         'No resource found for attribute {$requestAttribute} on the server',
+    //         $result
+    //     );
+
+    //     return $successResponse;
+    // }
+
+    protected function errorResponse(array|string $response, array|string $message, array|string|bool|null $data): array
     {
         $errorResponse = [
             'error' =>   $response,
@@ -77,7 +77,7 @@ abstract class AbsController implements IntController
         return $errorResponse;
     }
 
-    protected function successResponse(array|string $response, array|string $message, bool|array|string|null $data): array
+    protected function successResponse(array|string $response, array|string $message, array|string|bool|null $data): array
     {
         $successResponse = [
             'success' =>   $response,
@@ -92,14 +92,14 @@ abstract class AbsController implements IntController
     {
         $sanitizedData = [];
 
-        $postData =  $this->request->getServerParams(); // json_decode(file_get_contents('php://input'), true);
+        $postData = json_decode(file_get_contents('php://input'), true);
         foreach ($postData as $postField => $postValue) {
             $sanitizedData[$postField] = filter_var($postValue, FILTER_SANITIZE_SPECIAL_CHARS);
         }
         return $sanitizedData;
     }
 
-    protected function validateData(): array
+    protected function validateData(Request $request, Response $response): array
     {
         $errors = [];
         $validatedData = [];
@@ -207,15 +207,17 @@ abstract class AbsController implements IntController
                 'imdb' => 'movie_rating',
                 'type' => 'movie_genre'
             ];
+
             $errorResponse = [
                 'error' => 'Unprocessable Entity',
                 'message' => 'Invalid Entries',
                 'expected' => $expected,
                 'supplied' => $errors,
             ];
-            $this->response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $this->response
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
                 ->withHeader('Content-Type', 'application/json')
                 ->withStatus(422);
         }

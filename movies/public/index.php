@@ -1,51 +1,34 @@
 <?php
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
-use src\Middleware\MethodTypeMiddleware;
-use src\Middleware\ContentTypeMiddleware;
-use src\Throwable\ResourceThrowable;
-use Nyholm\Psr7\Factory\Psr17Factory;
-
+use \src\Controller\MovieController;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// set_error_handler(ResourceThrowable::class . ':handleError');
-// set_exception_handler(ResourceThrowable::class . ':handleException');
-
-$psr17Factory = new Psr17Factory();
-
-AppFactory::setPsr17Factory($psr17Factory);
 $app = AppFactory::create();
 
-// Register Middleware
-// $methodTypeMiddleware = new MethodTypeMiddleware();
-// $contentTypeMiddleware = new ContentTypeMiddleware();
+// Add Routing Middleware
+$app->addRoutingMiddleware();
+
+// Add Error Middleware
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // Define Routes/Endpoints and Middleware
-$app->get('/v1/movies', \src\Controller\MovieController::class . ':get')
-    ->add(new \src\Middleware\MethodTypeMiddleware(['GET', 'POST']));
+$app->get('/v1/movies', MovieController::class, ':get');
 
-// $app->post('/v1/movies', \src\Controller\MovieController::class . ':post')
-//     ->add($methodTypeMiddleware(['POST']))
-//     ->add($contentTypeMiddleware);
+$app->post('/v1/movies', MovieController::class . ':post');
 
-// $app->put('/v1/movies/{uid}', \src\Controller\MovieController::class . ':put')
-//     ->add($methodTypeMiddleware(['PUT', 'PATCH', 'DELETE']))
-//     ->add($contentTypeMiddleware);
+// $app->put('/v1/movies/{uid}', MovieController::class . ':put');
 
-// $app->delete('/v1/movies/{uid}', \src\Controller\MovieController::class . ':delete')
-//     ->add($methodTypeMiddleware(['PUT', 'PATCH', 'DELETE']))
-//     ->add($contentTypeMiddleware);
+// $app->delete('/v1/movies/{uid}', MovieController::class . ':delete');
 
-// $app->patch('/v1/movies/{uid}', \src\Controller\MovieController::class . ':patch')
-//     ->add($methodTypeMiddleware(['PUT', 'PATCH', 'DELETE']))
-//     ->add($contentTypeMiddleware);
+// $app->patch('/v1/movies/{uid}', MovieController::class . ':patch');
 
-// $app->get('/v1/movies/{numberPerPage}', \src\Controller\MovieController::class . ':getSelection')
-//     ->add($methodTypeMiddleware(['GET']));
+// $app->get('/v1/movies/{numberPerPage}', MovieController::class . ':getSelection');
 
-// $app->get('/v1/movies/{numberPerPage}/sort/{fieldToSort}', \src\Controller\MovieController::class . ':getSortedSelection')
-//     ->add($methodTypeMiddleware(['GET']));
+// $app->get('/v1/movies/{numberPerPage}/sort/{fieldToSort}', MovieController::class . ':getSortedSelection');
 
 
 $app->run();
