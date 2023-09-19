@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use src\Model\MovieModel;
 
 /**
@@ -23,7 +25,7 @@ abstract class AbsController implements IntController
         $this->movieModel = new $movieModel;
     }
 
-    protected function validateRequestAttribute($requestAttribute): array
+    protected function validateRequestAttribute(Request $request, Response $response, $requestAttribute): Response
     {
         // Check if attribute is not null
         if (is_null($requestAttribute)) {
@@ -38,11 +40,15 @@ abstract class AbsController implements IntController
                 ]
             );
 
-            return $errorResponse;
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
         }
     }
 
-    protected function validateResource($requestAttribute): array
+    protected function validateResource(Request $request, Response $response, $requestAttribute): bool|Response
     {
         // Check if resource exists in the database
         $resource = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
@@ -54,16 +60,14 @@ abstract class AbsController implements IntController
                 $resource
             );
 
-            return $errorResponse;
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
         }
 
-        $successResponse = $this->errorResponse(
-            'Bad Request',
-            'No resource found for attribute {$requestAttribute} on the server',
-            $resource
-        );
-
-        return $successResponse;
+        return (bool) $resource === true;
     }
 
     protected function errorResponse(array|string $response, array|string $message, array|string|bool|null $data): array
@@ -99,7 +103,7 @@ abstract class AbsController implements IntController
         return $sanitizedData;
     }
 
-    protected function validateData(): array
+    protected function validateData(Request $request, Response $response): array|Response
     {
         $errors = [];
         $validatedData = [];
@@ -215,9 +219,11 @@ abstract class AbsController implements IntController
                 'supplied' => $errors,
             ];
 
-            $response = json_encode($errorResponse, JSON_PRETTY_PRINT);
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            // return $response;
+            return $response
+                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(422);
         }
 
         return $validatedData;
