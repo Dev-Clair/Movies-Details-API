@@ -102,10 +102,7 @@ class MovieController extends AbsController
 
         if ($validationLog['validateRequestAtrribute']) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
-                'message' => 'Invalid Entry: ' . $requestAttribute,
-                'data' => $validationLog['validateRequestAtrribute'],
-            ]);
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
 
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
@@ -116,10 +113,7 @@ class MovieController extends AbsController
 
         if ($validationLog['validateResource'] === false) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
-                'message' => 'No matching unique id found for: ' . $requestAttribute,
-                'data' => $validationLog['validateResource'],
-            ]);
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
@@ -169,10 +163,7 @@ class MovieController extends AbsController
 
         if ($validationLog['validateRequestAtrribute']) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
-                'message' => 'Invalid Entry: ' . $requestAttribute,
-                'data' => $validationLog['validateRequestAtrribute'],
-            ]);
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
 
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
@@ -183,10 +174,7 @@ class MovieController extends AbsController
 
         if ($validationLog['validateResource'] === false) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
-                'message' => 'No matching unique id found for: ' . $requestAttribute,
-                'data' => $validationLog['validateResource'],
-            ]);
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
@@ -229,13 +217,35 @@ class MovieController extends AbsController
     {
         $requestAttribute = $args['uid'] ?? null;
 
-        $this->validateRequestAttribute($request, $response, $requestAttribute);
-        $this->validateResource($request, $response, $requestAttribute);
+        $validationLog = [];
 
-        $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], $requestAttribute);
+        $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
+        $validationLog['validateResource'] = $this->validateResource($requestAttribute);
 
+        if ($validationLog['validateRequestAtrribute']) {
 
-        if ($resource !== true) {
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot delete resource', 'Invalid Entry: ' . $requestAttribute);
+
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
+        if ($validationLog['validateResource'] === false) {
+
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot delete resource', 'No matching unique id found for: ' . $requestAttribute);
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
+        $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
+
+        if ((bool)$resource !== true) {
             $errorResponse = $this->errorResponse('Internal server error', 'Cannot delete resource', (bool) $resource);
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
