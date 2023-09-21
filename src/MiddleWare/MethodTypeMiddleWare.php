@@ -9,22 +9,21 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class MethodTypeMiddleware
 {
-    public function __invoke(Request $request, Response $response, $next)
+    public function __invoke(Request $request, Response $response, $next, array $allowedMethods)
     {
         $methodType = $request->getMethod();
-        $allowed = func_get_args();
 
-        if (!in_array($methodType, $allowed)) {
+        if (!in_array($methodType, $allowedMethods)) {
             $errorResponse = [
                 'error' => 'Method Not Allowed',
                 'message' => 'This endpoint does not allow the specified request method.',
                 'supplied' => $methodType,
-                'allowed' => implode(",", $allowed)
+                'allowed' => implode(",", $allowedMethods)
             ];
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withHeader('Allow', implode(",", $allowed))
+                ->withHeader('Allow', implode(",", $allowedMethods))
                 ->withStatus(405);
         }
 

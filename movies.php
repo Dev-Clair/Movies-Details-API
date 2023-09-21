@@ -1,15 +1,16 @@
 <?php
 
 use src\Controller\MovieController;
+use \src\Middleware\MethodTypeMiddleware;
+use \src\Middleware\ContentTypeMiddleware;
 
+$app->get('/v1/movies', MovieController::class . ':get')->add(new MethodTypeMiddleware(["GET", "POST"]));
 
-$app->get('/v1/movies', MovieController::class . ':get');
+$app->post('/v1/movies', MovieController::class . ':post')->add(new MethodTypeMiddleware(["GET", "POST"]))->add(new ContentTypeMiddleware);
 
-$app->post('/v1/movies', MovieController::class . ':post');
+$app->put('/v1/movies/{uid}', MovieController::class . ':put')->add(new ContentTypeMiddleware);
 
-$app->put('/v1/movies/{uid}', MovieController::class . ':put');
-
-$app->delete('/v1/movies/{uid}', MovieController::class . ':delete');
+$app->delete('/v1/movies/{uid}', MovieController::class . ':delete')->add(new ContentTypeMiddleware);
 
 $app->patch('/v1/movies/{uid}', MovieController::class . ':patch');
 
