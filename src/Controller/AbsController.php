@@ -85,7 +85,7 @@ abstract class AbsController implements IntController
 
         // Movie Title Field
         $title = $sanitizedData['title'] ?? null;
-        if (!empty($title)) {
+        if (is_string($title)) {
             $validatedData['title'] = $title;
         } else {
             $errors['title'] = 'Please pass a valid movie title';
@@ -117,7 +117,7 @@ abstract class AbsController implements IntController
 
         // Movie Directors Field
         $directors = $sanitizedData['directors'] ?? "";
-        if (!empty($directors)) {
+        if (is_string($directors)) {
             $validatedData['directors'] = $directors;
         } else {
             $errors['directors'] = 'Please pass valid movie director name(s)';
@@ -125,7 +125,7 @@ abstract class AbsController implements IntController
 
         // Movie Actors Field
         $actors = $sanitizedData['actors'] ?? "";
-        if (!empty($actors)) {
+        if (is_string($actors)) {
             $validatedData['actors'] = $actors;
         } else {
             $errors['actors'] = 'Please pass valid movie actor name(s)';
@@ -133,7 +133,7 @@ abstract class AbsController implements IntController
 
         // Movie Country Field
         $country = $sanitizedData['country'] ?? "";
-        if (!empty($country)) {
+        if (is_string($country)) {
             $validatedData['country'] = $country;
         } else {
             $errors['country'] = 'Please pass a valid movie country';
@@ -156,7 +156,7 @@ abstract class AbsController implements IntController
 
         // Movie Type Field
         $type = $sanitizedData['type'] ?? "";
-        if (!empty($type)) {
+        if (is_string($type)) {
             $validatedData['type'] = $type;
         } else {
             $errors['type'] = 'Please pass a valid movie type';

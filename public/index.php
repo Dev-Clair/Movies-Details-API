@@ -8,8 +8,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-// $app->setBasePath('/v1');
-
 // Add Routing Middleware
 $app->addRoutingMiddleware();
 
@@ -22,13 +20,13 @@ $app->get('/v1', function (Request $request, Response $response) {
         'message' => "Hello there!, Welcome to movies_detail API",
         'status' => 'Active',
         'endpoints' => [
-            'GET: v1/movies' => 'Retrieves all available resources (movies)',
-            'POST: v1/movies' => 'Creates a resource (movie) on the server',
-            'PUT: v1/movies/{uid}' => 'Modifies an entire resource (movie) based on provided resource uid',
-            'DELETE: v1/movies/{uid}' => 'Deletes or removes resource (movie) based on provided resource uid',
-            'PATCH: v1/movies/{uid}' => 'Modifies specified parts of a resource (movie) based on provided resource uid',
-            'GET: v1/movies/{numberPerPage}' => 'Retrieves resources (movies) based on supplied query param {numberPerPage}',
-            'GET: v1/movies/{numberPerPage}/sort/{fieldToSort}' => 'Retrieves sorted resources (movies) based on supplied query params: {numberPerPage} and {fieldToSort}'
+            'GET: /v1/movies' => 'Retrieves all available resources (movies)',
+            'POST: /v1/movies' => 'Creates a resource (movie) on the server',
+            'PUT: /v1/movies/{uid}' => 'Modifies an entire resource (movie) based on provided resource uid',
+            'DELETE: /v1/movies/{uid}' => 'Deletes or removes resource (movie) based on provided resource uid',
+            'PATCH: /v1/movies/{uid}' => 'Modifies specified parts of a resource (movie) based on provided resource uid',
+            'GET: /v1/movies/{numberPerPage}' => 'Retrieves resources (movies) based on supplied query param {numberPerPage}',
+            'GET: /v1/movies/{numberPerPage}/sort/{fieldToSort}' => 'Retrieves sorted resources (movies) based on supplied query params: {numberPerPage} and {fieldToSort}'
         ]
     ];
 
