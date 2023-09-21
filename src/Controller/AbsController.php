@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use src\Model\MovieModel;
 
 /**
@@ -22,53 +20,19 @@ abstract class AbsController implements IntController
 
     public function __construct(MovieModel $movieModel)
     {
-        // $this->movieModel = new $movieModel(databaseName: "movies");
         $this->movieModel = $movieModel ?: new $movieModel(databaseName: "movies");
     }
 
-    protected function validateRequestAttribute(Request $request, Response $response, $requestAttribute): Response
+    protected function validateRequestAttribute($requestAttribute): bool
     {
         // Check if attribute is not null
-        if (is_null($requestAttribute)) {
-            $errorResponse = $this->errorResponse(
-                'Bad Request',
-                'Cannot retrieve attribute',
-                [
-                    'missing' =>
-                    [
-                        'attribute' => $requestAttribute
-                    ]
-                ]
-            );
-
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
-        }
+        return is_null($requestAttribute);
     }
 
-    protected function validateResource(Request $request, Response $response, $requestAttribute): bool|Response
+    protected function validateResource($requestAttribute): bool
     {
         // Check if resource exists in the database
-        $resource = $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
-
-        if (!$resource) {
-            $errorResponse = $this->errorResponse(
-                'Bad Request',
-                'No resource found for attribute {$requestAttribute} on the server',
-                $resource
-            );
-
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
-        }
-
-        return (bool) $resource === true;
+        return $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
     }
 
     protected function errorResponse(array|string $response, array|string $message, array|string|bool|null $data): array
@@ -104,15 +68,15 @@ abstract class AbsController implements IntController
         return $sanitizedData;
     }
 
-    protected function validateData(Request $request, Response $response): array|Response
+    protected function validateData(): array
     {
         $errors = [];
         $validatedData = [];
         $sanitizedData = $this->sanitizeData();
 
         // Movie ID Field
-        $pattern = '/^\/mv[\d]{3,4}\/$/';
-        $uid = $sanitizedData['uid'] ?? null;
+        $pattern = '/^mv[\d]{3,4}$/';
+        $uid = $sanitizedData['uid'] ?? "";
         if (preg_match($pattern, $uid)) {
             $validatedData['uid'] = $uid;
         } else {
@@ -128,7 +92,7 @@ abstract class AbsController implements IntController
         }
 
         // Movie Year Field
-        $year = $sanitizedData['year'] ?? null;
+        $year = $sanitizedData['year'] ?? "";
         if (is_numeric($year)) {
             $validatedData['year'] = (int) $year;
         } else {
@@ -136,7 +100,7 @@ abstract class AbsController implements IntController
         }
 
         // Movie Release Date Field 
-        $released = $sanitizedData['released'] ?? null;
+        $released = $sanitizedData['released'] ?? "";
         if (strtotime($released) !== false) {
             $validatedData['released'] = $released;
         } else {
@@ -144,31 +108,31 @@ abstract class AbsController implements IntController
         }
 
         // Movie Runtime Field
-        $runtime = $sanitizedData['runtime'] ?? null;
+        $runtime = $sanitizedData['runtime'] ?? "";
         if (is_numeric($runtime)) {
             $validatedData['runtime'] = (string) $runtime . ' mins';
         } else {
-            $errors['runtime'] = 'Please pass a valid movie runtime';
+            $errors['runtime'] = 'Please pass a valid movie runtime in minutes';
         }
 
         // Movie Directors Field
-        $directors = $sanitizedData['directors'] ?? null;
+        $directors = $sanitizedData['directors'] ?? "";
         if (!empty($directors)) {
-            $validatedData['directors'] = explode(',', $directors);
+            $validatedData['directors'] = $directors;
         } else {
             $errors['directors'] = 'Please pass valid movie director name(s)';
         }
 
         // Movie Actors Field
-        $actors = $sanitizedData['actors'] ?? null;
+        $actors = $sanitizedData['actors'] ?? "";
         if (!empty($actors)) {
-            $validatedData['actors'] = explode(',', $actors);
+            $validatedData['actors'] = $actors;
         } else {
             $errors['actors'] = 'Please pass valid movie actor name(s)';
         }
 
         // Movie Country Field
-        $country = $sanitizedData['country'] ?? null;
+        $country = $sanitizedData['country'] ?? "";
         if (!empty($country)) {
             $validatedData['country'] = $country;
         } else {
@@ -176,22 +140,22 @@ abstract class AbsController implements IntController
         }
 
         // Movie Poster Field
-        $poster = $sanitizedData['poster'] ?? null;
+        $poster = $sanitizedData['poster'] ?? "";
         if (is_string($poster)) {
             $validatedData['poster'] = $poster;
         }
         $validatedData['poster'] = "";
 
         // Movie IMDB Field
-        $imdb = $sanitizedData['imdb'] ?? null;
-        if (filter_var($imdb, FILTER_VALIDATE_FLOAT) !== false) {
-            $validatedData['imdb'] = (string) $imdb;
+        $imdb = $sanitizedData['imdb'] ?? "";
+        if (filter_var($imdb, FILTER_VALIDATE_INT) !== false) {
+            $validatedData['imdb'] = (string) $imdb . "/10";
         } else {
             $errors['imdb'] = 'Please pass a valid movie rating';
         }
 
         // Movie Type Field
-        $type = $sanitizedData['type'] ?? null;
+        $type = $sanitizedData['type'] ?? "";
         if (!empty($type)) {
             $validatedData['type'] = $type;
         } else {
@@ -199,32 +163,14 @@ abstract class AbsController implements IntController
         }
 
         if (!empty($errors)) {
-            $expected = [
-                'uid' => "movie_unique_id: mv000 or mv0000",
-                'title' => 'movie_title',
-                'year' => 'movie_year: YYYY',
-                'released' => 'movie_release_date: YYYY-MM-DD',
-                'runtime' => 'movie_runtime: 00 mins',
-                'directors' => 'movie_directors',
-                'actors' => 'movie_actors',
-                'country' => 'movie_country',
-                'poster' => '',
-                'imdb' => 'movie_rating',
-                'type' => 'movie_genre'
-            ];
 
-            $errorResponse = [
+            $errors = [
                 'error' => 'Unprocessable Entity',
                 'message' => 'Invalid Entries',
-                'expected' => $expected,
-                'supplied' => $errors,
+                'data' => $errors,
             ];
 
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(422);
+            return $errors;
         }
 
         return $validatedData;

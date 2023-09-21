@@ -57,24 +57,33 @@ class MovieController extends AbsController
     public function post(Request $request, Response $response, array $args): Response
     {
         $validatedData = $this->validateData($request, $response);
-        $resource = $this->movieModel->createMovie("movie_details", $validatedData);
 
-        if ($resource !== true) {
-
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot create resource', (bool) $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+        if (count($validatedData) < 5) {;
+            $response->getBody()->write(json_encode($validatedData, JSON_PRETTY_PRINT));
 
             return $response
                 ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+                ->withStatus(422);
         }
 
-        $successResponse = $this->successResponse('Request successful', 'New Resource Created', (bool) $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
+        $resource = $this->movieModel->createMovie("movie_details", $validatedData);
+
+        if ($resource) {
+
+            $successResponse = $this->successResponse('Request successful', 'New Resource Created', (bool) $resource);
+            $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(200);
+        }
+
+        $errorResponse = $this->errorResponse('Internal server error', 'Cannot create resource', (bool) $resource);
+        $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
         return $response
             ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+            ->withStatus(500);
     }
 
 
@@ -90,7 +99,7 @@ class MovieController extends AbsController
         $this->validateResource($request, $response, $requestAttribute);
 
         $validatedData = $this->validateData($request, $response);
-        $resource = $this->movieModel->updateMovie("movie_details", $validatedData, ['uid' => 'uid'], $requestAttribute);
+        $resource = $this->movieModel->updateMovie("movie_details", $validatedData, 'uid', $requestAttribute);
 
         if ($resource !== true) {
             $errorResponse = $this->errorResponse('Internal server error', 'Cannot modify resource', (bool) $resource);
@@ -118,20 +127,55 @@ class MovieController extends AbsController
     {
         $requestAttribute = $args['uid'] ?? null;
 
-        $this->validateRequestAttribute($request, $response, $requestAttribute);
-        $this->validateResource($request, $response, $requestAttribute);
+        $validationLog = [];
 
-        $sanitizedData = $this->sanitizeData();
-        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], $requestAttribute);
+        $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
+        $validationLog['validateResource'] = $this->validateResource($requestAttribute);
 
-        if ($resource !== true) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot modify resource', (bool) $resource);
+        if ($validationLog['validateRequestAtrribute']) {
+
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
+                'message' => 'Invalid Entry: ' . $requestAttribute,
+                'data' => $validationLog['validateRequestAtrribute'],
+            ]);
+
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
                 ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+                ->withStatus(400);
         }
+
+        if ($validationLog['validateResource'] === false) {
+
+            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', [
+                'message' => 'No matching unique id found for: ' . $requestAttribute,
+                'data' => $validationLog['validateResource'],
+            ]);
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(400);
+        }
+
+        $sanitizedData = $this->sanitizeData();
+
+        if (empty($sanitizedData)) {
+
+            $errorResponse = $this->errorResponse('Unprocessable Entity', 'Cannot modify resource', [
+                'message' => 'Invalid Entries',
+                'data' => $sanitizedData,
+            ]);
+
+            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+
+            return $response
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withStatus(422);
+        }
+
+        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, 'uid', htmlspecialchars($requestAttribute));
 
         $successResponse = $this->successResponse('OK', 'Resource modified successfully', (bool) $resource);
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
