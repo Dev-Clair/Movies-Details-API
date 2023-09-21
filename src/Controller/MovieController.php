@@ -137,7 +137,7 @@ class MovieController extends AbsController
                 ->withStatus(422);
         }
 
-        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, 'uid', htmlspecialchars($requestAttribute));
+        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
         $successResponse = $this->successResponse('OK', 'Resource modified successfully', (bool) $resource);
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
@@ -198,7 +198,7 @@ class MovieController extends AbsController
                 ->withStatus(422);
         }
 
-        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, 'uid', htmlspecialchars($requestAttribute));
+        $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
         $successResponse = $this->successResponse('OK', 'Resource modified successfully', (bool) $resource);
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));

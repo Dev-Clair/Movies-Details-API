@@ -83,11 +83,12 @@ class DbTableOp extends DbTable
     }
 
 
-    public function updateResource(string $tableName, array $sanitizedData, string $fieldName, mixed $fieldValue): PDOStatement
+    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
     {
         $updateFields = $updateFields = implode(",", array_map(function ($column) {
             return "`$column`=?";
         }, array_keys($sanitizedData)));
+        $fieldName = $this->modifyFieldReference($fieldName);
 
         $sql_query = "UPDATE $tableName SET $updateFields WHERE $fieldName = ?";
 
