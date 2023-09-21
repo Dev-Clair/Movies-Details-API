@@ -3,20 +3,21 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
-// use Slim\Routing\RouteCollectorProxy;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-// // Add Routing Middleware
-// $app->addRoutingMiddleware();
+// $app->setBasePath('/v1');
+
+// Add Routing Middleware
+$app->addRoutingMiddleware();
 
 // Add Error Middleware
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // Define a route for the root URL
-$app->get('v1/', function (Request $request, Response $response) {
+$app->get('/v1', function (Request $request, Response $response) {
     $welcome_message = [
         'message' => "Hello there!, Welcome to movies_detail API",
         'status' => 'Active',
@@ -39,8 +40,5 @@ $app->get('v1/', function (Request $request, Response $response) {
 
 // Define Routes/Endpoints and Middleware
 require __DIR__ . '/../movies.php';
-
-// $app->any('/{routes:.+}', MovieController::class . ':handleNotFound');
-
 
 $app->run();

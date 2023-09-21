@@ -17,23 +17,10 @@ use src\Model\MovieModel;
  */
 class MovieController extends AbsController
 {
-    public function __construct(MovieModel $movieModel)
+    public function __construct()
     {
+        $movieModel = new MovieModel(databaseName: "movies");
         parent::__construct($movieModel);
-    }
-
-    public function handleNotFound(Request $request, Response $response): Response
-    {
-        $notFoundResponse = [
-            'message' => 'Endpoint not found',
-            'status' => 'Not Found'
-        ];
-
-        $response->getBody()->write(json_encode($notFoundResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(404);
     }
 
 
@@ -50,7 +37,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -58,7 +45,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -78,7 +65,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -86,7 +73,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -110,7 +97,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -118,7 +105,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -142,7 +129,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -150,7 +137,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -174,7 +161,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -182,7 +169,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -202,7 +189,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -210,7 +197,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 
@@ -231,7 +218,7 @@ class MovieController extends AbsController
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
-                ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(500);
         }
 
@@ -240,7 +227,7 @@ class MovieController extends AbsController
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response
-            ->withoutHeader('Content-Type', 'application/json; charset=UTF-8')
+            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
     }
 }

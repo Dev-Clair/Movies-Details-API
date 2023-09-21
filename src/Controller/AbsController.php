@@ -22,7 +22,8 @@ abstract class AbsController implements IntController
 
     public function __construct(MovieModel $movieModel)
     {
-        $this->movieModel = new $movieModel;
+        // $this->movieModel = new $movieModel(databaseName: "movies");
+        $this->movieModel = $movieModel ?: new $movieModel(databaseName: "movies");
     }
 
     protected function validateRequestAttribute(Request $request, Response $response, $requestAttribute): Response
