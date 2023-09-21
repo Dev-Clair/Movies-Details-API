@@ -52,7 +52,7 @@ class MovieModel extends MainModel
     }
 
 
-    public function updateMovie(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
+    public function updateMovie(string $tableName, array $sanitizedData, string $fieldName, mixed $fieldValue): PDOStatement
     {
         $this->argumentNumberCheck(4, func_num_args());
         $this->invalidArgumentCheck([
@@ -61,6 +61,8 @@ class MovieModel extends MainModel
             'fieldName' => $fieldName,
             'fieldValue' => $fieldValue
         ]);
+
+        // $fieldName = "`$fieldName`";
 
         return $this->dbTableOp->updateResource(tableName: $tableName, sanitizedData: $sanitizedData, fieldName: $fieldName, fieldValue: $fieldValue);
     }

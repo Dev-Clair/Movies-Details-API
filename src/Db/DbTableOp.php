@@ -37,7 +37,15 @@ class DbTableOp extends DbTable
     // Basic CRUD Methods
     public function createResource(string $tableName, array $sanitizedData): PDOStatement
     {
-        $fieldNames = $this->modifyFieldReference($sanitizedData);
+        $fieldNames = implode(
+            ",",
+            array_map(
+                function ($field) {
+                    return "`$field`";
+                },
+                array_keys($sanitizedData)
+            )
+        );
 
         $placeholders = implode(",", array_fill(0, count($sanitizedData), "?"));
 
@@ -54,7 +62,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new RuntimeException('Cannot create new resource in {$tableName}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot create new resource in ' . $tableName . ': ' . $e->getMessage());
         }
     }
 
@@ -70,14 +78,17 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot retrieve {$tableName} resources: ' . $e->getMessage());
+            throw new RuntimeException('Cannot retrieve resources: ' . $e->getMessage());
         }
     }
 
 
-    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
+    public function updateResource(string $tableName, array $sanitizedData, string $fieldName, mixed $fieldValue): PDOStatement
     {
-        $updateFields = $this->modifyFieldReference($fieldName);
+        $updateFields = $updateFields = implode(",", array_map(function ($column) {
+            return "`$column`=?";
+        }, array_keys($sanitizedData)));
+
         $sql_query = "UPDATE $tableName SET $updateFields WHERE $fieldName = ?";
 
         $params = array_values($sanitizedData);
@@ -93,7 +104,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new RuntimeException('Cannot update resource for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot update resource for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -113,7 +124,7 @@ class DbTableOp extends DbTable
         } catch (PDOException $e) {
             $this->rollback();
 
-            throw new RuntimeException('Cannot delete resource for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot delete resource for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -131,7 +142,7 @@ class DbTableOp extends DbTable
             return $query_result !== false ? $query_result : null;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot retrieve resource for {$compareFieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot retrieve resource for ' . $compareFieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -148,7 +159,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot retrieve resource for {$compareFieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot retrieve resource for ' . $compareFieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -165,7 +176,7 @@ class DbTableOp extends DbTable
             return $query_result ?: [];
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot retrieve resource for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot retrieve resource for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -182,7 +193,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot retrieve resource for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot retrieve resource for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -199,7 +210,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Cannot validate resource for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Cannot validate resource for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 
@@ -217,7 +228,7 @@ class DbTableOp extends DbTable
             return $query_result;
         } catch (PDOException $e) {
 
-            throw new RuntimeException('Resource not found for {$fieldValue}: ' . $e->getMessage());
+            throw new RuntimeException('Resource not found for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
 }
