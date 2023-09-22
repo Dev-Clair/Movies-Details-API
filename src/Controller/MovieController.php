@@ -27,7 +27,7 @@ class MovieController extends AbsController
     {
         $validationLog = [];
 
-        $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
+        $validationLog['validateRequestAtrribute'] = $this->validateAttribute($requestAttribute);
         $validationLog['validateResource'] = $this->validateResource($requestAttribute);
 
         if ($validationLog['validateRequestAtrribute']) {
@@ -294,7 +294,7 @@ class MovieController extends AbsController
                 ->withStatus(500);
         }
 
-        $successResponse = $this->successResponse('OK', ['Invalid Request Type', 'Similar results found: '], $resource);
+        $successResponse = $this->successResponse('OK', 'Similar results found for: ' . $title, $resource);
         $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
 
         return $response

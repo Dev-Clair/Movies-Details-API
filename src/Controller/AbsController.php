@@ -23,7 +23,7 @@ abstract class AbsController implements IntController
         $this->movieModel = $movieModel ?: new $movieModel(databaseName: "movies");
     }
 
-    protected function validateRequestAttribute(mixed $requestAttribute): bool
+    protected function validateAttribute(mixed $requestAttribute): bool
     {
         // Check if attribute is not null
         return is_null($requestAttribute);
