@@ -17,3 +17,5 @@ $app->patch('/v1/movies/{uid}', MovieController::class . ':patch');
 $app->get('/v1/movies/{numberPerPage}', MovieController::class . ':getSelection');
 
 $app->get('/v1/movies/{numberPerPage}/sort/{fieldToSort}', MovieController::class . ':getSortedSelection');
+
+// $app->get('/v1/movies/{title}', MovieController::class . ':getSearch');
