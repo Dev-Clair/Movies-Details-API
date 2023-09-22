@@ -232,4 +232,20 @@ class DbTableOp extends DbTable
             throw new RuntimeException('Resource not found for ' . $fieldValue . ': ' . $e->getMessage());
         }
     }
+
+
+    public function sortResource(string $tableName, string $fieldName): array|false
+    {
+        $sql_query = "SELECT * FROM $tableName ORDER BY $fieldName";
+
+        try {
+            $stmt = $this->executeQuery(sql: $sql_query);
+            $query_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $query_result;
+        } catch (PDOException $e) {
+
+            throw new RuntimeException('Resource not found for ' . $fieldName . ': ' . $e->getMessage());
+        }
+    }
 }
