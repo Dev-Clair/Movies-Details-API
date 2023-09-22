@@ -124,7 +124,7 @@ class MovieController extends AbsController
      */
     public function put(Request $request, Response $response, array $args): Response
     {
-        $requestAttribute = (string) $args['uid'] ?? 'uid';
+        $requestAttribute = (string) $args['uid'] ?? null;
 
         $this->validateRequestAtrribute($response, $requestAttribute);
 
@@ -161,7 +161,7 @@ class MovieController extends AbsController
      */
     public function patch(Request $request, Response $response, array $args): Response
     {
-        $requestAttribute = (string) $args['uid'] ?? 'uid';
+        $requestAttribute = (string) $args['uid'] ?? null;
 
         $this->validateRequestAtrribute($response, $requestAttribute);
 
@@ -198,7 +198,7 @@ class MovieController extends AbsController
      */
     public function delete(Request $request, Response $response, array $args): Response
     {
-        $requestAttribute = (string) $args['uid'] ?? 'uid';
+        $requestAttribute = (string) $args['uid'] ?? null;
 
         $this->validateRequestAtrribute($response, $requestAttribute);
 
@@ -228,7 +228,7 @@ class MovieController extends AbsController
      */
     public function getSelection(Request $request, Response $response, array $args): Response
     {
-        $numberPerPage = (int) $args['numberPerPage'] ?? 10;
+        $numberPerPage = (int) $args['numberPerPage'] ?? 7;
 
         $resource = $this->movieModel->retrieveAllMovies("movie_details");
 
@@ -256,7 +256,7 @@ class MovieController extends AbsController
      */
     public function getSortedSelection(Request $request, Response $response, array $args): Response
     {
-        $numberPerPage = (int) $args['numberPerPage'] ?? 10;
+        $numberPerPage = (int) $args['numberPerPage'] ?? 7;
         $fieldToSort = (string) $args['fieldToSort'] ?? 'uid';
 
         $resource = $this->movieModel->sortMovie("movie_details", $fieldToSort);
