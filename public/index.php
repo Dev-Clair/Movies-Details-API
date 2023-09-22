@@ -2,6 +2,7 @@
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -14,7 +15,7 @@ $app->addRoutingMiddleware();
 // Add Error Middleware
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-// Define a route for the root URL
+// Define a route/end-point for API Welcome info
 $app->get('/v1', function (Request $request, Response $response) {
     $welcome_message = [
         'message' => "Hello there!, Welcome to movies_detail API",
@@ -36,7 +37,7 @@ $app->get('/v1', function (Request $request, Response $response) {
         ->withStatus(200);
 });
 
-// Define Routes/Endpoints and Middleware
+// Define routes/endpoints and middlewares for crud operations
 require __DIR__ . '/../movies.php';
 
 $app->run();

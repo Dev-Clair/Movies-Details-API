@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace src\Middleware;
 
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class ContentTypeMiddleware
 {
-    public function __invoke(Request $request, Response $response, $next)
+    public function __invoke(Request $request, RequestHandlerInterface $handler)
     {
         $contentType = $request->getHeaderLine('Content-Type');
 
@@ -20,6 +21,7 @@ class ContentTypeMiddleware
                 'supplied' => $contentType,
                 'required' => 'application/json; charset=UTF-8'
             ];
+            $response = new Response();
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
             return $response
@@ -27,6 +29,6 @@ class ContentTypeMiddleware
                 ->withStatus(400);
         }
 
-        return $next($request, $response);
+        return $handler->handle($request);
     }
 }
