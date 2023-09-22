@@ -6,9 +6,10 @@ namespace src\Middleware;
 
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class MethodTypeMiddleware
+class MethodTypeMiddleware // implements MiddlewareInterface
 {
     protected array $allowedMethods;
 
