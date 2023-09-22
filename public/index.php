@@ -26,7 +26,8 @@ $app->get('/v1', function (Request $request, Response $response) {
             'DELETE: /v1/movies/{uid}' => 'Deletes or removes resource (movie) based on provided resource uid',
             'PATCH: /v1/movies/{uid}' => 'Modifies specified parts of a resource (movie) based on provided resource uid',
             'GET: /v1/movies/{numberPerPage}' => 'Retrieves resources (movies) based on supplied query param {numberPerPage}',
-            'GET: /v1/movies/{numberPerPage}/sort/{fieldToSort}' => 'Retrieves sorted resources (movies) based on supplied query params: {numberPerPage} and {fieldToSort}'
+            'GET: /v1/movies/{numberPerPage}/sort/{fieldToSort}' => 'Retrieves sorted resources (movies) based on supplied query params: {numberPerPage} and {fieldToSort}',
+            'GET: /v1/movies/search/{title}' => 'Retrieves similar resources (movies) based on supplied search string'
         ]
     ];
 

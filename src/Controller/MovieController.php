@@ -23,7 +23,7 @@ class MovieController extends AbsController
         parent::__construct($movieModel);
     }
 
-    protected function validateRequestAtrribute(Response $response, $requestAttribute): Response
+    protected function validateRequestAtrribute(Response $response, $requestAttribute): Response|null
     {
         $validationLog = [];
 
@@ -50,6 +50,8 @@ class MovieController extends AbsController
                 ->withHeader('Content-Type', 'application/json; charset=UTF-8')
                 ->withStatus(400);
         }
+
+        return null;
     }
 
 
@@ -124,32 +126,6 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? 'uid';
 
-        // $validationLog = [];
-
-        // $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
-        // $validationLog['validateResource'] = $this->validateResource($requestAttribute);
-
-        // if ($validationLog['validateRequestAtrribute']) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
-
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
-
-        // if ($validationLog['validateResource'] === false) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
-
         $this->validateRequestAtrribute($response, $requestAttribute);
 
         $sanitizedData = $this->sanitizeData();
@@ -187,32 +163,6 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? 'uid';
 
-        // $validationLog = [];
-
-        // $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
-        // $validationLog['validateResource'] = $this->validateResource($requestAttribute);
-
-        // if ($validationLog['validateRequestAtrribute']) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
-
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
-
-        // if ($validationLog['validateResource'] === false) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
-
         $this->validateRequestAtrribute($response, $requestAttribute);
 
         $sanitizedData = $this->sanitizeData();
@@ -249,32 +199,6 @@ class MovieController extends AbsController
     public function delete(Request $request, Response $response, array $args): Response
     {
         $requestAttribute = (string) $args['uid'] ?? 'uid';
-
-        // $validationLog = [];
-
-        // $validationLog['validateRequestAtrribute'] = $this->validateRequestAttribute($requestAttribute);
-        // $validationLog['validateResource'] = $this->validateResource($requestAttribute);
-
-        // if ($validationLog['validateRequestAtrribute']) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot delete resource', 'Invalid Entry: ' . $requestAttribute);
-
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
-
-        // if ($validationLog['validateResource'] === false) {
-
-        //     $errorResponse = $this->errorResponse('Bad Request', 'Cannot delete resource', 'No matching unique id found for: ' . $requestAttribute);
-        //     $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        //     return $response
-        //         ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-        //         ->withStatus(400);
-        // }
 
         $this->validateRequestAtrribute($response, $requestAttribute);
 
