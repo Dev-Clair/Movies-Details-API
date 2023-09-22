@@ -109,8 +109,8 @@ abstract class AbsController implements IntController
 
         // Movie Runtime Field
         $runtime = $sanitizedData['runtime'] ?? "";
-        if (is_numeric($runtime)) {
-            $validatedData['runtime'] = (string) $runtime . ' mins';
+        if (is_string($runtime)) {
+            $validatedData['runtime'] = (string) $runtime;
         } else {
             $errors['runtime'] = 'Please pass a valid movie runtime in minutes';
         }
@@ -148,8 +148,8 @@ abstract class AbsController implements IntController
 
         // Movie IMDB Field
         $imdb = $sanitizedData['imdb'] ?? "";
-        if (filter_var($imdb, FILTER_VALIDATE_INT) !== false) {
-            $validatedData['imdb'] = (string) $imdb . "/10";
+        if (is_string($imdb)) {
+            $validatedData['imdb'] = $imdb;
         } else {
             $errors['imdb'] = 'Please pass a valid movie rating';
         }
