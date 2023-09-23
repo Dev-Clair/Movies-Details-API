@@ -6,12 +6,12 @@ namespace src\Middleware;
 
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\MiddlewareInterface as MiddleWare;
+use Psr\Http\Server\RequestHandlerInterface as Handler;
 
-class ContentTypeMiddleware // implements MiddlewareInterface
+class ContentTypeMiddleware // implements Middleware
 {
-    public function __invoke(Request $request, RequestHandlerInterface $handler)
+    public function __invoke(Request $request, Handler $handler): Response|Handler
     {
         $contentType = $request->getHeaderLine('Content-Type');
 

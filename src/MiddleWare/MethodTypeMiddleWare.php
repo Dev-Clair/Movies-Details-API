@@ -6,10 +6,10 @@ namespace src\Middleware;
 
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\MiddlewareInterface as MiddleWare;
+use Psr\Http\Server\RequestHandlerInterface as Handler;
 
-class MethodTypeMiddleware // implements MiddlewareInterface
+class MethodTypeMiddleware // implements Middleware
 {
     protected array $allowedMethods;
 
@@ -18,7 +18,7 @@ class MethodTypeMiddleware // implements MiddlewareInterface
         $this->allowedMethods = $allowedMethods;
     }
 
-    public function __invoke(Request $request, RequestHandlerInterface $handler): Response
+    public function __invoke(Request $request, Handler $handler): Response|Handler
     {
         $methodType = $request->getMethod();
 
