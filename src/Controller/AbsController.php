@@ -143,8 +143,9 @@ abstract class AbsController implements IntController
         $poster = $sanitizedData['poster'] ?? "";
         if (is_string($poster)) {
             $validatedData['poster'] = $poster;
+        } else {
+            $errors['poster'] = 'Please pass a valid poster link';
         }
-        $validatedData['poster'] = "";
 
         // Movie IMDB Field
         $imdb = $sanitizedData['imdb'] ?? "";
