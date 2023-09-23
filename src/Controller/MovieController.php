@@ -7,6 +7,7 @@ namespace src\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use src\Model\MovieModel;
+use src\Exception\InvalidMethodCallException;
 
 
 /**
@@ -21,6 +22,14 @@ class MovieController extends AbsController
     {
         $movieModel = new MovieModel(databaseName: "movies");
         parent::__construct($movieModel);
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        if (method_exists(MovieController::class, $name)) {
+            call_user_func_array([MovieController::class, $name], $arguments);
+        }
+        throw new InvalidMethodCallException("Call to undefined method " . $name);
     }
 
     protected function validateRequestAtrribute(Response $response, $requestAttribute): Response|null
