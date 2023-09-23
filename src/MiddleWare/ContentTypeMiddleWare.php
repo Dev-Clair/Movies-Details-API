@@ -6,10 +6,9 @@ namespace src\Middleware;
 
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\MiddlewareInterface as MiddleWare;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 
-class ContentTypeMiddleware // implements Middleware
+class ContentTypeMiddleware
 {
     public function __invoke(Request $request, Handler $handler): Response|Handler
     {
