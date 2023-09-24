@@ -12,7 +12,7 @@ abstract class MainModel
     protected array $databaseNames = ['movies', 'backup'];
     protected DbTableOp $dbTableOp;
 
-    public function __construct(private ?string $databaseName)
+    public function __construct(private ?string $databaseName = 'movies')
     {
         if ($databaseName !== null && !in_array($databaseName, $this->databaseNames)) {
             throw new \InvalidArgumentException("Invalid database name provided.");
