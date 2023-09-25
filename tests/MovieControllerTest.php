@@ -32,7 +32,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "get API Info" endpoint.
      */
-    public function testGetAPIInfo()
+    public function testGetAPIInfo(): void
     {
         $response = $this->http->request('GET', 'v1');
 
@@ -52,7 +52,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "get" endpoint.
      */
-    public function testGet()
+    public function testGet(): void
     {
         $response = $this->http->request('GET', 'v1/movies');
 
@@ -73,7 +73,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "post" endpoint.
      */
-    public function testPost()
+    public function testPost(): void
     {
         $response = $this->http->request('POST', 'v1/movies', [
             'headers' => [
@@ -111,7 +111,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "put" endpoint.
      */
-    public function testPut()
+    public function testPut(): void
     {
         $response = $this->http->request('PUT', 'v1/movies/mv7120', [
             'headers' => [
@@ -148,7 +148,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "patch" endpoint.
      */
-    public function testPatch()
+    public function testPatch(): void
     {
         $response = $this->http->request('PATCH', 'v1/movies/mv7120', [
             'headers' => [
@@ -174,7 +174,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "delete" endpoint.
      */
-    public function testDelete()
+    public function testDelete(): void
     {
         $response = $this->http->request('DELETE', 'v1/movies/mv7120', [
             'headers' => [
@@ -199,7 +199,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "getSelection" endpoint.
      */
-    public function testGetSelection()
+    public function testGetSelection(): void
     {
         $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5));
 
@@ -220,7 +220,7 @@ class MovieControllerTest extends TestCase
     /**
      * Test the "getSortedSelection" endpoint.
      */
-    public function testGetSortedSelection()
+    public function testGetSortedSelection(): void
     {
         $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5) . '/sort/year');
 
