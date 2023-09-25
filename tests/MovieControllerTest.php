@@ -7,7 +7,11 @@ namespace tests;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client;
 
-
+/**
+ * Test class for MovieController.
+ * 
+ * Extends PHPUnit\Framework\TestCase
+ */
 class MovieControllerTest extends TestCase
 {
     private Client $http;
@@ -22,7 +26,9 @@ class MovieControllerTest extends TestCase
     //     $this->http = null;
     // }
 
-    // Test getAPIInfo endpoint
+    /**
+     * Test the "get API Info" endpoint.
+     */
     public function testGetAPIInfo()
     {
         $response = $this->http->request('GET', 'v1');
@@ -40,7 +46,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test get endpoint
+    /**
+     * Test the "get" endpoint.
+     */
     public function testGet()
     {
         $response = $this->http->request('GET', 'v1/movies');
@@ -59,7 +67,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test post endpoint
+    /**
+     * Test the "post" endpoint.
+     */
     public function testPost()
     {
         $response = $this->http->request('POST', 'v1/movies', [
@@ -95,7 +105,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test put endpoint
+    /**
+     * Test the "put" endpoint.
+     */
     public function testPut()
     {
         $response = $this->http->request('PUT', 'v1/movies/mv7120', [
@@ -130,7 +142,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test patch endpoint
+    /**
+     * Test the "patch" endpoint.
+     */
     public function testPatch()
     {
         $response = $this->http->request('PATCH', 'v1/movies/mv7120', [
@@ -154,7 +168,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test delete endpoint
+    /**
+     * Test the "delete" endpoint.
+     */
     public function testDelete()
     {
         $response = $this->http->request('DELETE', 'v1/movies/mv7120', [
@@ -177,7 +193,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test getSelection endpoint
+    /**
+     * Test the "getSelection" endpoint.
+     */
     public function testGetSelection()
     {
         $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5));
@@ -196,7 +214,9 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // Test getSortedSelection endpoint
+    /**
+     * Test the "getSortedSelection" endpoint.
+     */
     public function testGetSortedSelection()
     {
         $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5) . '/sort/year');
