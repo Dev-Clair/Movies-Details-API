@@ -15,7 +15,9 @@ use GuzzleHttp\Client;
 class MovieControllerTest extends TestCase
 {
     private Client $http;
-
+    /**
+     * Set up the HTTP client before each test.
+     */
     protected function setUp(): void
     {
         $this->http = new Client(['base_uri' => 'http://localhost:8888/']);
