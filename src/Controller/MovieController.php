@@ -34,12 +34,12 @@ class MovieController extends AbsController
 
     protected function validateRequestAtrribute(Response $response, $requestAttribute): Response|null
     {
-        $validationLog = [];
+        $validationCache = [];
 
-        $validationLog['validateRequestAtrribute'] = $this->validateAttribute($requestAttribute);
-        $validationLog['validateResource'] = $this->validateResource($requestAttribute);
+        $validationCache['validateRequestAtrribute'] = $this->validateAttribute($requestAttribute);
+        $validationCache['validateResource'] = $this->validateResource($requestAttribute);
 
-        if ($validationLog['validateRequestAtrribute']) {
+        if ($validationCache['validateRequestAtrribute'] === true) {
 
             $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
 
@@ -50,7 +50,7 @@ class MovieController extends AbsController
                 ->withStatus(400);
         }
 
-        if ($validationLog['validateResource'] === false) {
+        if ($validationCache['validateResource'] === false) {
 
             $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
             $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
@@ -74,14 +74,14 @@ class MovieController extends AbsController
             'message' => "Hello there!, Welcome to movies_detail API",
             'status' => 'Active',
             'endpoints' => [
-                'GET: /v1/movies' => 'Retrieves all available resources (movies)',
-                'POST: /v1/movies' => 'Creates a resource (movie) on the server',
-                'PUT: /v1/movies/{uid}' => 'Modifies an entire resource (movie) based on provided resource uid',
-                'DELETE: /v1/movies/{uid}' => 'Deletes or removes resource (movie) based on provided resource uid',
-                'PATCH: /v1/movies/{uid}' => 'Modifies specified parts of a resource (movie) based on provided resource uid',
-                'GET: /v1/movies/{numberPerPage}' => 'Retrieves resources (movies) based on supplied query param {numberPerPage}',
-                'GET: /v1/movies/{numberPerPage}/sort/{fieldToSort}' => 'Retrieves sorted resources (movies) based on supplied query params: {numberPerPage} and {fieldToSort}',
-                'GET: /v1/movies/search/{title}' => 'Retrieves similar resources (movies) based on supplied search string'
+                'GET' => '/v1/movies',
+                'POST' => '/v1/movies',
+                'PUT' => '/v1/movies/{uid}',
+                'DELETE' => '/v1/movies/{uid}',
+                'PATCH' => '/v1/movies/{uid}',
+                'GET' => '/v1/movies/{numberPerPage}',
+                'GET' => '/v1/movies/{numberPerPage}/sort/{fieldToSort}',
+                'GET' => '/v1/movies/search/{title}'
             ]
         ];
 

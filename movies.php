@@ -14,7 +14,7 @@ $app->put('/v1/movies/{uid}', MovieController::class . ':put')->add(new MethodTy
 
 $app->patch('/v1/movies/{uid}', MovieController::class . ':patch')->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))->add(new ContentTypeMiddleware);
 
-$app->delete('/v1/movies/{uid}', MovieController::class . ':delete')->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))->add(new ContentTypeMiddleware);
+$app->delete('/v1/movies/{uid}', MovieController::class . ':delete')->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]));
 
 $app->get('/v1/movies/{numberPerPage}', MovieController::class . ':getSelection')->add(new MethodTypeMiddleware(["GET"]));
 
