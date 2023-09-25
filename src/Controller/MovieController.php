@@ -143,7 +143,7 @@ class MovieController extends AbsController
 
             return $response
                 ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(200);
+                ->withStatus(201);
         }
 
         $errorResponse = $this->errorResponse('Internal server error', 'Cannot create resource', (bool) $resource);

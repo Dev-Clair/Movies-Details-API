@@ -63,7 +63,7 @@ class MovieControllerTest extends TestCase
     {
         $response = $this->http->request('POST', 'v1/movies', [
             'headers' => [
-                'Content-Type' => 'application/json',
+                'Content-Type' => 'application/json; charset=UTF-8',
             ],
             'body' => json_encode([
                 "uid" => "mv7120",
@@ -75,12 +75,12 @@ class MovieControllerTest extends TestCase
                 "actors" => "Jake Gyllenhaal, Dar Salim, Emily Beecham, Darunta Dam",
                 "country" => "United States",
                 "poster" => "https://example.com/poster_the_covenant.jpg",
-                "imdb" => "8/10",
+                "imdb" => "7/10",
                 "type" => "Action, Thriller"
             ]),
         ]);
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(201, $response->getStatusCode());
 
         $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
@@ -93,17 +93,46 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // // Test put endpoint
-    // public function testPut()
-    // {
-    // }
+    // Test put endpoint
+    public function testPut()
+    {
+        $response = $this->http->request('PUT', 'v1/movies/mv7120', [
+            'headers' => [
+                'Content-Type' => 'application/json; charset=UTF-8',
+            ],
+            'body' => json_encode([
+                "title" => "Guy Ritchie's The Covenant",
+                "year" => "2023",
+                "released" => "2023-05-21",
+                "runtime" => "120 mins",
+                "directors" => "Guy Ritchie",
+                "actors" => "Jake Gyllenhaal, Dar Salim, Emily Beecham, Darunta Dam, Alexander Ludwig",
+                "country" => "United States",
+                "poster" => "https://example.com/poster_guy_ritchie's_the_covenant.jpg",
+                "imdb" => "8/10",
+                "type" => "Action, Thriller"
+            ]),
+        ]);
+
+        $this->assertEquals(201, $response->getStatusCode());
+
+        $contentType = $response->getHeaders()["Content-Type"][0];
+        $this->assertEquals("application/json; charset=UTF-8", $contentType);
+
+        $this->assertJson($response->getBody()->getContents());
+
+        // Test for not allowed request methods to endpoints
+        // $response = $this->http->request('DELETE', 'v1/movies');
+
+        // $this->assertEquals(405, $response->getStatusCode());
+    }
 
     // Test patch endpoint
     public function testPatch()
     {
-        $response = $this->http->request('POST', 'v1/movies/7120', [
+        $response = $this->http->request('PATCH', 'v1/movies/mv7120', [
             'headers' => [
-                'Content-Type' => 'application/json',
+                'Content-Type' => 'application/json; charset=UTF-8',
             ],
             'body' => json_encode(["released" => "2023-04-21", "runtime" => "123 mins"]),
         ]);
@@ -121,10 +150,27 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // // Test delete endpoint
-    // public function testDelete()
-    // {
-    // }
+    // Test delete endpoint
+    public function testDelete()
+    {
+        $response = $this->http->request('DELETE', 'v1/movies/mv7120', [
+            'headers' => [
+                'Content-Type' => 'application/json; charset=UTF-8',
+            ],
+        ]);
+
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $contentType = $response->getHeaders()["Content-Type"][0];
+        $this->assertEquals("application/json; charset=UTF-8", $contentType);
+
+        $this->assertJson($response->getBody()->getContents());
+
+        // Test for not allowed request methods to endpoints
+        // $response = $this->http->request('POST', 'v1/movies/7120');
+
+        // $this->assertEquals(405, $response->getStatusCode());
+    }
 
     // // Test getSelection endpoint
     // public function testGetSelection()
