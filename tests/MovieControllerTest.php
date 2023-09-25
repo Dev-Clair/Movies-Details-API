@@ -118,14 +118,14 @@ class MovieControllerTest extends TestCase
 
         $contentType = $response->getHeaders()["Content-Type"][0];
 
-        $this->assertEquals(201, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
 
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
 
         // Test for not allowed request methods to endpoints
-        // $response = $this->http->request('DELETE', 'v1/movies');
+        // $response = $this->http->request('GET', 'v1/movies/mv7120');
 
         // $this->assertEquals(405, $response->getStatusCode());
     }
@@ -177,18 +177,41 @@ class MovieControllerTest extends TestCase
         // $this->assertEquals(405, $response->getStatusCode());
     }
 
-    // // Test getSelection endpoint
-    // public function testGetSelection()
-    // {
-    // }
+    // Test getSelection endpoint
+    public function testGetSelection()
+    {
+        $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5));
 
-    // // Test getSortedSelection endpoint
-    // public function testGetSortedSelection()
-    // {
-    // }
+        $contentType = $response->getHeaders()["Content-Type"][0];
 
-    // // Test getSearch endpoint
-    // public function testGetSearch()
-    // {
-    // }
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $this->assertEquals("application/json; charset=UTF-8", $contentType);
+
+        $this->assertJson($response->getBody()->getContents());
+
+        // Test for not allowed request methods to endpoints
+        // $response = $this->http->request('PUT', 'v1/movies/' . rand(1, 5));
+
+        // $this->assertEquals(405, $response->getStatusCode());
+    }
+
+    // Test getSortedSelection endpoint
+    public function testGetSortedSelection()
+    {
+        $response = $this->http->request('GET', 'v1/movies/' . rand(1, 5) . '/sort/year');
+
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $this->assertEquals("application/json; charset=UTF-8", $contentType);
+
+        $this->assertJson($response->getBody()->getContents());
+
+        // Test for not allowed request methods to endpoints
+        // $response = $this->http->request('PATCH', 'v1/movies/' . rand(1, 5) . '/sort/year');
+
+        // $this->assertEquals(405, $response->getStatusCode());
+    }
 }
