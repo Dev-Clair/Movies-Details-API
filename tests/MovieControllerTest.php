@@ -45,9 +45,10 @@ class MovieControllerTest extends TestCase
     {
         $response = $this->http->request('GET', 'v1/movies');
 
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
         $this->assertEquals(200, $response->getStatusCode());
 
-        $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
@@ -80,9 +81,10 @@ class MovieControllerTest extends TestCase
             ]),
         ]);
 
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
         $this->assertEquals(201, $response->getStatusCode());
 
-        $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
@@ -114,9 +116,10 @@ class MovieControllerTest extends TestCase
             ]),
         ]);
 
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
         $this->assertEquals(201, $response->getStatusCode());
 
-        $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
@@ -137,9 +140,10 @@ class MovieControllerTest extends TestCase
             'body' => json_encode(["released" => "2023-04-21", "runtime" => "123 mins"]),
         ]);
 
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
         $this->assertEquals(200, $response->getStatusCode());
 
-        $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
@@ -159,9 +163,10 @@ class MovieControllerTest extends TestCase
             ],
         ]);
 
+        $contentType = $response->getHeaders()["Content-Type"][0];
+
         $this->assertEquals(200, $response->getStatusCode());
 
-        $contentType = $response->getHeaders()["Content-Type"][0];
         $this->assertEquals("application/json; charset=UTF-8", $contentType);
 
         $this->assertJson($response->getBody()->getContents());
