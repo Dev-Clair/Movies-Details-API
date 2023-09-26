@@ -103,14 +103,14 @@ class MovieControllerTest extends TestCase
                 'Content-Type' => 'application/json; charset=UTF-8',
             ],
             'body' => json_encode([
-                "title" => "Guy Ritchie's The Covenant",
+                "title" => "Guy Ritchie`s The Covenant",
                 "year" => "2023",
                 "released" => "2023-05-21",
                 "runtime" => "120 mins",
                 "directors" => "Guy Ritchie",
                 "actors" => "Jake Gyllenhaal, Dar Salim, Emily Beecham, Darunta Dam, Alexander Ludwig",
                 "country" => "United States",
-                "poster" => "https://example.com/poster_guy_ritchie's_the_covenant.jpg",
+                "poster" => "https://example.com/poster_guy_ritchie`s_the_covenant.jpg",
                 "imdb" => "8/10",
                 "type" => "Action, Thriller"
             ]),
