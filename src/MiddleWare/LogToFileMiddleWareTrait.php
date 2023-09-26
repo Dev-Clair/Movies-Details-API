@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src\Middleware;
 
-trait LogToFileTraitMiddleWare
+trait LogToFileMiddleWareTrait
 {
     public function logToFile(array $data): void
     {

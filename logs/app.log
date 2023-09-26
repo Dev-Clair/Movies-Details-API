@@ -1,0 +1,253 @@
+{
+    "requestID": "request461308",
+    "requestTime": {
+        "date": "2023-09-26 13:25:51.775675",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "f6271ac6-1905-42af-a927-12617d826974"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        },
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-26 13:25:51.798659",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        },
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}"
+    }
+}
+{
+    "requestID": "request51005",
+    "requestTime": {
+        "date": "2023-09-26 13:25:51.799034",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "f6271ac6-1905-42af-a927-12617d826974"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        },
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "id": "request74515",
+    "time": {
+        "date": "2023-09-26 13:34:51.115507",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "9ff0cb01-a339-4205-99a0-5963d26def8e"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        }
+    }
+}
+{
+    "time": {
+        "date": "2023-09-26 13:34:51.146706",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        },
+        "body": "O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}"
+    }
+}
+{
+    "id": "request743582",
+    "time": {
+        "date": "2023-09-26 13:34:51.147245",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "9ff0cb01-a339-4205-99a0-5963d26def8e"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request87524",
+    "request_time": {
+        "date": "2023-09-26 13:37:51.639931",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "7a496a9e-a466-4917-8ed7-1d161e94f37b"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 13:37:51.686744",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request197811",
+    "request_time": {
+        "date": "2023-09-26 13:37:51.687214",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "User-Agent": [
+                "PostmanRuntime\/7.32.1"
+            ],
+            "Accept": [
+                "*\/*"
+            ],
+            "Cache-Control": [
+                "no-cache"
+            ],
+            "Postman-Token": [
+                "7a496a9e-a466-4917-8ed7-1d161e94f37b"
+            ],
+            "Host": [
+                "localhost"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ]
+        }
+    }
+}

@@ -7,7 +7,7 @@ namespace src\Middleware;
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
-use src\Middleware\LogToFileTraitMiddleWare as LogToFile;
+use src\Middleware\LogToFileMiddleWareTrait as LogToFile;
 
 class ResponseLogMiddleware
 {
@@ -23,11 +23,10 @@ class ResponseLogMiddleware
     {
         $responseTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $responseLog = [
-            "responseTime" => $responseTime,
+            "response_time" => $responseTime,
             "response" => [
-                'STATUS CODE' => $response->getStatusCode(),
-                'HEADERS' => $response->getHeaders(),
-                'BODY' => serialize($response->getBody())
+                'status_code' => $response->getStatusCode(),
+                'headers' => $response->getHeaders()
             ]
         ];
 
