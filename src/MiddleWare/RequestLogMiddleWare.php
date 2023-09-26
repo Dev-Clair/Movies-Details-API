@@ -15,6 +15,12 @@ class RequestLogMiddleware
 
     public function __invoke(Request $request, Handler $handler): Response
     {
+        $this->requestLog($request);
+        return $handler->handle($request);
+    }
+
+    public function requestLog(Request $request): void
+    {
         $requestID = "request" . random_int(1, 1000000);
         $requestTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $requestLog = [
@@ -27,7 +33,5 @@ class RequestLogMiddleware
         ];
 
         $this->logToFile($requestLog);
-
-        return $handler->handle($request);
     }
 }
