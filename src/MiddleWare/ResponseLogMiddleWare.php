@@ -21,12 +21,16 @@ class ResponseLogMiddleware
 
     public function responseLog(Response $response): void
     {
-        $responseInfo = [
-            'STATUS CODE' => $response->getStatusCode(),
-            'HEADERS' => json_encode($response->getHeaders()),
-            'BODY' => (string) $response->getBody(),
+        $responseTime = new \DateTime('now');
+        $responseLog = [
+            "responseTime" => $responseTime,
+            "response" => [
+                'STATUS CODE' => $response->getStatusCode(),
+                'HEADERS' => $response->getHeaders(),
+                'BODY' => serialize($response->getBody())
+            ]
         ];
 
-        $this->logToFile($responseInfo);
+        $this->logToFile(["response" => $responseLog]);
     }
 }
