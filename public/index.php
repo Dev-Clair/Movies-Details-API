@@ -1,7 +1,7 @@
 <?php
 
-use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
+use DI\Container;
 
 require __DIR__ . '/../vendor/autoload.php';
 
