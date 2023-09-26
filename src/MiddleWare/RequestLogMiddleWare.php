@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace src\Middleware;
 
-use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Response as Response;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use src\Middleware\LogToFileMiddleWareTrait as LogToFile;
 

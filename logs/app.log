@@ -251,3 +251,681 @@
         }
     }
 }
+{
+    "request_id": "request444677",
+    "request_time": {
+        "date": "2023-09-26 14:06:01.708270",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:06:01.744610",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request110193",
+    "request_time": {
+        "date": "2023-09-26 14:06:01.745240",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request187814",
+    "request_time": {
+        "date": "2023-09-26 14:06:25.231279",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:06:25.255918",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request206110",
+    "request_time": {
+        "date": "2023-09-26 14:06:25.256440",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request536115",
+    "request_time": {
+        "date": "2023-09-26 14:07:09.259596",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/2",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:07:09.298520",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request508487",
+    "request_time": {
+        "date": "2023-09-26 14:07:09.299265",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/2",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request145516",
+    "request_time": {
+        "date": "2023-09-26 14:07:38.497106",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/5\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:07:38.536286",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request379617",
+    "request_time": {
+        "date": "2023-09-26 14:07:38.540580",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/5\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request501595",
+    "request_time": {
+        "date": "2023-09-26 14:08:40.411248",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/7\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:08:40.466255",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request968986",
+    "request_time": {
+        "date": "2023-09-26 14:08:40.466984",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/7\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request91517",
+    "request_time": {
+        "date": "2023-09-26 14:08:58.426587",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
+{
+    "response_time": {
+        "date": "2023-09-26 14:08:58.474956",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "status_code": 200,
+        "headers": {
+            "Content-Type": [
+                "application\/json; charset=UTF-8"
+            ]
+        }
+    }
+}
+{
+    "request_id": "request827465",
+    "request_time": {
+        "date": "2023-09-26 14:08:58.475846",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+        "headers": {
+            "Host": [
+                "localhost"
+            ],
+            "User-Agent": [
+                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
+            ],
+            "Accept": [
+                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
+            ],
+            "Accept-Language": [
+                "en-US,en;q=0.5"
+            ],
+            "Accept-Encoding": [
+                "gzip, deflate, br"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Cookie": [
+                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
+            ],
+            "Upgrade-Insecure-Requests": [
+                "1"
+            ],
+            "Sec-Fetch-Dest": [
+                "document"
+            ],
+            "Sec-Fetch-Mode": [
+                "navigate"
+            ],
+            "Sec-Fetch-Site": [
+                "none"
+            ],
+            "Sec-Fetch-User": [
+                "?1"
+            ]
+        }
+    }
+}
