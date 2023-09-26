@@ -30,7 +30,8 @@ $app->put('/v1/movies/{uid}', MovieController::class . ':put')
 $app->patch('/v1/movies/{uid}', MovieController::class . ':patch')
     ->add(new RequestLogMiddleWare)
     ->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))
-    ->add(new ContentTypeMiddleware);
+    ->add(new ContentTypeMiddleware)
+    ->add(new ResponseLogMiddleWare);
 
 $app->delete('/v1/movies/{uid}', MovieController::class . ':delete')
     ->add(new RequestLogMiddleWare)

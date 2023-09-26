@@ -13,7 +13,7 @@ class ResponseLogMiddleware
 {
     use LogToFile;
 
-    public function __invoke(Request $request, Handler $handler): Response|Handler
+    public function __invoke(Request $request, Handler $handler): Response
     {
         $this->responseLog($handler->handle($request));
         return $handler->handle($request);
@@ -21,7 +21,7 @@ class ResponseLogMiddleware
 
     public function responseLog(Response $response): void
     {
-        $responseTime = new \DateTime('now');
+        $responseTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $responseLog = [
             "responseTime" => $responseTime,
             "response" => [
@@ -31,6 +31,6 @@ class ResponseLogMiddleware
             ]
         ];
 
-        $this->logToFile(["response" => $responseLog]);
+        $this->logToFile($responseLog);
     }
 }

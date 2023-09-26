@@ -17,7 +17,7 @@ class MethodTypeMiddleware
         $this->allowedMethods = $allowedMethods;
     }
 
-    public function __invoke(Request $request, Handler $handler): Response|Handler
+    public function __invoke(Request $request, Handler $handler): Response
     {
         $methodType = $request->getMethod();
 

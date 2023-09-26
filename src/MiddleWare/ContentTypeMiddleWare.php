@@ -10,7 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface as Handler;
 
 class ContentTypeMiddleware
 {
-    public function __invoke(Request $request, Handler $handler): Response|Handler
+    public function __invoke(Request $request, Handler $handler): Response
     {
         $contentType = $request->getHeaderLine('Content-Type');
 
