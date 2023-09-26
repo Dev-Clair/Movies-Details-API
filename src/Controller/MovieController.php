@@ -8,18 +8,23 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use src\Model\MovieModel;
 use src\Exception\InvalidMethodCallException;
+use OpenApi\Annotations as OA;
 
 
 /**
- * Handles GET/POST/PUT/PATCH/DELETE request endpoints
- * 
- * @var MovieModel $movieModel
- * 
+ * @OA\Info(
+ *   title="Movies Detail API",
+ *   version="1.0.0",
+ *   description="API for managing movie details",
+ * )
  */
 class MovieController extends AbsController
 {
     public function __construct()
     {
+        /**
+         * @var MovieModel $movieModel
+         */
         $movieModel = new MovieModel(databaseName: "movies");
         parent::__construct($movieModel);
     }
@@ -31,7 +36,49 @@ class MovieController extends AbsController
         }
         throw new InvalidMethodCallException("Call to undefined method " . $name);
     }
+    /**
+     * @OA\Schema(
+     *     schema="ErrorResponse",
+     *     @OA\Property(property="message", type="string", example="Bad Request"),
+     *     @OA\Property(property="description", type="string", example="Cannot modify resource"),
+     *     @OA\Property(property="error", type="string", example="Invalid Entry: {requestAttribute}")
+     * )
+     *
+     * @OA\Schema(
+     *     schema="SuccessResponse",
+     *     @OA\Property(property="status", type="string", example="OK"),
+     *     @OA\Property(property="message", type="string", example="Resource validation successful"),
+     *     @OA\Property(property="data", type="string", example="Resource validated successfully")
+     * )
+     */
 
+    /**
+     * Validate the request attribute and resource existence.
+     *
+     * @param Response $response The HTTP response instance.
+     * @param mixed $requestAttribute The request attribute to validate.
+     *
+     * @return Response|null Returns a response with error details if validation fails, or null if validation is successful.
+     *
+     *
+     * @OA\Parameter(
+     *     name="requestAttribute",
+     *     in="query",
+     *     required=true,
+     *     description="The request attribute to validate.",
+     *     @OA\Schema(type="string")
+     * )
+     * @OA\Response(
+     *     response=200,
+     *     description="Resource validated successfully",
+     *     @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     * )
+     * @OA\Response(
+     *     response=400,
+     *     description="Bad Request",
+     *     @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     * )
+     */
     protected function validateRequestAtrribute(Response $response, $requestAttribute): Response|null
     {
         $validationCache = [];
@@ -65,12 +112,21 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles GET request for api infor
-     * 
+     * @OA\Get(
+     *     path="/v1",
+     *     tags={"API Info"},
+     *     summary="Get API information",
+     *     description="Returns information about the API and available endpoints.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response",
+     *         @OA\JsonContent(ref="#/components/schemas/ApiInfoResponse")
+     *     ),
+     * )
      */
     public function getAPIInfo(Request $request, Response $response, array $args): Response
     {
-        $welcome_message = [
+        $api_info = [
             'message' => "Hello there!, Welcome to movies_detail API",
             'status' => 'Active',
             'endpoints' => [
@@ -85,7 +141,7 @@ class MovieController extends AbsController
             ]
         ];
 
-        $response->getBody()->write(json_encode($welcome_message, JSON_PRETTY_PRINT));
+        $response->getBody()->write(json_encode($api_info, JSON_PRETTY_PRINT));
         return $response
             ->withHeader('Content-Type', 'application/json; charset=UTF-8')
             ->withStatus(200);
@@ -93,8 +149,17 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles GET request for fetching movies
-     * 
+     * @OA\Get(
+     *     path="/v1/movies",
+     *     tags={"Movies"},
+     *     summary="Get a list of movies",
+     *     description="Returns a list of movies.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response",
+     *         @OA\JsonContent(ref="#/components/schemas/MovieListResponse")
+     *     ),
+     * )
      */
     public function get(Request $request, Response $response, array $args): Response
     {
@@ -119,8 +184,32 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles POST request for creating a movie
-     *
+     * @OA\Post(
+     *     path="/v1/movies",
+     *     tags={"Movies"},
+     *     summary="Create a new movie",
+     *     description="Creates a new movie record with the provided data.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Movie data",
+     *         @OA\JsonContent(ref="#/components/schemas/NewMovieData")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Movie created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function post(Request $request, Response $response, array $args): Response
     {
@@ -156,8 +245,39 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles PUT request for updating a movie
-     * 
+     * @OA\Put(
+     *     path="/v1/movies/{uid}",
+     *     tags={"Movies"},
+     *     summary="Update a movie",
+     *     description="Update an entire movie based on provided reference data parameter.",
+     *     @OA\Parameter(
+     *         name="uid",
+     *         in="path",
+     *         required=true,
+     *         description="Unique ID of the movie to update.",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Updated movie data",
+     *         @OA\JsonContent(ref="#/components/schemas/UpdatedMovieData")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movie updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function put(Request $request, Response $response, array $args): Response
     {
@@ -193,8 +313,39 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles PATCH request for partially updating a movie
-     * 
+     * @OA\Patch(
+     *     path="/v1/movies/{uid}",
+     *     tags={"Movies"},
+     *     summary="Update specified section of a movie based on provided reference data parameter",
+     *     description="Updates a movie record with the provided data.",
+     *     @OA\Parameter(
+     *         name="uid",
+     *         in="path",
+     *         required=true,
+     *         description="Unique ID of the movie to update.",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Updated movie data",
+     *         @OA\JsonContent(ref="#/components/schemas/UpdatedMovieData")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movie updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function patch(Request $request, Response $response, array $args): Response
     {
@@ -230,8 +381,34 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles DELETE request for deleting a movie
-     * 
+     * @OA\Delete(
+     *     path="/v1/movies/{uid}",
+     *     tags={"Movies"},
+     *     summary="Delete a movie",
+     *     description="Deletes a movie record with the specified UID.",
+     *     @OA\Parameter(
+     *         name="uid",
+     *         in="path",
+     *         required=true,
+     *         description="Unique ID of the movie to delete.",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movie deleted successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function delete(Request $request, Response $response, array $args): Response
     {
@@ -260,8 +437,29 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles GET request for fetching a selection movies
-     * 
+     * @OA\Get(
+     *     path="/v1/movies/{numberPerPage}",
+     *     tags={"Movies"},
+     *     summary="Get a selection of movies",
+     *     description="Fetches a selection of movies based on the number per page.",
+     *     @OA\Parameter(
+     *         name="numberPerPage",
+     *         in="path",
+     *         required=true,
+     *         description="Number of movies per page.",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movies retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function getSelection(Request $request, Response $response, array $args): Response
     {
@@ -288,8 +486,36 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles GET request for fetching a sorted selection of movies
-     * 
+     * @OA\Get(
+     *     path="/v1/movies/{numberPerPage}/sort/{fieldToSort}",
+     *     tags={"Movies"},
+     *     summary="Get a sorted selection of movies",
+     *     description="Fetches a sorted selection of movies based on the number per page and field to sort.",
+     *     @OA\Parameter(
+     *         name="numberPerPage",
+     *         in="path",
+     *         required=true,
+     *         description="Number of movies per page.",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="fieldToSort",
+     *         in="path",
+     *         required=false,
+     *         description="Field to sort by (default: uid).",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movies retrieved and sorted successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function getSortedSelection(Request $request, Response $response, array $args): Response
     {
@@ -317,8 +543,29 @@ class MovieController extends AbsController
 
 
     /**
-     * Handles GET request for searching movies
-     * 
+     * @OA\Get(
+     *     path="/v1/movies/search/{title}",
+     *     tags={"Movies"},
+     *     summary="Search for movies by title",
+     *     description="Searches for movies based on the title.",
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="path",
+     *         required=true,
+     *         description="Title to search for.",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movies found based on the title",
+     *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
+     * )
      */
     public function getSearch(Request $request, Response $response, array $args): Response
     {
