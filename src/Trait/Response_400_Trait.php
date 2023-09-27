@@ -9,10 +9,10 @@ use Slim\Psr7\Response as Response;
 
 trait Response_400_Trait
 {
-    public function response_400(string $status, array|string $message, array|string|bool|null $data): Response
+    public function response_400(array|string $message, array|string|bool|null $data): Response
     {
         $status = [
-            'status' =>   $status,
+            'status' =>   "Bad Request",
             'message' => $message,
             'data' => $data
         ];

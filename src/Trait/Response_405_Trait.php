@@ -9,10 +9,10 @@ use Slim\Psr7\Response as Response;
 
 trait Response_405_Trait
 {
-    public function response_405(string $status, array|string $message, array|string|bool|null $data): Response
+    public function response_405(array|string $message, array|string|bool|null $data): Response
     {
         $status = [
-            'status' =>   $status,
+            'status' =>   "Method Not Allowed",
             'message' => $message,
             'data' => $data
         ];
