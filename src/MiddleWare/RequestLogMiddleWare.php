@@ -7,7 +7,7 @@ namespace src\Middleware;
 use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
-use src\Middleware\LogToFileTraitMiddleWare as LogToFile;
+use src\Trait\LogToFileMiddleWareTrait as LogToFile;
 
 class RequestLogMiddleware
 {
@@ -22,7 +22,7 @@ class RequestLogMiddleware
             "requestTime" => $requestTime,
             "request" => [
                 'URI' => (string) $request->getUri(),
-                'HEADERS' => $request->getHeaders(),
+                'HEADERS' => $request->getHeaders()["Content-Type"][0],
                 'BODY' => serialize($request->getBody()),
             ]
         ];
