@@ -26,7 +26,7 @@ class ResponseLogMiddleware
             "responseTime" => $responseTime,
             "response" => [
                 'STATUS CODE' => $response->getStatusCode(),
-                'HEADERS' => $response->getHeaders()["Content-Type"][0],
+                'HEADERS' => $response->getHeaderLine('Content-Type'),
                 'BODY' => serialize($response->getBody())
             ]
         ];

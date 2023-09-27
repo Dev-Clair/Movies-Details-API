@@ -22,7 +22,7 @@ class RequestLogMiddleware
             "requestTime" => $requestTime,
             "request" => [
                 'URI' => (string) $request->getUri(),
-                'HEADERS' => $request->getHeaders()["Content-Type"][0],
+                'HEADERS' => $request->getHeaderLine('Content-Type'),
                 'BODY' => serialize($request->getBody()),
             ]
         ];
