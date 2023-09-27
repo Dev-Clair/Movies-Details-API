@@ -7,7 +7,7 @@ namespace src\Middleware;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\Response as Response;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
-use src\Middleware\LogToFileMiddleWareTrait as LogToFile;
+use src\Trait\LogToFileMiddleWareTrait as LogToFile;
 
 class RequestLogMiddleware
 {
@@ -22,14 +22,13 @@ class RequestLogMiddleware
     public function requestLog(Request $request): void
     {
         $requestID = "request" . random_int(1, 1000000);
-        $requestTime = new \DateTime('now', new \DateTimeZone('UTC'));
+        $requestTime = new \DateTime('now');
         $requestLog = [
             "request_id" => $requestID,
             "request_time" => $requestTime,
-            "request" => [
-                'uri' => (string) $request->getUri(),
-                'headers' => $request->getHeaders()
-            ]
+            "request_uri" => (string) $request->getUri(),
+            "request_content_type" => $request->getHeaderLine('Content-Type'),
+            "request_method" => $request->getMethod()
         ];
 
         $this->logToFile($requestLog);

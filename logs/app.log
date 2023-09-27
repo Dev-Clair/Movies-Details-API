@@ -1,931 +1,319 @@
 {
-    "requestID": "request461308",
+    "requestID": "request25796",
     "requestTime": {
-        "date": "2023-09-26 13:25:51.775675",
+        "date": "2023-09-27 10:18:49.167223",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "request": {
-        "URI": "http:\/\/localhost:8888\/v1\/movies",
-        "HEADERS": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "f6271ac6-1905-42af-a927-12617d826974"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        },
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
         "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
     }
 }
 {
     "responseTime": {
-        "date": "2023-09-26 13:25:51.798659",
+        "date": "2023-09-27 10:18:49.716657",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "response": {
         "STATUS CODE": 200,
-        "HEADERS": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        },
+        "HEADERS": "application\/json; charset=UTF-8",
         "BODY": "O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}"
     }
 }
 {
-    "requestID": "request51005",
+    "requestID": "request731468",
     "requestTime": {
-        "date": "2023-09-26 13:25:51.799034",
+        "date": "2023-09-27 10:18:49.716925",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "requestID": "request603441",
+    "requestTime": {
+        "date": "2023-09-27 10:21:52.723681",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-27 10:21:52.738757",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
+    }
+}
+{
+    "requestID": "request926232",
+    "requestTime": {
+        "date": "2023-09-27 10:21:52.739025",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "requestID": "request619695",
+    "requestTime": {
+        "date": "2023-09-27 10:24:00.552547",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "request": {
         "URI": "http:\/\/localhost:8888\/v1\/movies",
-        "HEADERS": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "f6271ac6-1905-42af-a927-12617d826974"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        },
+        "HEADERS": "",
         "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
     }
 }
 {
-    "id": "request74515",
-    "time": {
-        "date": "2023-09-26 13:34:51.115507",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "9ff0cb01-a339-4205-99a0-5963d26def8e"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        }
-    }
-}
-{
-    "time": {
-        "date": "2023-09-26 13:34:51.146706",
+    "responseTime": {
+        "date": "2023-09-27 10:24:00.822552",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        },
-        "body": "O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}"
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
     }
 }
 {
-    "id": "request743582",
-    "time": {
-        "date": "2023-09-26 13:34:51.147245",
+    "requestID": "request547000",
+    "requestTime": {
+        "date": "2023-09-27 10:24:00.823128",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "9ff0cb01-a339-4205-99a0-5963d26def8e"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        }
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
     }
 }
 {
-    "request_id": "request87524",
-    "request_time": {
-        "date": "2023-09-26 13:37:51.639931",
+    "requestID": "request20648",
+    "requestTime": {
+        "date": "2023-09-27 10:26:02.796190",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "7a496a9e-a466-4917-8ed7-1d161e94f37b"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        }
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": ""
     }
 }
 {
-    "response_time": {
-        "date": "2023-09-26 13:37:51.686744",
+    "responseTime": {
+        "date": "2023-09-27 10:26:02.826718",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
     }
 }
 {
-    "request_id": "request197811",
-    "request_time": {
-        "date": "2023-09-26 13:37:51.687214",
+    "requestID": "request304467",
+    "requestTime": {
+        "date": "2023-09-27 10:26:02.827215",
         "timezone_type": 3,
         "timezone": "UTC"
     },
     "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "User-Agent": [
-                "PostmanRuntime\/7.32.1"
-            ],
-            "Accept": [
-                "*\/*"
-            ],
-            "Cache-Control": [
-                "no-cache"
-            ],
-            "Postman-Token": [
-                "7a496a9e-a466-4917-8ed7-1d161e94f37b"
-            ],
-            "Host": [
-                "localhost"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ]
-        }
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": ""
     }
 }
 {
-    "request_id": "request444677",
+    "request_id": "request609898",
     "request_time": {
-        "date": "2023-09-26 14:06:01.708270",
+        "date": "2023-09-27 12:32:01.830162",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:06:01.744610",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 500,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request110193",
+    "request_id": "request198608",
     "request_time": {
-        "date": "2023-09-26 14:06:01.745240",
+        "date": "2023-09-27 12:32:01.930950",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "request_id": "request187814",
+    "request_id": "request168637",
     "request_time": {
-        "date": "2023-09-26 14:06:25.231279",
+        "date": "2023-09-27 12:37:34.026108",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+    "request_header": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:06:25.255918",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request206110",
+    "request_id": "request201146",
     "request_time": {
-        "date": "2023-09-26 14:06:25.256440",
+        "date": "2023-09-27 12:37:34.041886",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+    "request_header": ""
 }
 {
-    "request_id": "request536115",
+    "request_id": "request59791",
     "request_time": {
-        "date": "2023-09-26 14:07:09.259596",
+        "date": "2023-09-27 12:39:43.870701",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/2",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:07:09.298520",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request508487",
+    "request_id": "request922413",
     "request_time": {
-        "date": "2023-09-26 14:07:09.299265",
+        "date": "2023-09-27 12:39:43.884761",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/2",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "request_id": "request145516",
+    "request_id": "request225411",
     "request_time": {
-        "date": "2023-09-26 14:07:38.497106",
+        "date": "2023-09-27 12:41:16.055691",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/5\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:07:38.536286",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request379617",
+    "request_id": "request3882",
     "request_time": {
-        "date": "2023-09-26 14:07:38.540580",
+        "date": "2023-09-27 12:41:16.069395",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/5\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
 }
 {
-    "request_id": "request501595",
+    "request_id": "request71109",
     "request_time": {
-        "date": "2023-09-26 14:08:40.411248",
+        "date": "2023-09-27 12:41:32.839999",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/7\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7125",
+    "request_header": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:08:40.466255",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request968986",
+    "request_id": "request582911",
     "request_time": {
-        "date": "2023-09-26 14:08:40.466984",
+        "date": "2023-09-27 12:41:32.950927",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/7\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7125",
+    "request_header": ""
 }
 {
-    "request_id": "request91517",
+    "request_id": "request706110",
     "request_time": {
-        "date": "2023-09-26 14:08:58.426587",
+        "date": "2023-09-27 12:50:15.222875",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7120",
+    "request_content_type": "",
+    "request_client": ""
 }
 {
-    "response_time": {
-        "date": "2023-09-26 14:08:58.474956",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
-    "response": {
-        "status_code": 200,
-        "headers": {
-            "Content-Type": [
-                "application\/json; charset=UTF-8"
-            ]
-        }
-    }
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
 }
 {
-    "request_id": "request827465",
+    "request_id": "request543542",
     "request_time": {
-        "date": "2023-09-26 14:08:58.475846",
+        "date": "2023-09-27 12:50:15.302634",
         "timezone_type": 3,
-        "timezone": "UTC"
+        "timezone": "Europe\/Berlin"
     },
-    "request": {
-        "uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
-        "headers": {
-            "Host": [
-                "localhost"
-            ],
-            "User-Agent": [
-                "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko\/20100101 Firefox\/117.0"
-            ],
-            "Accept": [
-                "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,*\/*;q=0.8"
-            ],
-            "Accept-Language": [
-                "en-US,en;q=0.5"
-            ],
-            "Accept-Encoding": [
-                "gzip, deflate, br"
-            ],
-            "Connection": [
-                "keep-alive"
-            ],
-            "Cookie": [
-                "PHPSESSID=3vd0r1v10cvko4ndoeg5jea5h9"
-            ],
-            "Upgrade-Insecure-Requests": [
-                "1"
-            ],
-            "Sec-Fetch-Dest": [
-                "document"
-            ],
-            "Sec-Fetch-Mode": [
-                "navigate"
-            ],
-            "Sec-Fetch-Site": [
-                "none"
-            ],
-            "Sec-Fetch-User": [
-                "?1"
-            ]
-        }
-    }
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7120",
+    "request_content_type": "",
+    "request_client": ""
+}
+{
+    "request_id": "request602199",
+    "request_time": {
+        "date": "2023-09-27 12:50:28.996023",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies",
+    "request_content_type": "",
+    "request_client": ""
+}
+{
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request517819",
+    "request_time": {
+        "date": "2023-09-27 12:50:29.019554",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies",
+    "request_content_type": "",
+    "request_client": ""
 }
