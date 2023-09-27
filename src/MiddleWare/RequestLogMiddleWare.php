@@ -21,7 +21,8 @@ class RequestLogMiddleware
             "request_id" => $requestID,
             "request_time" => $requestTime,
             "request_uri" => (string) $request->getUri(),
-            "request_header" => $request->getHeaderLine('Content-Type') ?? $request->getHeaderLine('Client')
+            "request_content_type" => $request->getHeaderLine('Content-Type'),
+            "request_client" => $request->getHeaderLine('Client')
         ];
 
         $this->logToFile($requestLog);
