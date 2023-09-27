@@ -4,11 +4,23 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+// Slim Psr Implementation
+use Slim\Psr7\Response as Response;
+use Slim\Psr7\Request as Request;
+// Controller Class Dependency
 use src\Model\MovieModel;
+// Custom Exception
 use src\Exception\InvalidMethodCallException;
+// OpenApi Annotations
 use OpenApi\Annotations as OA;
+
+// Custom Response Messages
+use src\Trait\Response_200_Trait as Response_200;
+use src\Trait\Response_201_Trait as Response_201;
+use src\Trait\Response_400_Trait as Response_400;
+use src\Trait\Response_405_Trait as Response_405;
+use src\Trait\Response_422_Trait as Response_422;
+use src\Trait\Response_500_Trait as Response_500;
 
 
 /**
@@ -20,6 +32,13 @@ use OpenApi\Annotations as OA;
  */
 class MovieController extends AbsController
 {
+    use Response_200;
+    use Response_201;
+    use Response_400;
+    use Response_405;
+    use Response_422;
+    use Response_500;
+
     public function __construct()
     {
         /**
@@ -88,23 +107,15 @@ class MovieController extends AbsController
 
         if ($validationCache['validateRequestAtrribute'] === true) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
-
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
+            return $this->response_400('Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
         }
 
         if ($validationCache['validateResource'] === false) {
 
-            $errorResponse = $this->errorResponse('Bad Request', 'Cannot modify resource', 'No matching unique id found for: ' . $requestAttribute);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(400);
+            return $this->response_400(
+                'Cannot modify resource',
+                'No matching unique id found for: ' . $requestAttribute
+            );
         }
 
         return null;
@@ -141,10 +152,7 @@ class MovieController extends AbsController
             ]
         ];
 
-        $response->getBody()->write(json_encode($api_info, JSON_PRETTY_PRINT));
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_200('Successful', $api_info);
     }
 
 
@@ -166,20 +174,11 @@ class MovieController extends AbsController
         $resource = $this->movieModel->retrieveAllMovies("movie_details");
 
         if (!array($resource)) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot retrieve resource', $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+            return $this->response_500('Cannot retrieve resource', $resource);
         }
 
-        $successResponse = $this->successResponse('OK', 'Resource retrieved successfully', $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_200('Resource retrieved successfully', $resource);
     }
 
 
@@ -213,34 +212,29 @@ class MovieController extends AbsController
      */
     public function post(Request $request, Response $response, array $args): Response
     {
-        $validatedData = $this->validateData($request, $response);
+        $this->validateData($request, $response);
 
-        if (count($validatedData) < 5) {;
-            $response->getBody()->write(json_encode($validatedData, JSON_PRETTY_PRINT));
+        $validDataCache = [];
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(422);
+        $invalidDataCache = [];
+
+        if (!empty($invalidDataCache)) {
+
+            return $this->response_422('Not Successful', $invalidDataCache);
+            // Clear Cache
+            "Clear Cache";
         }
 
-        $resource = $this->movieModel->createMovie("movie_details", $validatedData);
+        $resource = $this->movieModel->createMovie("movie_details", $validDataCache);
 
         if ($resource) {
 
-            $successResponse = $this->successResponse('Request successful', 'New Resource Created', (bool) $resource);
-            $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(201);
+            return $this->response_201('Successful', (bool) $resource);
+            // Clear Cache
+            "Clear Cache";
         }
 
-        $errorResponse = $this->errorResponse('Internal server error', 'Cannot create resource', (bool) $resource);
-        $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(500);
+        return $this->response_500('Cannot create resource', (bool) $resource);
     }
 
 

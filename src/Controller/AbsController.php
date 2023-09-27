@@ -35,28 +35,6 @@ abstract class AbsController implements IntController
         return $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
     }
 
-    protected function errorResponse(array|string $response, array|string $message, array|string|bool|null $data): array
-    {
-        $errorResponse = [
-            'error' =>   $response,
-            'message' => $message,
-            'data' => $data
-        ];
-
-        return $errorResponse;
-    }
-
-    protected function successResponse(array|string $response, array|string $message, array|string|bool|null $data): array
-    {
-        $successResponse = [
-            'success' =>   $response,
-            'message' => $message,
-            'data' => $data
-        ];
-
-        return $successResponse;
-    }
-
     protected function sanitizeData(): array
     {
         $sanitizedData = [];
@@ -68,7 +46,7 @@ abstract class AbsController implements IntController
         return $sanitizedData;
     }
 
-    protected function validateData(): array
+    protected function validateData(): void
     {
         $errors = [];
         $validatedData = [];
@@ -163,17 +141,8 @@ abstract class AbsController implements IntController
             $errors['type'] = 'Please pass a valid movie type';
         }
 
-        if (!empty($errors)) {
-
-            $errors = [
-                'error' => 'Unprocessable Entity',
-                'message' => 'Invalid Entries',
-                'data' => $errors,
-            ];
-
-            return $errors;
-        }
-
-        return $validatedData;
+        /**
+         * Cache Result of Entire Operation
+         */
     }
 }
