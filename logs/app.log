@@ -317,3 +317,546 @@
     "request_content_type": "",
     "request_client": ""
 }
+{
+    "request_id": "request653805",
+    "request_time": {
+        "date": "2023-09-27 13:13:02.078955",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request973694",
+    "request_time": {
+        "date": "2023-09-27 13:13:02.149234",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request556311",
+    "request_time": {
+        "date": "2023-09-27 13:18:18.090274",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request270187",
+    "request_time": {
+        "date": "2023-09-27 13:18:18.103540",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request896056",
+    "request_time": {
+        "date": "2023-09-27 13:37:36.294141",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6771",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request623502",
+    "request_time": {
+        "date": "2023-09-27 13:37:36.403189",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6771",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request527320",
+    "request_time": {
+        "date": "2023-09-27 13:40:48.904942",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6771",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request163866",
+    "request_time": {
+        "date": "2023-09-27 13:40:48.918812",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6771",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request448360",
+    "request_time": {
+        "date": "2023-09-27 13:41:52.270818",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request378067",
+    "request_time": {
+        "date": "2023-09-27 13:41:52.365859",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request516564",
+    "request_time": {
+        "date": "2023-09-27 13:44:45.941298",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request649943",
+    "request_time": {
+        "date": "2023-09-27 13:46:23.874420",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request783627",
+    "request_time": {
+        "date": "2023-09-27 13:46:23.886611",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request814218",
+    "request_time": {
+        "date": "2023-09-27 13:46:26.913628",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request357552",
+    "request_time": {
+        "date": "2023-09-27 13:46:26.945226",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request846234",
+    "request_time": {
+        "date": "2023-09-27 13:46:28.182733",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request190717",
+    "request_time": {
+        "date": "2023-09-27 13:46:28.194369",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request578276",
+    "request_time": {
+        "date": "2023-09-27 13:46:41.653256",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request900068",
+    "request_time": {
+        "date": "2023-09-27 13:46:43.068101",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request832884",
+    "request_time": {
+        "date": "2023-09-27 13:46:51.618511",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request491416",
+    "request_time": {
+        "date": "2023-09-27 13:46:51.634403",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request201641",
+    "request_time": {
+        "date": "2023-09-27 13:47:51.051332",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request203023",
+    "request_time": {
+        "date": "2023-09-27 13:47:51.062727",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request721113",
+    "request_time": {
+        "date": "2023-09-27 14:01:17.668777",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request662490",
+    "request_time": {
+        "date": "2023-09-27 14:01:17.683893",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request119191",
+    "request_time": {
+        "date": "2023-09-27 14:01:19.644687",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request156480",
+    "request_time": {
+        "date": "2023-09-27 14:01:19.656004",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6775",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request789326",
+    "request_time": {
+        "date": "2023-09-27 14:01:40.688781",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request520658",
+    "request_time": {
+        "date": "2023-09-27 14:01:40.774802",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "application\/json",
+    "request_method": "PATCH"
+}
+{
+    "request_id": "request417681",
+    "request_time": {
+        "date": "2023-09-27 14:02:25.826952",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1",
+    "request_content_type": "",
+    "request_method": "GET"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request497117",
+    "request_time": {
+        "date": "2023-09-27 14:02:25.837899",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1",
+    "request_content_type": "",
+    "request_method": "GET"
+}
+{
+    "request_id": "request673278",
+    "request_time": {
+        "date": "2023-09-27 14:02:32.541601",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies",
+    "request_content_type": "",
+    "request_method": "GET"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request323091",
+    "request_time": {
+        "date": "2023-09-27 14:02:32.551562",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies",
+    "request_content_type": "",
+    "request_method": "GET"
+}
+{
+    "request_id": "request847630",
+    "request_time": {
+        "date": "2023-09-27 14:03:53.583241",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request793373",
+    "request_time": {
+        "date": "2023-09-27 14:05:14.532105",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}
+{
+    "request_id": "request385910",
+    "request_time": {
+        "date": "2023-09-27 14:05:14.637263",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "request_id": "request923783",
+    "request_time": {
+        "date": "2023-09-27 14:09:42.729120",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv6770",
+    "request_content_type": "",
+    "request_method": "DELETE"
+}
+{
+    "response_status_code": 500,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}

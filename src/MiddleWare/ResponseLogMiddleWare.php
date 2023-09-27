@@ -13,10 +13,10 @@ class ResponseLogMiddleware
 {
     use LogToFile;
 
-    public function __invoke(Request $request, Handler $handler): Response
+    public function __invoke(Request $request, Handler $handler): void
     {
         $this->responseLog($handler->handle($request));
-        return $handler->handle($request);
+        // return $handler->handle($request);
     }
 
     public function responseLog(Response $response): void
