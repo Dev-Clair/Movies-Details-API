@@ -1,0 +1,267 @@
+{
+    "requestID": "request25796",
+    "requestTime": {
+        "date": "2023-09-27 10:18:49.167223",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-27 10:18:49.716657",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}"
+    }
+}
+{
+    "requestID": "request731468",
+    "requestTime": {
+        "date": "2023-09-27 10:18:49.716925",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "requestID": "request603441",
+    "requestTime": {
+        "date": "2023-09-27 10:21:52.723681",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-27 10:21:52.738757",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
+    }
+}
+{
+    "requestID": "request926232",
+    "requestTime": {
+        "date": "2023-09-27 10:21:52.739025",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "requestID": "request619695",
+    "requestTime": {
+        "date": "2023-09-27 10:24:00.552547",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-27 10:24:00.822552",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
+    }
+}
+{
+    "requestID": "request547000",
+    "requestTime": {
+        "date": "2023-09-27 10:24:00.823128",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": "",
+        "BODY": "O:16:\"Slim\\Psr7\\Stream\":8:{s:9:\"\u0000*\u0000stream\";i:0;s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";N;s:11:\"\u0000*\u0000seekable\";N;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";N;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";O:16:\"Slim\\Psr7\\Stream\":9:{s:9:\"\u0000*\u0000stream\";i:0;s:7:\"\u0000*\u0000meta\";a:6:{s:12:\"wrapper_type\";s:3:\"PHP\";s:11:\"stream_type\";s:4:\"TEMP\";s:4:\"mode\";s:3:\"w+b\";s:12:\"unread_bytes\";i:0;s:8:\"seekable\";b:1;s:3:\"uri\";s:10:\"php:\/\/temp\";}s:11:\"\u0000*\u0000readable\";N;s:11:\"\u0000*\u0000writable\";b:1;s:11:\"\u0000*\u0000seekable\";b:1;s:7:\"\u0000*\u0000size\";N;s:9:\"\u0000*\u0000isPipe\";b:0;s:11:\"\u0000*\u0000finished\";b:0;s:8:\"\u0000*\u0000cache\";N;}}"
+    }
+}
+{
+    "requestID": "request20648",
+    "requestTime": {
+        "date": "2023-09-27 10:26:02.796190",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": ""
+    }
+}
+{
+    "responseTime": {
+        "date": "2023-09-27 10:26:02.826718",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "response": {
+        "STATUS CODE": 200,
+        "HEADERS": "application\/json; charset=UTF-8"
+    }
+}
+{
+    "requestID": "request304467",
+    "requestTime": {
+        "date": "2023-09-27 10:26:02.827215",
+        "timezone_type": 3,
+        "timezone": "UTC"
+    },
+    "request": {
+        "URI": "http:\/\/localhost:8888\/v1\/movies",
+        "HEADERS": ""
+    }
+}
+{
+    "request_id": "request609898",
+    "request_time": {
+        "date": "2023-09-27 12:32:01.830162",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "response_status_code": 500,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request198608",
+    "request_time": {
+        "date": "2023-09-27 12:32:01.930950",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "request_id": "request168637",
+    "request_time": {
+        "date": "2023-09-27 12:37:34.026108",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+    "request_header": ""
+}
+{
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request201146",
+    "request_time": {
+        "date": "2023-09-27 12:37:34.041886",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/9\/sort\/year",
+    "request_header": ""
+}
+{
+    "request_id": "request59791",
+    "request_time": {
+        "date": "2023-09-27 12:39:43.870701",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request922413",
+    "request_time": {
+        "date": "2023-09-27 12:39:43.884761",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "request_id": "request225411",
+    "request_time": {
+        "date": "2023-09-27 12:41:16.055691",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request3882",
+    "request_time": {
+        "date": "2023-09-27 12:41:16.069395",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv5678",
+    "request_header": ""
+}
+{
+    "request_id": "request71109",
+    "request_time": {
+        "date": "2023-09-27 12:41:32.839999",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7125",
+    "request_header": ""
+}
+{
+    "response_status_code": 200,
+    "response_header": "application\/json; charset=UTF-8"
+}
+{
+    "request_id": "request582911",
+    "request_time": {
+        "date": "2023-09-27 12:41:32.950927",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1\/movies\/mv7125",
+    "request_header": ""
+}

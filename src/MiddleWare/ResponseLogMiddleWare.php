@@ -21,14 +21,9 @@ class ResponseLogMiddleware
 
     public function responseLog(Response $response): void
     {
-        $responseTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $responseLog = [
-            "responseTime" => $responseTime,
-            "response" => [
-                'STATUS CODE' => $response->getStatusCode(),
-                'HEADERS' => $response->getHeaderLine('Content-Type'),
-                'BODY' => serialize($response->getBody())
-            ]
+            "response_status_code" => $response->getStatusCode(),
+            "response_header" => $response->getHeaderLine('Content-Type') ?? $response->getHeaderLine('Allow')
         ];
 
         $this->logToFile($responseLog);

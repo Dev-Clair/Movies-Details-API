@@ -13,18 +13,15 @@ class RequestLogMiddleware
 {
     use LogToFile;
 
-    public function __invoke(Request $request, Handler $handler): Response|Handler
+    public function __invoke(Request $request, Handler $handler): Response
     {
         $requestID = "request" . random_int(1, 1000000);
-        $requestTime = new \DateTime('now', new \DateTimeZone('UTC'));
+        $requestTime = new \DateTime('now');
         $requestLog = [
-            "requestID" => $requestID,
-            "requestTime" => $requestTime,
-            "request" => [
-                'URI' => (string) $request->getUri(),
-                'HEADERS' => $request->getHeaderLine('Content-Type'),
-                'BODY' => serialize($request->getBody()),
-            ]
+            "request_id" => $requestID,
+            "request_time" => $requestTime,
+            "request_uri" => (string) $request->getUri(),
+            "request_header" => $request->getHeaderLine('Content-Type') ?? $request->getHeaderLine('Client')
         ];
 
         $this->logToFile($requestLog);
