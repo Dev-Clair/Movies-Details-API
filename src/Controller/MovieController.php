@@ -135,9 +135,9 @@ class MovieController extends AbsController
     public function getAPIInfo(Request $request, Response $response, array $args): Response
     {
         $api_info = [
-            'message' => "Hello there!, Welcome to movies_detail API",
-            'status' => 'Active',
-            'endpoints' => [
+            'API Welcome Message' => "Hello there!, Welcome to movies_detail API",
+            'API Status' => 'Active',
+            'API Endpoints' => [
                 'GET' => '/v1/movies',
                 'POST' => '/v1/movies',
                 'PUT' => '/v1/movies/{uid}',
@@ -229,7 +229,7 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->createMovie("movie_details", $validDataCache);
 
-        if ($resource === true) {
+        if ((bool) $resource === true) {
 
             return $this->response_201('Successful', (bool) $resource);
             // Clear Cache
@@ -290,7 +290,7 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ($resource === true) {
+        if ((bool) $resource === true) {
 
             return $this->response_200('Resource modified successfully', (bool) $resource);
         }
@@ -349,7 +349,7 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ($resource === true) {
+        if ((bool) $resource === true) {
 
             return $this->response_200('Resource modified successfully', (bool) $resource);
         }
@@ -396,8 +396,9 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ($resource === true) {
+        if ((bool) $resource === true) {
 
+            // return $this->response_200('Resource deleted successfully', (bool) $resource);
             return $this->response_200('Resource deleted successfully', (bool) $resource);
         }
 
