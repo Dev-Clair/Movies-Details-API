@@ -34,7 +34,7 @@ class MovieModel extends MainModel
 
 
     // Basic CRUD Methods
-    public function createMovie(string $tableName, array $sanitizedData): PDOStatement
+    public function createMovie(string $tableName, array $sanitizedData): bool
     {
         $this->arg_num_check(2, func_num_args());
         $this->invalid_arg_check(['tableName' => $tableName, 'sanitizedData' => $sanitizedData]);
@@ -52,7 +52,7 @@ class MovieModel extends MainModel
     }
 
 
-    public function updateMovie(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
+    public function updateMovie(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): bool
     {
         $this->arg_num_check(4, func_num_args());
         $this->invalid_arg_check(['tableName' => $tableName, 'sanitizedData' => $sanitizedData, 'fieldName' => $fieldName, 'fieldValue' => $fieldValue]);
@@ -61,7 +61,7 @@ class MovieModel extends MainModel
     }
 
 
-    public function deleteMovie(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
+    public function deleteMovie(string $tableName, array $fieldName, mixed $fieldValue): bool
     {
         $this->arg_num_check(3, func_num_args());
         $this->invalid_arg_check(['tableName' => $tableName, 'fieldName' => $fieldName, 'fieldValue' => $fieldValue]);

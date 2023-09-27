@@ -35,7 +35,7 @@ class DbTableOp extends DbTable
 
 
     // Basic CRUD Methods
-    public function createResource(string $tableName, array $sanitizedData): PDOStatement
+    public function createResource(string $tableName, array $sanitizedData): bool
     {
         $fieldNames = implode(
             ",",
@@ -55,8 +55,10 @@ class DbTableOp extends DbTable
         $this->beginTransaction();
 
         try {
-            $query_result =  $this->executeQuery(sql: $sql, params: $params);
+            $stmt =  $this->executeQuery(sql: $sql, params: $params);
             $this->commit();
+
+            $query_result = $stmt->rowCount() > 0;
 
             return $query_result;
         } catch (PDOException $e) {
@@ -83,7 +85,7 @@ class DbTableOp extends DbTable
     }
 
 
-    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): PDOStatement
+    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): bool
     {
         $updateFields = $updateFields = implode(",", array_map(function ($column) {
             return "`$column`=?";
@@ -98,8 +100,10 @@ class DbTableOp extends DbTable
         $this->beginTransaction();
 
         try {
-            $query_result = $this->executeQuery(sql: $sql_query, params: $params);
+            $stmt = $this->executeQuery(sql: $sql_query, params: $params);
             $this->commit();
+
+            $query_result = $stmt->rowCount() > 0;
 
             return $query_result;
         } catch (PDOException $e) {
@@ -110,7 +114,7 @@ class DbTableOp extends DbTable
     }
 
 
-    public function deleteResource(string $tableName, array $fieldName, mixed $fieldValue): PDOStatement
+    public function deleteResource(string $tableName, array $fieldName, mixed $fieldValue): bool
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "DELETE FROM $tableName WHERE $fieldName = ?";
@@ -118,8 +122,10 @@ class DbTableOp extends DbTable
         $this->beginTransaction();
 
         try {
-            $query_result = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
+            $stmt = $this->executeQuery(sql: $sql_query, params: [$fieldValue]);
             $this->commit();
+
+            $query_result = $stmt->rowCount() > 0;
 
             return $query_result;
         } catch (PDOException $e) {

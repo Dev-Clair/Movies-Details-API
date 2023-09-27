@@ -4,17 +4,11 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
-// Slim Psr Implementation
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
-// Controller Class Dependency
 use src\Model\MovieModel;
-// Custom Exception
 use src\Exception\InvalidMethodCallException;
-// OpenApi Annotations
 use OpenApi\Annotations as OA;
-
-// Custom Response Messages
 use src\Trait\Response_200_Trait as Response_200;
 use src\Trait\Response_201_Trait as Response_201;
 use src\Trait\Response_400_Trait as Response_400;
@@ -95,7 +89,7 @@ class MovieController extends AbsController
      *     @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
      * )
      */
-    protected function validateRequestAtrribute(Response $response, $requestAttribute): Response|null
+    protected function validateRequestAtrribute($requestAttribute): Response|null
     {
         $validationCache = [];
 
@@ -214,7 +208,7 @@ class MovieController extends AbsController
      */
     public function post(Request $request, Response $response, array $args): Response
     {
-        $this->validateData($request, $response);
+        $this->validateData();
 
         $validDataCache = [];
 
@@ -229,14 +223,14 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->createMovie("movie_details", $validDataCache);
 
-        if ((bool) $resource === true) {
+        if ($resource === true) {
 
-            return $this->response_201('Successful', (bool) $resource);
+            return $this->response_201('Successful', $resource);
             // Clear Cache
             "Clear Cache";
         }
 
-        return $this->response_500('Cannot create resource', (bool) $resource);
+        return $this->response_500('Cannot create resource', $resource);
     }
 
 
@@ -279,7 +273,7 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($response, $requestAttribute);
+        $this->validateRequestAtrribute($requestAttribute);
 
         $sanitizedData = $this->sanitizeData();
 
@@ -290,12 +284,12 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ((bool) $resource === true) {
+        if ($resource === true) {
 
-            return $this->response_200('Resource modified successfully', (bool) $resource);
+            return $this->response_200('Resource modified successfully', $resource);
         }
 
-        return $this->response_500('Cannot modify resource', (bool) $resource);
+        return $this->response_500('Cannot modify resource', $resource);
     }
 
 
@@ -338,7 +332,7 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($response, $requestAttribute);
+        $this->validateRequestAtrribute($requestAttribute);
 
         $sanitizedData = $this->sanitizeData();
 
@@ -349,12 +343,12 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ((bool) $resource === true) {
+        if ($resource === true) {
 
-            return $this->response_200('Resource modified successfully', (bool) $resource);
+            return $this->response_200('Resource modified successfully', $resource);
         }
 
-        return $this->response_500('Cannot modify resource', (bool) $resource);
+        return $this->response_500('Cannot modify resource', $resource);
     }
 
 
@@ -392,17 +386,16 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($response, $requestAttribute);
+        $this->validateRequestAtrribute($requestAttribute);
 
         $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ((bool) $resource === true) {
+        if ($resource === true) {
 
-            // return $this->response_200('Resource deleted successfully', (bool) $resource);
             return $this->response_200('Resource deleted successfully', $resource);
         }
 
-        return $this->response_500('Cannot delete resource', (bool) $resource);
+        return $this->response_500('Cannot delete resource', $resource);
     }
 
 
