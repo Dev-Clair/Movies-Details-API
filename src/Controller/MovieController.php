@@ -18,7 +18,6 @@ use OpenApi\Annotations as OA;
 use src\Trait\Response_200_Trait as Response_200;
 use src\Trait\Response_201_Trait as Response_201;
 use src\Trait\Response_400_Trait as Response_400;
-use src\Trait\Response_405_Trait as Response_405;
 use src\Trait\Response_422_Trait as Response_422;
 use src\Trait\Response_500_Trait as Response_500;
 
@@ -35,7 +34,6 @@ class MovieController extends AbsController
     use Response_200;
     use Response_201;
     use Response_400;
-    use Response_405;
     use Response_422;
     use Response_500;
 
@@ -88,9 +86,8 @@ class MovieController extends AbsController
      *     @OA\Schema(type="string")
      * )
      * @OA\Response(
-     *     response=200,
-     *     description="Resource validated successfully",
-     *     @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *     response=null,
+     *     description="Resource validated successfully")
      * )
      * @OA\Response(
      *     response=400,
@@ -167,6 +164,11 @@ class MovieController extends AbsController
      *         description="Successful response",
      *         @OA\JsonContent(ref="#/components/schemas/MovieListResponse")
      *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *     ),
      * )
      */
     public function get(Request $request, Response $response, array $args): Response
@@ -227,7 +229,7 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->createMovie("movie_details", $validDataCache);
 
-        if ($resource) {
+        if ($resource === true) {
 
             return $this->response_201('Successful', (bool) $resource);
             // Clear Cache
@@ -283,26 +285,17 @@ class MovieController extends AbsController
 
         if (empty($sanitizedData)) {
 
-            $errorResponse = $this->errorResponse('Unprocessable Entity', 'Cannot modify resource', [
-                'message' => 'Invalid Entries',
-                'data' => $sanitizedData,
-            ]);
-
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(422);
+            return $this->response_422('Not Successful', $sanitizedData);
         }
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        $successResponse = $this->successResponse('OK', 'Resource modified successfully', (bool) $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
+        if ($resource === true) {
 
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+            return $this->response_200('Resource modified successfully', (bool) $resource);
+        }
+
+        return $this->response_500('Cannot modify resource', (bool) $resource);
     }
 
 
@@ -351,26 +344,17 @@ class MovieController extends AbsController
 
         if (empty($sanitizedData)) {
 
-            $errorResponse = $this->errorResponse('Unprocessable Entity', 'Cannot modify resource', [
-                'message' => 'Invalid Entries',
-                'data' => $sanitizedData,
-            ]);
-
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
-
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(422);
+            return $this->response_422('Not Successful', $sanitizedData);
         }
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        $successResponse = $this->successResponse('OK', 'Resource modified successfully', (bool) $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
+        if ($resource === true) {
 
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+            return $this->response_200('Resource modified successfully', (bool) $resource);
+        }
+
+        return $this->response_500('Cannot modify resource', (bool) $resource);
     }
 
 
@@ -412,21 +396,12 @@ class MovieController extends AbsController
 
         $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
-        if ((bool)$resource !== true) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot delete resource', (bool) $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
+        if ($resource === true) {
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+            return $this->response_200('Resource deleted successfully', (bool) $resource);
         }
 
-        $successResponse = $this->successResponse('OK', 'Resource deleted successfully', (bool) $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_500('Cannot delete resource', (bool) $resource);
     }
 
 
@@ -457,25 +432,16 @@ class MovieController extends AbsController
      */
     public function getSelection(Request $request, Response $response, array $args): Response
     {
-        $numberPerPage = (int) $args['numberPerPage'] ?? 7;
+        $numberPerPage = (int) $args['numberPerPage'] ?? 10;
 
         $resource = $this->movieModel->retrieveAllMovies("movie_details");
 
         if (!array($resource)) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot retrieve resource', $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+            return $this->response_500('Cannot retrieve resource', $resource);
         }
 
-        $successResponse = $this->successResponse('OK', 'Resource retrieved successfully', array_slice($resource, 0, $numberPerPage, true));
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_200('Resource retrieved successfully', array_slice($resource, 0, $numberPerPage, true));
     }
 
 
@@ -513,26 +479,17 @@ class MovieController extends AbsController
      */
     public function getSortedSelection(Request $request, Response $response, array $args): Response
     {
-        $numberPerPage = (int) $args['numberPerPage'] ?? 7;
+        $numberPerPage = (int) $args['numberPerPage'] ?? 10;
         $fieldToSort = (string) $args['fieldToSort'] ?? 'uid';
 
         $resource = $this->movieModel->sortMovie("movie_details", $fieldToSort);
 
         if (!array($resource)) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot retrieve resource', $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+            return $this->response_500('Cannot retrieve resource', $resource);
         }
 
-        $successResponse = $this->successResponse('OK', 'Resource retrieved successfully', array_slice($resource, 0, $numberPerPage, true));
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_200('Resource retrieved successfully', array_slice($resource, 0, $numberPerPage, true));
     }
 
 
@@ -568,19 +525,10 @@ class MovieController extends AbsController
         $resource = $this->movieModel->searchMovie("movie_details", ['title' => $title], $title);
 
         if (!array($resource)) {
-            $errorResponse = $this->errorResponse('Internal server error', 'Cannot retrieve resource', $resource);
-            $response->getBody()->write(json_encode($errorResponse, JSON_PRETTY_PRINT));
 
-            return $response
-                ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-                ->withStatus(500);
+            return $this->response_500('Cannot retrieve resource', $resource);
         }
 
-        $successResponse = $this->successResponse('OK', 'Similar results found for: ' . $title, $resource);
-        $response->getBody()->write(json_encode($successResponse, JSON_PRETTY_PRINT));
-
-        return $response
-            ->withHeader('Content-Type', 'application/json; charset=UTF-8')
-            ->withStatus(200);
+        return $this->response_200('Similar results found for: ' . $title, $resource);
     }
 }
