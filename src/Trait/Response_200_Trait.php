@@ -6,11 +6,10 @@ namespace src\Trait;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Slim\Psr7\Response as Response;
-use PDOStatement;
 
 trait Response_200_Trait
 {
-    public function response_200(array|string $message, array|string|bool|null|PDOStatement $data): Response
+    public function response_200(array|string $message, array|string|bool|null $data): Response
     {
         $status = [
             'status' =>   "OK",
