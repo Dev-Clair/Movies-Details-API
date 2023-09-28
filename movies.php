@@ -8,8 +8,7 @@ use src\Middleware\ResponseLogMiddleWare;
 
 $app->get('/v1', MovieController::class . ':getAPIInfo')
     ->add(new RequestLogMiddleWare)
-    // ->add(new ResponseLogMiddleWare)
-;
+    ->add(new ResponseLogMiddleWare);
 
 $app->get('/v1/movies', MovieController::class . ':get')
     ->add(new RequestLogMiddleWare)
