@@ -7,6 +7,7 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [API Documentation](#api-documentation)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
