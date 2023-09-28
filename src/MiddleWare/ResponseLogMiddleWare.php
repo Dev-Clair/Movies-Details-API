@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace src\Middleware;
+namespace src\MiddleWare;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\Response as Response;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use src\Trait\ResponseLogTrait as ResponseLog;
 
-class ResponseLogMiddleware
+class ResponseLogMiddleWare
 {
     use ResponseLog;
 
