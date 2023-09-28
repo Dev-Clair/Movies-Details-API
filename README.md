@@ -27,7 +27,7 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository to your xampp's htdocs directory:
    ```bash
    git clone https://github.com/Dev-Clair/v1.git
    ```
@@ -66,7 +66,7 @@ This documentation provides detailed information about each endpoint, input para
 
 - PHP (>= 8.0)
 - PostMan as http client for making request to endpoints.
-- guzzle as hhtp lient for testing.
+- Guzzle as http client for testing.
 - MySQL database for data storage.
 - Composer for dependency management.
 - MRC (Model-Response-Controller) design architecture.
