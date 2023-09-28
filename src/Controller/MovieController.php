@@ -98,11 +98,13 @@ class MovieController extends AbsController
 
         if ($validationCache['validateRequestAtrribute'] === true) {
 
+            unset($validationCache);
             return $this->response_400('Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
         }
 
         if ($validationCache['validateResource'] === false) {
 
+            unset($validationCache);
             return $this->response_400(
                 'Cannot modify resource',
                 'No matching unique id found for: ' . $requestAttribute
@@ -391,8 +393,7 @@ class MovieController extends AbsController
         if ($resource === true) {
 
             return $this->response_200('Resource deleted successfully', $resource);
-        }
-
+        };
         return $this->response_500('Cannot delete resource', $resource);
     }
 
