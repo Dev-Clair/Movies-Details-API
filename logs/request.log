@@ -1,0 +1,11 @@
+{
+    "request_id": "request139402",
+    "request_time": {
+        "date": "2023-09-28 14:24:04.294432",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1",
+    "request_content_type": "",
+    "request_method": "GET"
+}
