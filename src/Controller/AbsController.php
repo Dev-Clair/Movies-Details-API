@@ -13,15 +13,13 @@ use src\Model\MovieModel;
  * 
  * @var MovieModel $movieModel
  * 
- * @var array $validDataCache
- * 
- * @var array $invalidDataCache
+ * @var array $cache
  */
 abstract class AbsController implements IntController
 {
     protected MovieModel $movieModel;
-    protected $validDataCache = [];
-    protected $invalidDataCache = [];
+
+    protected array $cache = [];
 
     public function __construct(MovieModel $movieModel)
     {
@@ -48,6 +46,7 @@ abstract class AbsController implements IntController
         foreach ($postData as $postField => $postValue) {
             $sanitizedData[$postField] = filter_var($postValue, FILTER_SANITIZE_SPECIAL_CHARS);
         }
+
         return $sanitizedData;
     }
 
@@ -150,9 +149,14 @@ abstract class AbsController implements IntController
          * Cache Result of Entire Operation
          */
         if (empty($errors)) {
-            $this->validDataCache = $validatedData;
+            $this->cache['valid'] = $validatedData;
         } else {
-            $this->invalidDataCache = $errors;
+            $this->cache['errors'] = $errors;
         }
+    }
+
+    protected function clearCache(): void
+    {
+        $this->cache = [];
     }
 }

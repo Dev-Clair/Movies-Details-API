@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
-use ArrayObject;
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use src\Model\MovieModel;
@@ -211,17 +210,17 @@ class MovieController extends AbsController
     {
         $this->validateData();
 
-        if (!empty($this->invalidDataCache)) {
-            return $this->response_422('Not Successful', $this->invalidDataCache);
+        if (!empty($this->cache['errors'])) {
+            return $this->response_422('Not Successful', $this->cache['errors']);
             // Clear Cache
-            $this->invalidDataCache = [];
+            $this->clearCache();
         }
 
-        $resource = $this->movieModel->createMovie("movie_details", $this->validDataCache);
+        $resource = $this->movieModel->createMovie("movie_details", $this->cache['valid']);
 
         if ($resource === true) {
             // Clear Cache
-            $this->validDataCache = [];
+            $this->clearCache();
             return $this->response_201('Successful', $resource);
         }
 
@@ -270,10 +269,11 @@ class MovieController extends AbsController
 
         $this->validateRequestAtrribute($requestAttribute);
 
-        $sanitizedData = $this->sanitizeData();
+        $sanitizedData = $this->sanitizeData();;
 
         if (empty($sanitizedData)) {
 
+            $this->clearCache();
             return $this->response_422('Not Successful', $sanitizedData);
         }
 
@@ -281,6 +281,7 @@ class MovieController extends AbsController
 
         if ($resource === true) {
 
+            $this->clearCache();
             return $this->response_200('Resource modified successfully', $resource);
         }
 
@@ -329,10 +330,11 @@ class MovieController extends AbsController
 
         $this->validateRequestAtrribute($requestAttribute);
 
-        $sanitizedData = $this->sanitizeData();
+        $sanitizedData = $this->sanitizeData();;
 
         if (empty($sanitizedData)) {
 
+            $this->clearCache();
             return $this->response_422('Not Successful', $sanitizedData);
         }
 
@@ -340,6 +342,7 @@ class MovieController extends AbsController
 
         if ($resource === true) {
 
+            $this->clearCache();
             return $this->response_200('Resource modified successfully', $resource);
         }
 
