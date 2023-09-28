@@ -16,20 +16,20 @@ $app->get('/v1/movies', MovieController::class . ':get')
     ->add(new RequestLogMiddleWare);
 
 $app->post('/v1/movies', MovieController::class . ':post')
-    ->add(new MethodTypeMiddleware(["GET", "POST"]))
     ->add(new ContentTypeMiddleware)
+    ->add(new MethodTypeMiddleware(["GET", "POST"]))
     ->add(new ResponseLogMiddleWare)
     ->add(new RequestLogMiddleWare);
 
 $app->put('/v1/movies/{uid}', MovieController::class . ':put')
-    ->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))
     ->add(new ContentTypeMiddleware)
+    ->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))
     ->add(new ResponseLogMiddleWare)
     ->add(new RequestLogMiddleWare);
 
 $app->patch('/v1/movies/{uid}', MovieController::class . ':patch')
-    ->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))
     ->add(new ContentTypeMiddleware)
+    ->add(new MethodTypeMiddleware(["PUT", "DELETE", "PATCH"]))
     ->add(new ResponseLogMiddleWare)
     ->add(new RequestLogMiddleWare);
 
