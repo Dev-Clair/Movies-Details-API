@@ -53,3 +53,14 @@
     "request_content_type": "",
     "request_method": "DELETE"
 }
+{
+    "request_id": "request936004",
+    "request_time": {
+        "date": "2023-09-28 12:14:58.850464",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+    },
+    "request_uri": "http:\/\/localhost:8888\/v1",
+    "request_content_type": "",
+    "request_method": "GET"
+}

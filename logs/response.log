@@ -6,3 +6,11 @@
         ]
     }
 }
+{
+    "response_status_code": 200,
+    "reponse_headers": {
+        "Content-Type": [
+            "application\/json; charset=UTF-8"
+        ]
+    }
+}

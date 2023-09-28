@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src\Trait;
 
-trait ResponseLogTrait
+trait ResponseLog_Trait
 {
     public function responseLog(array $data): void
     {

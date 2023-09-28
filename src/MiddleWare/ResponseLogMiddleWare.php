@@ -7,7 +7,7 @@ namespace src\Middleware;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\Response as Response;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
-use src\Trait\ResponseLogTrait as ResponseLog;
+use src\Trait\ResponseLog_Trait as ResponseLog;
 
 class ResponseLogMiddleware
 {
