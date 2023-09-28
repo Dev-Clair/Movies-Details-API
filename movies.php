@@ -1,8 +1,8 @@
 <?php
 
 use src\Controller\MovieController;
-use \src\Middleware\MethodTypeMiddleware;
-use \src\Middleware\ContentTypeMiddleware;
+use src\Middleware\MethodTypeMiddleware;
+use src\Middleware\ContentTypeMiddleware;
 use src\Middleware\ResponseLogMiddleWare;
 use src\Middleware\RequestLogMiddleWare;
 
