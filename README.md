@@ -18,6 +18,7 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
 - API Caching: implemented via Controller Properties and within class methods (No third Party Libraries/Extensions).
 - API Request and Response Logging: via MiddleWares (N.B: ResponseLogMiddleWare was deactactivated because it it's implementation throws a bug.)
 
+- `GET /v1`: Get the list of all available endpoints for this API.
 - `GET /v1/movies`: Get a list of all existing movies.
 - `POST /v1/movies`: Add a new movie to the collection.
 - `PUT /v1/movies/{uid}`: Update a movie by UID.
