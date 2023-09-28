@@ -15,6 +15,7 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
 ## Features
 
 - API Authentication: None.
+- API Caching: implemented via Controller Properties and within class methods (No third Party Libraries/Extensions).
 - API Request and Response Logging: via MiddleWares (N.B: ResponseLogMiddleWare was deactactivated because it it's implementation throws a bug.)
 
 - `GET /v1/movies`: Get a list of all existing movies.
