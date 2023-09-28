@@ -6,6 +6,7 @@ namespace src\Model;
 
 use src\Utils\DbGateway;
 use src\Db\DbTable;
+use PDOStatement;
 
 class AdminModel
 {
@@ -26,7 +27,7 @@ class AdminModel
         $this->dbTable = DbGateway::getTableConnection($this->databaseName);
     }
 
-    public function createTable(string $tableName, string $fieldNames): bool
+    public function createTable(string $tableName, string $fieldNames): PDOStatement
     {
         if (empty($tableName)) {
             throw new \InvalidArgumentException("No table name specified; kindly provide a valid table name.");
@@ -39,7 +40,7 @@ class AdminModel
         return $this->dbTable->createTable(tableName: $tableName, fieldNames: $fieldNames);
     }
 
-    public function alterTable(string $tableName, string $alterStatement): bool
+    public function alterTable(string $tableName, string $alterStatement): PDOStatement
     {
         if (empty($tableName)) {
             throw new \InvalidArgumentException("No table name specified; kindly provide a valid table name.");
@@ -52,7 +53,7 @@ class AdminModel
         return $this->dbTable->alterTable(tableName: $tableName, alterStatement: $alterStatement);
     }
 
-    public function truncateTable(string $tableName): bool
+    public function truncateTable(string $tableName): PDOStatement
     {
         if (empty($tableName)) {
             throw new \InvalidArgumentException("No table name specified; kindly provide a valid table name.");
@@ -61,7 +62,7 @@ class AdminModel
         return $this->dbTable->truncateTable(tableName: $tableName);
     }
 
-    public function dropTable(string $tableName): bool
+    public function dropTable(string $tableName): PDOStatement
     {
         if (empty($tableName)) {
             throw new \InvalidArgumentException("No table name specified; kindly provide a valid table name.");

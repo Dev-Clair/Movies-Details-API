@@ -62,7 +62,7 @@ class DbTable
     /**
      * @param string $tableName Name of table to be created in database
      * @param string $fieldNames 
-     * @return bool True if the table was created successfully, false otherwise
+     * @return PDOStatement if the table was created successfully, false otherwise
      */
     public function createTable(string $tableName, string $fieldNames): PDOStatement
     {
@@ -76,7 +76,7 @@ class DbTable
     /**
      * @param string $tableName Name of the table to be altered in the database
      * @param string $alterStatement Statement to modify the table structure
-     * @return bool True if the table was altered successfully, false otherwise
+     * @return PDOStatement if the table was altered successfully, false otherwise
      */
     public function alterTable(string $tableName, string $alterStatement): PDOStatement
     {
@@ -89,7 +89,7 @@ class DbTable
 
     /**
      * @param string $tableName Name of the table to be truncated in the database
-     * @return bool True if the table was truncated successfully, false otherwise
+     * @return PDOStatement if the table was truncated successfully, false otherwise
      */
     public function truncateTable(string $tableName): PDOStatement
     {
@@ -102,7 +102,7 @@ class DbTable
 
     /**
      * @param string $tableName Name of the table to be dropped in the database
-     * @return bool True if the table was dropped successfully, false otherwise
+     * @return PDOStatement if the table was dropped successfully, false otherwise
      */
     public function dropTable(string $tableName): PDOStatement
     {
