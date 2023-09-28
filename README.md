@@ -42,7 +42,7 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
    ```
 4. Configure your web server (e.g., Apache, Nginx) to point to the project's `public` directory.
 5. Start php local development server:
-   `php -S localhost:3000 -t public`
+   `php -S localhost:8888 -t public`
 6. Open Xampp and start Mysql and Apache service engines
 7. Using your preferred editor, navigate to the public directory and run `boostrap.php` to create database, tables and insert sample data into the database table.
 
