@@ -14,9 +14,9 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // Route to API documentation
-// $app->get('/openapi', function () {
-//     require __DIR__ . '/openapi/index.php';
-// });
+$app->get('/openapi', function () {
+    require __DIR__ . '/openapi/index.php';
+});
 
 // Routes to Application Endpoints and Middlewares for CRUD Related Operations
 require __DIR__ . '/../movies.php';
