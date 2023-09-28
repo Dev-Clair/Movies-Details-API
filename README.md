@@ -21,9 +21,9 @@ The Movie Details API is a RESTful web service that allows you to manage movie d
 - `GET /v1`: Get the list of all available endpoints for this API.
 - `GET /v1/movies`: Get a list of all existing movies.
 - `POST /v1/movies`: Add a new movie to the collection.
-- `PUT /v1/movies/{uid}`: Update a movie by UID.
-- `DELETE /v1/movies/{uid}`: Delete a movie by UID.
-- `PATCH /v1/movies/{uid}`: Update specific data of a movie by UID.
+- `PUT /v1/movies/{uid}`: Update a movie by UID (Unique Identifier).
+- `DELETE /v1/movies/{uid}`: Delete a movie by UID (Unique Identifier).
+- `PATCH /v1/movies/{uid}`: Update specific data of a movie by UID (Unique Identifier).
 - `GET /v1/movies/{numberPerPage}`: Get a list of movies with pagination (user defined value).
 - `GET /v1/movies/{numberPerPage}/sort/{fieldToSort}`: Get a list of movies sorted by a specific field with pagination.
 - `GET /v1/movies/search/{title}`: Search for a movie.
