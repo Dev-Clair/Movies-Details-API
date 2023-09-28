@@ -13,10 +13,15 @@ use src\Model\MovieModel;
  * 
  * @var MovieModel $movieModel
  * 
+ * @var array $validDataCache
+ * 
+ * @var array $invalidDataCache
  */
 abstract class AbsController implements IntController
 {
     protected MovieModel $movieModel;
+    protected $validDataCache = [];
+    protected $invalidDataCache = [];
 
     public function __construct(MovieModel $movieModel)
     {
@@ -144,5 +149,10 @@ abstract class AbsController implements IntController
         /**
          * Cache Result of Entire Operation
          */
+        if (empty($errors)) {
+            $this->validDataCache = $validatedData;
+        } else {
+            $this->invalidDataCache = $errors;
+        }
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
+use ArrayObject;
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use src\Model\MovieModel;
@@ -210,24 +211,18 @@ class MovieController extends AbsController
     {
         $this->validateData();
 
-        $validDataCache = [];
-
-        $invalidDataCache = [];
-
-        if (!empty($invalidDataCache)) {
-
-            return $this->response_422('Not Successful', $invalidDataCache);
+        if (!empty($this->invalidDataCache)) {
+            return $this->response_422('Not Successful', $this->invalidDataCache);
             // Clear Cache
-            "Clear Cache";
+            $this->invalidDataCache = [];
         }
 
-        $resource = $this->movieModel->createMovie("movie_details", $validDataCache);
+        $resource = $this->movieModel->createMovie("movie_details", $this->validDataCache);
 
         if ($resource === true) {
-
-            return $this->response_201('Successful', $resource);
             // Clear Cache
-            "Clear Cache";
+            $this->validDataCache = [];
+            return $this->response_201('Successful', $resource);
         }
 
         return $this->response_500('Cannot create resource', $resource);
