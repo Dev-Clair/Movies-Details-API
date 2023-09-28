@@ -1,0 +1,30 @@
+{
+  "name": "samuel/movies_api",
+  "description": "module 4: movies detail REST API",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "src\\": "src/",
+      "tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Aniogbu Samuel",
+      "email": "aniogbu.samuel@yahoo.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "^4.4",
+    "vlucas/phpdotenv": "^5.5",
+    "zircote/swagger-php": "^3.0",
+    "nyholm/psr7": "^1.8",
+    "slim/psr7": "^1.6",
+    "guzzlehttp/guzzle": "^7.8",
+    "swagger-api/swagger-ui": "^5.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.3"
+  }
+}
