@@ -85,4 +85,5 @@ Contributions are welcome! If you find a bug or want to make a helpful recommend
 
 ## License
 
+This project was developed for learning purposes (Courtesy: Jagaad Academy).
 This project is licensed under the [MIT License](LICENSE).
