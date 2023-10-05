@@ -14,7 +14,7 @@ trait Response_422_Trait
         $status = [
             'status' =>   "Unprocessable Entity",
             'message' => $message,
-            'data' => $data
+            'data' => $data ?? null
         ];
 
         $response = new Response(StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY);

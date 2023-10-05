@@ -14,7 +14,7 @@ trait Response_405_Trait
         $status = [
             'status' =>   "Method Not Allowed",
             'message' => $message,
-            'data' => $data
+            'data' => $data ?? null
         ];
 
         $response = new Response(StatusCodeInterface::STATUS_METHOD_NOT_ALLOWED);
