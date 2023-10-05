@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace src\Utils;
+namespace src\Db;
 
 use Dotenv\Dotenv;
 use src\Db\DbConn;
 use src\Db\DbTable;
-use src\Db\DbTableOp;
 
 class DbGateway
 {
@@ -18,7 +17,7 @@ class DbGateway
      * 
      * *************************************************************************************
      */
-    private static function getConnection(?string $databaseName = null)
+    private function getConnection(?string $databaseName = null)
     {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
         $dotenv->load();
@@ -41,9 +40,9 @@ class DbGateway
      * 
      * *************************************************************************************
      */
-    public static function dbConn(): ?\PDO
+    public function dbConn(): ?\PDO
     {
-        $conn = static::getConnection();
+        $conn = $this->getConnection();
         return $conn;
     }
 
@@ -54,22 +53,9 @@ class DbGateway
      * 
      * *************************************************************************************
      */
-    public static function getTableConnection(?string $databaseName = null): DbTable
+    public function getTableConnection(?string $databaseName = null): DbTable
     {
-        $conn = static::getConnection($databaseName);
+        $conn = $this->getConnection($databaseName);
         return new DbTable($conn);
-    }
-
-    /**
-     * *************************************************************************************
-     * 
-     * Provides Resource: PDO Connection Object for Table Read and Write Operations
-     * 
-     * *************************************************************************************
-     */
-    public static function getTableOpConnection(?string $databaseName = null): DbTableOp
-    {
-        $conn = static::getConnection($databaseName);
-        return new DbTableOp($conn);
     }
 }

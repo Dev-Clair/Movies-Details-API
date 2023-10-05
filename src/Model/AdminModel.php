@@ -4,28 +4,23 @@ declare(strict_types=1);
 
 namespace src\Model;
 
-use src\Utils\DbGateway;
+use src\Db\DbGateway;
 use src\Db\DbTable;
 use PDOStatement;
 use src\Interface\ModelInterface;
 
 class AdminModel implements ModelInterface
 {
-    protected array $databaseNames = ['movies', 'backup']; // Contains a list of all databases for the library
     protected DbTable $dbTable;
+    protected ?string $databaseName = "";
 
-    public function __construct(private ?string $databaseName)
+    public function __construct(protected DbGateway $dbGateWay, ?string $databaseName)
     {
-        // Check if the provided database name is valid
-        if ($databaseName !== null && !in_array($databaseName, $this->databaseNames)) {
-            throw new \InvalidArgumentException("Invalid database name provided.");
-        }
-
-        // Will use a custom database name if provided; otherwise, defaults to "null"
         $this->databaseName = $databaseName ?? $this->databaseName;
 
-        // Obtains the DbTableOp connection object using DbResource
-        $this->dbTable = DbGateway::getTableConnection($this->databaseName);
+        // Obtains the DbTable connection object via the DbGateWay Class
+        $this->dbGateWay = new DbGateWay;
+        $this->dbTable = $this->dbGateWay->getTableConnection($this->databaseName);
     }
 
     public function createTable(string $tableName, string $fieldNames): PDOStatement
