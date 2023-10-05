@@ -7,8 +7,9 @@ namespace src\Model;
 use src\Utils\DbGateway;
 use src\Db\DbTable;
 use PDOStatement;
+use src\Interface\ModelInterface;
 
-class AdminModel
+class AdminModel implements ModelInterface
 {
     protected array $databaseNames = ['movies', 'backup']; // Contains a list of all databases for the library
     protected DbTable $dbTable;

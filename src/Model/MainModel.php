@@ -6,8 +6,9 @@ namespace src\Model;
 
 use src\Utils\DbGateway;
 use src\Db\DbTableOp;
+use src\Interface\ModelInterface;
 
-abstract class MainModel
+abstract class MainModel implements ModelInterface
 {
     protected array $databaseNames = ['movies', 'backup'];
     protected DbTableOp $dbTableOp;

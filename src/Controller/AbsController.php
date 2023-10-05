@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
+use src\Interface\ControllerInterface;
 use src\Model\MovieModel;
 
 /**
@@ -15,7 +16,7 @@ use src\Model\MovieModel;
  * 
  * @var array $cache
  */
-abstract class AbsController implements IntController
+abstract class AbsController implements ControllerInterface
 {
     protected MovieModel $movieModel;
 
