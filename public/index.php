@@ -12,7 +12,7 @@ $app = AppFactory::create();
 
 
 // Create Database Instance
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 $dbConn = new DbConn(
@@ -25,7 +25,7 @@ $dbConn = new DbConn(
 
 $dbConn = $dbConn->getConnection();
 
-// $movieModel = new MovieModel(DbConn $dbConn);
+$movieModel = new MovieModel($dbConn);
 
 // Add Routing Middleware
 $app->addRoutingMiddleware();

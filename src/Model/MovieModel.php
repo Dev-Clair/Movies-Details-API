@@ -9,7 +9,7 @@ use PDOStatement;
 
 class MovieModel extends MainModel
 {
-    public function __construct(protected ?DbConn $dbConn)
+    public function __construct(private ?DbConn $dbConn = null)
     {
     }
 

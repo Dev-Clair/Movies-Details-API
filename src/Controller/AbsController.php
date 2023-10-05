@@ -6,13 +6,11 @@ namespace src\Controller;
 
 use src\Interface\ControllerInterface;
 
-/**
- * Abstract Controller Class
- * 
- * @var array $cache
- */
 abstract class AbsController implements ControllerInterface
 {
+    /** 
+     *  @var array $cache
+     */
     protected array $cache = [];
 
     protected function sanitizeData(): array

@@ -47,11 +47,11 @@ class DbConn
 
     /**
      * Retrieves resource: database connection object.
-     * @return PDO|null Database connection object.
+     * @return self class instance of database connection object.
      */
-    public function getConnection(): ?\PDO
+    public function getConnection(): self
     {
-        return $this->conn;
+        return $this;
     }
 
 
