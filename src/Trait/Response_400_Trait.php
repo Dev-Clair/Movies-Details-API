@@ -14,7 +14,7 @@ trait Response_400_Trait
         $status = [
             'status' =>   "Bad Request",
             'message' => $message,
-            'data' => $data
+            'data' => $data ?? null
         ];
 
         $response = new Response(StatusCodeInterface::STATUS_BAD_REQUEST);
