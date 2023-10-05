@@ -1,11 +1,27 @@
 <?php
 
 use Slim\Factory\AppFactory;
+use Dotenv\Dotenv;
+use src\Db\DbConn;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 
 $app = AppFactory::create();
+
+
+// Create Database Instance
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+
+$dbConn = new DbConn(
+    driver: $_ENV["DSN_DRIVER"],
+    serverName: $_ENV["DATABASE_HOSTNAME"],
+    userName: $_ENV["DATABASE_USERNAME"],
+    password: $_ENV["DATABASE_PASSWORD"],
+    database: $_ENV["DATABASENAME"]
+);
+
 
 // Add Routing Middleware
 $app->addRoutingMiddleware();
