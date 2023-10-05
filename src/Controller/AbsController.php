@@ -5,39 +5,15 @@ declare(strict_types=1);
 namespace src\Controller;
 
 use src\Interface\ControllerInterface;
-use src\Model\MovieModel;
 
 /**
  * Abstract Controller Class
- * 
- * Provides helper parent methods to child class methods
- * 
- * @var MovieModel $movieModel
  * 
  * @var array $cache
  */
 abstract class AbsController implements ControllerInterface
 {
-    protected MovieModel $movieModel;
-
     protected array $cache = [];
-
-    public function __construct(MovieModel $movieModel)
-    {
-        $this->movieModel = $movieModel ?: new $movieModel(databaseName: "movies");
-    }
-
-    protected function validateAttribute(mixed $requestAttribute): bool
-    {
-        // Check if attribute is not null
-        return is_null($requestAttribute);
-    }
-
-    protected function validateResource(mixed $requestAttribute): bool
-    {
-        // Check if resource exists in the database
-        return $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
-    }
 
     protected function sanitizeData(): array
     {

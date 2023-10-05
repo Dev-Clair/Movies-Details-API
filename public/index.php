@@ -3,6 +3,7 @@
 use Slim\Factory\AppFactory;
 use Dotenv\Dotenv;
 use src\Db\DbConn;
+use src\Model\MovieModel;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -19,9 +20,12 @@ $dbConn = new DbConn(
     serverName: $_ENV["DATABASE_HOSTNAME"],
     userName: $_ENV["DATABASE_USERNAME"],
     password: $_ENV["DATABASE_PASSWORD"],
-    database: $_ENV["DATABASENAME"]
+    database: $_ENV["DATABASE"] ?? ""
 );
 
+$dbConn = $dbConn->getConnection();
+
+// $movieModel = new MovieModel(DbConn $dbConn);
 
 // Add Routing Middleware
 $app->addRoutingMiddleware();

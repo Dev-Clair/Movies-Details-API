@@ -49,11 +49,42 @@ class DbConn
      * Retrieves resource: database connection object.
      * @return PDO|null Database connection object.
      */
-    public function getConnection(): ?PDO
+    public function getConnection(): ?\PDO
     {
         return $this->conn;
     }
 
+
+    /**
+     * @param string $databaseName
+     * @return self
+     */
+    public function createDatabase(string $databaseName): self
+    {
+        $sql = "CREATE DATABASE IF NOT EXISTS $databaseName";
+
+        if ($this->conn->query($sql)) {
+            return $this;
+        } else {
+            throw new \RuntimeException('Database creation failed' . PHP_EOL);
+        }
+    }
+
+
+    /**
+     * @param string $databaseName
+     * @return self
+     */
+    public function dropDatabase(string $databaseName): self
+    {
+        $sql = "DROP DATABASE $databaseName";
+
+        if ($this->conn->query($sql)) {
+            return $this;
+        } else {
+            throw new \RuntimeException('Database creation failed' . PHP_EOL);
+        }
+    }
 
 
     /**
@@ -106,7 +137,7 @@ class DbConn
      * @param string $fieldNames 
      * @return PDOStatement if the table was created successfully, false otherwise
      */
-    public function createTable(string $tableName, string $fieldNames): PDOStatement
+    public function createTable(string $tableName, string $fieldNames): PDOStatement|self
     {
         $sql = "CREATE TABLE $tableName ($fieldNames)";
 
@@ -120,7 +151,7 @@ class DbConn
      * @param string $alterStatement Statement to modify the table structure
      * @return PDOStatement if the table was altered successfully, false otherwise
      */
-    public function alterTable(string $tableName, string $alterStatement): PDOStatement
+    public function alterTable(string $tableName, string $alterStatement): PDOStatement|self
     {
         $sql = "ALTER TABLE $tableName $alterStatement";
 
@@ -133,7 +164,7 @@ class DbConn
      * @param string $tableName Name of the table to be truncated in the database
      * @return PDOStatement if the table was truncated successfully, false otherwise
      */
-    public function truncateTable(string $tableName): PDOStatement
+    public function truncateTable(string $tableName): PDOStatement|self
     {
         $sql = "TRUNCATE TABLE $tableName";
 
@@ -146,7 +177,7 @@ class DbConn
      * @param string $tableName Name of the table to be dropped in the database
      * @return PDOStatement if the table was dropped successfully, false otherwise
      */
-    public function dropTable(string $tableName): PDOStatement
+    public function dropTable(string $tableName): PDOStatement|self
     {
         $sql = "DROP TABLE $tableName";
 
@@ -172,7 +203,7 @@ class DbConn
     }
 
 
-    public function createResource(string $tableName, array $sanitizedData): bool
+    public function createResource(string $tableName, array $sanitizedData): bool|self
     {
         $fieldNames = implode(
             ",",
@@ -206,7 +237,7 @@ class DbConn
     }
 
 
-    public function retrieveAllResources(string $tableName): array|false
+    public function retrieveAllResources(string $tableName): array|false|self
     {
         $sql_query = "SELECT * FROM $tableName";
 
@@ -222,7 +253,7 @@ class DbConn
     }
 
 
-    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): bool
+    public function updateResource(string $tableName, array $sanitizedData, array $fieldName, mixed $fieldValue): bool|self
     {
         $updateFields = $updateFields = implode(",", array_map(function ($column) {
             return "`$column`=?";
@@ -251,7 +282,7 @@ class DbConn
     }
 
 
-    public function deleteResource(string $tableName, array $fieldName, mixed $fieldValue): bool
+    public function deleteResource(string $tableName, array $fieldName, mixed $fieldValue): bool|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "DELETE FROM $tableName WHERE $fieldName = ?";
@@ -273,7 +304,7 @@ class DbConn
     }
 
 
-    public function retrieveResource_SingleFieldValue(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): PDOStatement
+    public function retrieveResource_SingleFieldValue(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): PDOStatement|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT $fieldName FROM $tableName WHERE $compareFieldName = ?";
@@ -290,7 +321,7 @@ class DbConn
     }
 
 
-    public function retrieveResource_MultipleFieldValues(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): array|false
+    public function retrieveResource_MultipleFieldValues(string $tableName, array $fieldName, string $compareFieldName, mixed $compareFieldValue): array|false|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT $fieldName FROM $tableName WHERE $compareFieldName = ?";
@@ -307,7 +338,7 @@ class DbConn
     }
 
 
-    public function retrieveSpecificResource_firstOccurrence(string $tableName, array $fieldName, $fieldValue): PDOStatement
+    public function retrieveSpecificResource_firstOccurrence(string $tableName, array $fieldName, $fieldValue): PDOStatement|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
@@ -324,7 +355,7 @@ class DbConn
     }
 
 
-    public function retrieveSpecificResource_allOccurrence(string $tableName, array $fieldName, $fieldValue): array|false
+    public function retrieveSpecificResource_allOccurrence(string $tableName, array $fieldName, $fieldValue): array|false|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
@@ -341,7 +372,7 @@ class DbConn
     }
 
 
-    public function validateResource(string $tableName, array $fieldName, $fieldValue): bool
+    public function validateResource(string $tableName, array $fieldName, $fieldValue): bool|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName = ?";
@@ -358,7 +389,7 @@ class DbConn
     }
 
 
-    public function searchResource(string $tableName, array $fieldName, string $fieldValue): array|false
+    public function searchResource(string $tableName, array $fieldName, string $fieldValue): array|false|self
     {
         $fieldName = $this->modifyFieldReference($fieldName);
         $sql_query = "SELECT * FROM $tableName WHERE $fieldName LIKE ?";
@@ -376,7 +407,7 @@ class DbConn
     }
 
 
-    public function sortResource(string $tableName, string $fieldName): array|false
+    public function sortResource(string $tableName, string $fieldName): array|false|self
     {
         $sql_query = "SELECT * FROM $tableName ORDER BY $fieldName";
 
@@ -389,14 +420,5 @@ class DbConn
 
             throw new RuntimeException('Resource not found for ' . $fieldName . ': ' . $e->getMessage());
         }
-    }
-
-
-    /**
-     * Closes the resource: database connection.
-     */
-    public function closeConnection(): void
-    {
-        $this->conn = null;
     }
 }

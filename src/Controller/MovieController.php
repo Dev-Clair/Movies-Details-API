@@ -31,13 +31,8 @@ class MovieController extends AbsController
     use Response_422;
     use Response_500;
 
-    public function __construct()
+    public function __construct(protected MovieModel $movieModel)
     {
-        /**
-         * @var MovieModel $movieModel
-         */
-        $movieModel = new MovieModel(databaseName: "movies");
-        parent::__construct($movieModel);
     }
 
     public function __call(string $name, array $arguments)
@@ -47,6 +42,20 @@ class MovieController extends AbsController
         }
         throw new InvalidMethodCallException("Call to undefined method " . $name);
     }
+
+    protected function validateAttribute(mixed $requestAttribute): bool
+    {
+        // Check if attribute is not null
+        return is_null($requestAttribute);
+    }
+
+    protected function validateResource(mixed $requestAttribute): bool
+    {
+        // Check if resource exists in the database
+        return $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
+    }
+
+
     /**
      * @OA\Schema(
      *     schema="ErrorResponse",
