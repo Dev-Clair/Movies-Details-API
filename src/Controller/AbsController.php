@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace src\Controller;
 
-use src\Interface\ControllerInterface;
+use src\Model\MovieModel;
 
-abstract class AbsController implements ControllerInterface
+abstract class AbsController
 {
     /** 
-     *  @var array $cache
+     *  @property array $cache
      */
     protected array $cache = [];
+
+    /** 
+     *  @property MovieModel $movieModel
+     */
+    protected MovieModel $movieModel;
+
+    public function __construct(MovieModel $movieModel)
+    {
+        $this->movieModel = $movieModel ?: new $movieModel;
+    }
 
     protected function sanitizeData(): array
     {

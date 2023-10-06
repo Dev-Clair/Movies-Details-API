@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace src\Model;
 
-use src\Interface\ModelInterface;
-use InvalidArgumentException;
+use Dotenv\Dotenv;
+use src\Db\DbConn;
 
-abstract class MainModel implements ModelInterface
+abstract class MainModel
 {
-    protected function invalid_arg_check(array $args)
-    {
-        foreach ($args as $argName => $argValue) {
-            if (empty($argValue)) {
-                throw new InvalidArgumentException("$argName is either null, false or not set.");
-            }
-        }
-    }
+    protected DbConn $dbConn;
 
-
-    protected function arg_num_check(int $expectedArgs, int $suppliedArgs)
+    public function __construct(?DbConn $dbConn = null)
     {
-        if ($expectedArgs !== $suppliedArgs) {
-            throw new InvalidArgumentException("Invalid number of arguments supplied. Expected: $expectedArgs, Supplied: $suppliedArgs");
-        }
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+
+        $this->dbConn = $dbConn ?: new DbConn(
+            driver: $_ENV["DSN_DRIVER"],
+            serverName: $_ENV["DATABASE_HOSTNAME"],
+            userName: $_ENV["DATABASE_USERNAME"],
+            password: $_ENV["DATABASE_PASSWORD"],
+            database: $_ENV["DATABASE"] ?? ""
+        );
     }
 }

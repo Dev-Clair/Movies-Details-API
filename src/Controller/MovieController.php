@@ -7,11 +7,12 @@ namespace src\Controller;
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use src\Model\MovieModel;
-use src\Exception\InvalidMethodCallException;
 use OpenApi\Annotations as OA;
+use src\Interface\ControllerInterface;
 use src\Trait\Response_200_Trait as Response_200;
 use src\Trait\Response_201_Trait as Response_201;
 use src\Trait\Response_400_Trait as Response_400;
+use src\Trait\Response_404_Trait as Response_404;
 use src\Trait\Response_422_Trait as Response_422;
 use src\Trait\Response_500_Trait as Response_500;
 
@@ -23,104 +24,21 @@ use src\Trait\Response_500_Trait as Response_500;
  *   description="API for managing movie details",
  * )
  */
-class MovieController extends AbsController
+class MovieController extends AbsController implements ControllerInterface
 {
     use Response_200;
     use Response_201;
     use Response_400;
+    use Response_404;
     use Response_422;
     use Response_500;
 
-    public function __construct(protected MovieModel $movieModel)
+    protected MovieModel $movieModel;
+
+    public function __construct()
     {
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        if (method_exists(MovieController::class, $name)) {
-            call_user_func_array([MovieController::class, $name], $arguments);
-        }
-        throw new InvalidMethodCallException("Call to undefined method " . $name);
-    }
-
-    protected function validateAttribute(mixed $requestAttribute): bool
-    {
-        // Check if attribute is not null
-        return is_null($requestAttribute);
-    }
-
-    protected function validateResource(mixed $requestAttribute): bool
-    {
-        // Check if resource exists in the database
-        return $this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
-    }
-
-
-    /**
-     * @OA\Schema(
-     *     schema="ErrorResponse",
-     *     @OA\Property(property="message", type="string", example="Bad Request"),
-     *     @OA\Property(property="description", type="string", example="Cannot modify resource"),
-     *     @OA\Property(property="error", type="string", example="Invalid Entry: {requestAttribute}")
-     * )
-     *
-     * @OA\Schema(
-     *     schema="SuccessResponse",
-     *     @OA\Property(property="status", type="string", example="OK"),
-     *     @OA\Property(property="message", type="string", example="Resource validation successful"),
-     *     @OA\Property(property="data", type="string", example="Resource validated successfully")
-     * )
-     */
-
-    /**
-     * Validate the request attribute and resource existence.
-     *
-     * @param Response $response The HTTP response instance.
-     * @param mixed $requestAttribute The request attribute to validate.
-     *
-     * @return Response|null Returns a response with error details if validation fails, or null if validation is successful.
-     *
-     *
-     * @OA\Parameter(
-     *     name="requestAttribute",
-     *     in="query",
-     *     required=true,
-     *     description="The request attribute to validate.",
-     *     @OA\Schema(type="string")
-     * )
-     * @OA\Response(
-     *     response=null,
-     *     description="Resource validated successfully")
-     * )
-     * @OA\Response(
-     *     response=400,
-     *     description="Bad Request",
-     *     @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
-     * )
-     */
-    protected function validateRequestAtrribute($requestAttribute): Response|null
-    {
-        $validationCache = [];
-
-        $validationCache['validateRequestAtrribute'] = $this->validateAttribute($requestAttribute);
-        $validationCache['validateResource'] = $this->validateResource($requestAttribute);
-
-        if ($validationCache['validateRequestAtrribute'] === true) {
-
-            unset($validationCache);
-            return $this->response_400('Cannot modify resource', 'Invalid Entry: ' . $requestAttribute);
-        }
-
-        if ($validationCache['validateResource'] === false) {
-
-            unset($validationCache);
-            return $this->response_400(
-                'Cannot modify resource',
-                'No matching unique id found for: ' . $requestAttribute
-            );
-        }
-
-        return null;
+        $movieModel = new MovieModel();
+        parent::__construct($movieModel);
     }
 
 
@@ -263,6 +181,11 @@ class MovieController extends AbsController
      *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
      *     ),
      *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
+     *     ),
+     *     @OA\Response(
      *         response=422,
      *         description="Unprocessable Entity",
      *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
@@ -278,14 +201,16 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($requestAttribute);
-
         $sanitizedData = $this->sanitizeData();;
 
         if (empty($sanitizedData)) {
 
             $this->clearCache();
             return $this->response_422('Not Successful', $sanitizedData);
+        }
+
+        if (!$this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute))) {
+            return $this->response_404('Resource does not exist for supplied uid', $requestAttribute);
         }
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
@@ -324,6 +249,11 @@ class MovieController extends AbsController
      *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
      *     ),
      *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
+     *     ),
+     *     @OA\Response(
      *         response=422,
      *         description="Unprocessable Entity",
      *         @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")
@@ -339,14 +269,16 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($requestAttribute);
-
         $sanitizedData = $this->sanitizeData();;
 
         if (empty($sanitizedData)) {
 
             $this->clearCache();
             return $this->response_422('Not Successful', $sanitizedData);
+        }
+
+        if (!$this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute))) {
+            return $this->response_404('Resource does not exist for supplied uid', $requestAttribute);
         }
 
         $resource = $this->movieModel->updateMovie("movie_details", $sanitizedData, ['uid' => 'uid'], htmlspecialchars($requestAttribute));
@@ -380,8 +312,8 @@ class MovieController extends AbsController
      *         @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Bad Request",
+     *         response=404,
+     *         description="Not Found",
      *         @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
      *     ),
      *     @OA\Response(
@@ -395,7 +327,9 @@ class MovieController extends AbsController
     {
         $requestAttribute = (string) $args['uid'] ?? null;
 
-        $this->validateRequestAtrribute($requestAttribute);
+        if (!$this->movieModel->validateMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute))) {
+            return $this->response_404('Resource does not exist for supplied uid', $requestAttribute);
+        }
 
         $resource = $this->movieModel->deleteMovie("movie_details", ['uid' => 'uid'], htmlspecialchars($requestAttribute));
 
